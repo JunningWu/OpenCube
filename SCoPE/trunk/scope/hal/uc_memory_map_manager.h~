@@ -1,0 +1,170 @@
+//==========================================================================
+//	uc_memory_map_manager.h
+//	Author: David Quijano, Juan Castillo, Héctor Posadas
+//	Date: lun feb 4 2008
+//	Description:
+//==========================================================================
+//  Copyright (C) 2008 Design of Systems on Silicon(DS2)
+//  Main developer: University of Cantabria
+//
+//  For more information about SCoPE you can visit
+//  http://www.teisa.unican.es/scope or write an e-mail to
+//  scope@teisa.unican.es or a letter to SCoPE, GIM - TEISA, University
+//  of Cantabria, AV. Los Castros s/n, ETSIIT, 39005, Santander, Spain
+//==========================================================================
+
+#ifndef _UC_MEMORY_MAP_MANAGER_H_
+#define _UC_MEMORY_MAP_MANAGER_H_
+
+// #include "uc_memory_map.h"
+// #include "uc_proc_bus_if.h"
+// #include "uc_pvt_bus.h"
+#include <vector>
+#include <iostream>
+using namespace std;
+
+#include "uc_bus_data.h"
+
+class uc_memory_map_manager {
+
+	struct addr_info{
+		int id;
+		ADDRESS max_addr;
+		ADDRESS min_addr;
+		struct addr_info *next;
+		int port;
+		char* name;
+	};
+
+	struct addr_info *m_list;
+	vector<int> m_masters;
+
+	public:
+
+	uc_memory_map_manager() {
+		m_list = NULL;
+	}
+
+	~uc_memory_map_manager() {
+		struct addr_info *aux;
+		while (m_list != NULL) {
+			aux = m_list;
+			m_list = m_list->next;
+			delete aux;
+		}
+	}
+
+	void add_master(int id) {
+		m_masters.push_back(id);
+	}
+
+	int add_peripheral(int per_id, ADDRESS min_addr, ADDRESS max_addr, int port, char *name) {
+		if (min_addr > max_addr) {
+			cout << "Error (memory map): Negative address size. Max Addr: "<<max_addr<<" Min Addr: "<<min_addr << endl;
+			return -1;
+		}
+		struct addr_info *info = new struct addr_info;
+		struct addr_info *aux;
+		info->next = NULL;
+		info->id = per_id;
+		info->min_addr = min_addr;
+		info->max_addr = max_addr;
+		info->port = port;
+		info->name = new char[strlen(name) + 1];
+		strcpy(info->name, name);
+		if ((min_addr & 0x3) != 0) {
+			cout << "Warning: peripheral addr not aligned" << endl;
+		}
+
+		if (m_list == NULL) {
+			m_list = info;
+			return 0;
+		}
+
+		aux = m_list;
+
+		while (aux->next != NULL) {
+			if (aux->max_addr >= min_addr && aux->min_addr <= max_addr) {
+				cout << "Error (memory map): Multiple peripherals connected to the same address. Max Addr: 0x"<<(void*)max_addr<<" Min Addr: 0x"<<(void*)min_addr  << endl;
+				return -1;
+			}
+			aux = aux->next;
+		}
+
+		if (aux->max_addr >= min_addr && aux->min_addr <= max_addr) {
+			cout << "Error (memory map): Multiple peripherals connected to the same address. Max Addr: 0x"<<(void*)max_addr<<" Min Addr: 0x"<<(void*)min_addr  << endl;
+			return -1;
+		}
+
+		aux->next = info;
+		return 0;
+	}
+
+	bool is_master(int id) {
+		for (unsigned int i = 0; i < m_masters.size(); i++) {
+			if (m_masters[i] == id) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	int decode_addr(ADDRESS addr) {
+		struct addr_info *aux;
+		aux = m_list;
+
+		while (aux != NULL) {
+			if (addr >= aux->min_addr && addr <= aux->max_addr) {
+				return aux->id;
+			}
+			aux = aux->next;
+		}
+
+		cout << " addr " << (void *)addr << " not in memory map" << endl;
+		return -1;
+	}
+
+	int get_port_addr(ADDRESS addr) {
+		struct addr_info *aux;
+		aux = m_list;
+		while (aux != NULL) {
+			if (addr >= aux->min_addr && addr <= aux->max_addr) {
+				return aux->port;
+			}
+			aux = aux->next;
+		}
+
+		cout << " addr "<< (void *)addr << " not in memory map" << endl;
+		return -1;
+	}
+
+	ADDRESS get_addr_port(int port) {
+		struct addr_info *aux;
+		aux = m_list;
+		while (aux != NULL) {
+			if (port == aux->port) {
+				return aux->min_addr;
+			}
+			aux = aux->next;
+		}
+
+		cout << " port " << (void *)port << " not in memory map" << endl;
+		return 0;
+	}
+
+	int get_port_name(char*name) {
+		struct addr_info *aux;
+		aux = m_list;
+
+		while (aux != NULL) {
+			if (strcmp(name, aux->name) == 0) {
+				return aux->port;
+			}
+			aux = aux->next;
+		}
+		cout << " peipheral " << name << " not in memory map" << endl;
+		return -1;
+	}
+};
+
+#endif

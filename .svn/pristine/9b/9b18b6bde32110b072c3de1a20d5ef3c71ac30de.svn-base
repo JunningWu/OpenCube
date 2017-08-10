@@ -1,0 +1,4 @@
+#pragma START_CODE
+void main(){
+	return __i != __last && !(__val < *__i);
+}

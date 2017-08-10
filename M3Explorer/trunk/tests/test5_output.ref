@@ -1,0 +1,472 @@
+Information: Creating the test_driver
+Information: Loading the test_driver
+Information: Current doe has been set to 'Full factorial DoE'
+Information: Current optimizer has been set to 'Pareto doe optimizer'
+Information: Starting with the pareto doe optimization process
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ]
+Information: Evaluating point: [ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ]
+Information: Evaluating point: [ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ]
+
+
+Shell variables:
+Name                  Value      
+----------            ------------------------ 
+Scalar1               [ "2" "3" ]  
+Scalar2               [ "item1" "item2" ]  
+Scalar3               [ "2" "8" ]  
+ds_parameters         [ "Scalar1" "Scalar2" "Scalar3" "Perm1" "Mask1 FIX-ONS-FIX" "Mask2 FIX-NO-ONS" "Mask3 FIX-ONS-VAR" "Mask4 VAR-NO-ONS" ]  
+evaluations           256         
+
+Databases in memory
+Name             size       
+-----------------------------
+root             (available)   192
+root: Current database contents
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0512133  239.67
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item1 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8769  0.0504533  249.75
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=2 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0512133  234.72
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@1-2@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(0-1-1) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(0-0) ] :   7.8496  0.0504533  244.68
+[ Scalar1=2 Scalar2=item2 Scalar3=8 Perm1=@2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-0) Mask4 VAR-NO-ONS=(1-1) ] :   7.8496  0.0504533  244.68
+[ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8496  0.0512133  239.67
+[ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8496  0.0512133  239.67
+[ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8496  0.0512133  239.67
+[ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8496  0.0512133  239.67
+[ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8496  0.0512133  239.67
+[ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8496  0.0512133  239.67
+[ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8496  0.0512133  239.67
+[ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8496  0.0512133  239.67
+[ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8496  0.0512133  239.67
+[ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8496  0.0512133  239.67
+[ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8496  0.0512133  239.67
+[ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8496  0.0512133  239.67
+[ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8496  0.0512133  239.67
+[ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8496  0.0512133  239.67
+[ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8496  0.0512133  239.67
+[ Scalar1=3 Scalar2=item1 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8496  0.0512133  239.67
+[ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8496  0.0504533  249.75
+[ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8496  0.0504533  249.75
+[ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8496  0.0504533  249.75
+[ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8496  0.0504533  249.75
+[ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8496  0.0504533  249.75
+[ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8496  0.0504533  249.75
+[ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8496  0.0504533  249.75
+[ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8496  0.0504533  249.75
+[ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8496  0.0504533  249.75
+[ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8496  0.0504533  249.75
+[ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8496  0.0504533  249.75
+[ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8496  0.0504533  249.75
+[ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8496  0.0504533  249.75
+[ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8496  0.0504533  249.75
+[ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8496  0.0504533  249.75
+[ Scalar1=3 Scalar2=item1 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8496  0.0504533  249.75
+[ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8225  0.0512133  234.72
+[ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8225  0.0512133  234.72
+[ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8225  0.0512133  234.72
+[ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8225  0.0512133  234.72
+[ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8225  0.0512133  234.72
+[ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8225  0.0512133  234.72
+[ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8225  0.0512133  234.72
+[ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8225  0.0512133  234.72
+[ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8225  0.0512133  234.72
+[ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8225  0.0512133  234.72
+[ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8225  0.0512133  234.72
+[ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8225  0.0512133  234.72
+[ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8225  0.0512133  234.72
+[ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8225  0.0512133  234.72
+[ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8225  0.0512133  234.72
+[ Scalar1=3 Scalar2=item2 Scalar3=2 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8225  0.0512133  234.72
+[ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8225  0.0504533  244.68
+[ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8225  0.0504533  244.68
+[ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8225  0.0504533  244.68
+[ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8225  0.0504533  244.68
+[ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8225  0.0504533  244.68
+[ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8225  0.0504533  244.68
+[ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8225  0.0504533  244.68
+[ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@1-2-3@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8225  0.0504533  244.68
+[ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8225  0.0504533  244.68
+[ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8225  0.0504533  244.68
+[ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8225  0.0504533  244.68
+[ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(0-1-1) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8225  0.0504533  244.68
+[ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8225  0.0504533  244.68
+[ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(0-0-0) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8225  0.0504533  244.68
+[ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(0-0-0) ] :   7.8225  0.0504533  244.68
+[ Scalar1=3 Scalar2=item2 Scalar3=8 Perm1=@3-2-1@ Mask1 FIX-ONS-FIX=(1-1-0) Mask2 FIX-NO-ONS=(1-1-1) Mask3 FIX-ONS-VAR=(1-1-1) Mask4 VAR-NO-ONS=(1-1-1) ] :   7.8225  0.0504533  244.68
+Number of points in the DB: 192
+Information: Removing test_driver
+Information: Exiting from Multicube Explorer shell

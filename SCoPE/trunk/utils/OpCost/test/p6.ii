@@ -1,0 +1,23 @@
+#pragma START_CODE
+
+int main(int argc, char *argv[])
+{
+   switch (*(p+1))
+   {
+    case 'c':
+     c_keywords = true;
+     break;
+    case 't':
+     echo_line_text = true;
+     break;
+    case 'm':
+     show_marked = true;
+     break;
+    case 'n':
+     echo_line_numbers = true;
+     break;
+    case 'y':
+     yydebug = true;
+     break;
+   }
+}

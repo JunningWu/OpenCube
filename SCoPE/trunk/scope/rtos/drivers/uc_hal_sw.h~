@@ -1,0 +1,78 @@
+//==========================================================================
+//	uc_hal_sw.h
+//	Author: David Quijano, Juan Castillo, Héctor Posadas
+//	Date: jue nov 22 2007
+//	Description:
+//==========================================================================
+//  The following code is derived, directly or indirectly, from PERFidiX,
+//  released June 30, 2006. Copyright (C) 2006 Design of Systems on Silicon(DS2)
+//  The Initial Developer of the Original Code is the University of Cantabria
+//  for Design of Systems on Silicon (DS2)
+//
+//  This program is free software; you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License (GPL) or GNU Lesser General Public License(LGPL) as published by
+//  the Free Software Foundation; either version 2 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License (GPL) or GNU Lesser General Public License(LGPL) for more details.
+//
+//  You should have received a copy of the GNU General Public License (GPL) or GNU Lesser General Public License(LGPL)
+//  along with this program; if not, write to the Free Software
+//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+//
+//  For more information about SCope you can visit
+//  http://www.teisa.unican.es/scope or write an e-mail to
+//  scope@teisa.unican.es or a letter to SCope, GIM - TEISA, University
+//  of Cantabria, AV. Los Castros s/n, ETSIIT, 39005, Santander, Spain
+//==========================================================================
+
+
+#ifndef UC_HAL_SW_H
+#define UC_HAL_SW_H
+
+// #define HAL_access (*qt_parent_rtos)[qt_parent_process->m_cpu]->HAL_stack_creation
+void * HAL_stack_creation(int function_id, ...);
+#define HAL_access HAL_stack_creation
+
+int func_1(int i, char j);
+char func_2(double i);
+int func_3();
+char * func_4(char*, char*, int*);
+
+#define func_1(a, b) *(int*)HAL_access(1, a, b)
+#define func_2(a) *(char*)HAL_access(2, a)
+#define func_3() *(int*)HAL_access(3)
+#define func_4(a, b, c) (char*)HAL_access(4, a, b, c)
+
+// Functions for the UC_bus_class
+// int read_data(int proc_id, DATA &data,  int size, ADDRESS addr, int priority);
+// int write_data(int proc_id, DATA data, int size, ADDRESS addr, int priority);
+// int read_control(int proc_id, DATA &data,  int size, ADDRESS addr, int priority);
+// int write_control(int proc_id, DATA data, int size, ADDRESS addr, int priority);
+// int annotate_write_data(int proc_id, DATA data, int size, ADDRESS addr, int priority);
+// int annotate_read_data(int proc_id, DATA &data,  int size, ADDRESS addr, int priority);
+// int annotate_write_control(int proc_id, DATA data, int size, ADDRESS addr, int priority);
+// int annotate_read_control(int proc_id, DATA &data,  int &size, ADDRESS addr, int priority);
+// int annotate_read_time(int proc_id, ADDRESS addr, int size, int priority, sc_time time);
+// int send_to_memory(int proc_id, int size,int priority);
+// void abort(unsigned int proc_id);
+// void stop(unsigned int proc_id);
+
+#define read_data(a, b, c, d, e)					*(int*)HAL_access(1001, a, b, c, d, e)
+#define write_data(a, b, c, d, e)					*(int*)HAL_access(1002, a, b, c, d, e)
+#define read_control(a, b, c, d, e)					*(int*)HAL_access(1003, a, b, c, d, e)
+#define write_control(a, b, c, d, e)				*(int*)HAL_access(1004, a, b, c, d, e)
+#define annotate_write_data(a, b, c, d, e)			*(int*)HAL_access(1005, a, b, c, d, e)
+#define annotate_read_data(a, b, c, d, e)			*(int*)HAL_access(1006, a, b, c, d, e)
+#define annotate_write_control(a, b, c, d, e)		*(int*)HAL_access(1007, a, b, c, d, e)
+#define annotate_read_control(a, b, c, d, e)		*(int*)HAL_access(1008, a, b, c, d, e)
+#define annotate_read_time(a, b, c, d, e)			*(int*)HAL_access(1009, a, b, c, d, e)
+#define send_to_memory(a, b, c)						*(int*)HAL_access(1010, a, b, c)
+// #define abort(a)									HAL_access(1011, a)
+// #define stop(a)										HAL_access(1012, a)
+#define configure_irq(a, b)							HAL_access(1013, a, b)
+
+#endif

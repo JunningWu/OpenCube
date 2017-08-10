@@ -1,0 +1,33 @@
+#!/bin/sh
+srcdir=`dirname $0`
+srcdir=`cd $srcdir; pwd`
+for hdr in $srcdir/../src/*.h ; do 
+	echo "Installing license on $hdr" ; 
+	$srcdir/put_license $hdr 
+done
+
+for fil in $srcdir/../src/*.cc ; do 
+	echo "Installing license on $fil" ; 
+	$srcdir/put_license $fil 
+done
+
+for fil in $srcdir/../src/doe/*.cc ; do 
+	echo "Installing license on $fil" ; 
+	$srcdir/put_license $fil 
+done
+
+for fil in $srcdir/../src/drivers/*.cc ; do 
+	echo "Installing license on $fil" ; 
+	$srcdir/put_license $fil 
+done
+
+for fil in $srcdir/../src/drivers/*.h ; do 
+	echo "Installing license on $fil" ; 
+	$srcdir/put_license $fil 
+done
+
+for fil in $srcdir/../src/optimizers/*.cc ; do 
+	echo "Installing license on $fil" ; 
+	$srcdir/put_license $fil 
+done
+$srcdir/put_license $srcdir/../COPYING

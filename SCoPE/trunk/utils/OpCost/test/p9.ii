@@ -1,0 +1,378 @@
+# 1 "c1035pf.cpp"
+void search_10i40 (
+    Word16 dn[],
+    Word16 rr[][40],
+    Word16 ipos[],
+    Word16 pos_max[],
+    Word16 codvec[]
+)
+{
+    Word16 i0, i1, i2, i3, i4, i5, i6, i7, i8, i9;
+    Word16 i, j, k, pos, ia, ib;
+    Word16 psk, ps, ps0, ps1, ps2, sq, sq2;
+    Word16 alpk, alp, alp_16;
+    Word16 rrv[40];
+    Word32 s, alp0, alp1, alp2;
+
+
+
+    i0 = pos_max[ipos[0]]; move16 ();
+
+
+
+
+
+
+    psk = -1; move16 ();
+    alpk = 1; move16 ();
+    for (i = 0; i < 10; i++)
+{
+        codvec[i] = i; move16 ();
+}
+
+    for (i = 1; i < 5; i++)
+{
+        i1 = pos_max[ipos[1]]; move16 ();
+        ps0 = add (dn[i0], dn[i1]);
+        alp0 = L_mult (rr[i0][i0], (Word16)(32768L/16));
+        alp0 = L_mac (alp0, rr[i1][i1], (Word16)(32768L/16));
+        alp0 = L_mac (alp0, rr[i0][i1], (Word16)(32768L/8));
+
+
+
+
+
+
+        move16 ();
+        move16 ();
+        move16 ();
+        move16 ();
+
+        for (i3 = ipos[3]; i3 < 40; i3 += 5)
+{
+            s = L_mult (rr[i3][i3], (Word16)(32768L/8));
+            s = L_mac (s, rr[i0][i3], (Word16)(32768L/4));
+            s = L_mac (s, rr[i1][i3], (Word16)(32768L/4));
+            rrv[i3] = round (s); move16 ();
+}
+
+
+        sq = -1; move16 ();
+        alp = 1; move16 ();
+        ps = 0; move16 ();
+        ia = ipos[2]; move16 ();
+        ib = ipos[3]; move16 ();
+
+
+        move16 ();
+        move16 ();
+        move16 ();
+        move16 ();
+
+        for (i2 = ipos[2]; i2 < 40; i2 += 5)
+{
+
+            ps1 = add (ps0, dn[i2]);
+
+
+            alp1 = L_mac (alp0, rr[i2][i2], (Word16)(32768L/16));
+
+            alp1 = L_mac (alp1, rr[i0][i2], (Word16)(32768L/8));
+
+            alp1 = L_mac (alp1, rr[i1][i2], (Word16)(32768L/8));
+
+
+            move16 ();
+            move16 ();
+            move16 ();
+
+            for (i3 = ipos[3]; i3 < 40; i3 += 5)
+{
+
+                ps2 = add (ps1, dn[i3]);
+
+
+                alp2 = L_mac (alp1, rrv[i3], (Word16)(32768L/2));
+
+                alp2 = L_mac (alp2, rr[i2][i3], (Word16)(32768L/8));
+
+                sq2 = mult (ps2, ps2);
+
+                alp_16 = round (alp2);
+
+                s = L_msu (L_mult (alp, sq2), sq, alp_16);
+
+                test ();
+                if (s > 0)
+{
+                    sq = sq2; move16 ();
+                    ps = ps2; move16 ();
+                    alp = alp_16; move16 ();
+                    ia = i2; move16 ();
+                    ib = i3; move16 ();
+}
+}
+}
+        i2 = ia; move16 ();
+        i3 = ib; move16 ();
+
+
+
+
+
+        ps0 = ps; move16 ();
+        alp0 = L_mult (alp, (Word16)(32768L/2));
+
+
+        move16 (); move16 (); move16 (); move16 (); move16 (); move16 ();
+
+        for (i5 = ipos[5]; i5 < 40; i5 += 5)
+{
+            s = L_mult (rr[i5][i5], (Word16)(32768L/8));
+            s = L_mac (s, rr[i0][i5], (Word16)(32768L/4));
+            s = L_mac (s, rr[i1][i5], (Word16)(32768L/4));
+            s = L_mac (s, rr[i2][i5], (Word16)(32768L/4));
+            s = L_mac (s, rr[i3][i5], (Word16)(32768L/4));
+            rrv[i5] = round (s); move16 ();
+}
+
+
+        sq = -1; move16 ();
+        alp = 1; move16 ();
+        ps = 0; move16 ();
+        ia = ipos[4]; move16 ();
+        ib = ipos[5]; move16 ();
+
+
+        move16 (); move16 (); move16 (); move16 (); move16 (); move16 ();
+
+        for (i4 = ipos[4]; i4 < 40; i4 += 5)
+{
+            ps1 = add (ps0, dn[i4]);
+
+            alp1 = L_mac (alp0, rr[i4][i4], (Word16)(32768L/32));
+            alp1 = L_mac (alp1, rr[i0][i4], (Word16)(32768L/16));
+            alp1 = L_mac (alp1, rr[i1][i4], (Word16)(32768L/16));
+            alp1 = L_mac (alp1, rr[i2][i4], (Word16)(32768L/16));
+            alp1 = L_mac (alp1, rr[i3][i4], (Word16)(32768L/16));
+
+
+            move16 (); move16 (); move16 ();
+
+            for (i5 = ipos[5]; i5 < 40; i5 += 5)
+{
+                ps2 = add (ps1, dn[i5]);
+
+                alp2 = L_mac (alp1, rrv[i5], (Word16)(32768L/4));
+                alp2 = L_mac (alp2, rr[i4][i5], (Word16)(32768L/16));
+
+                sq2 = mult (ps2, ps2);
+
+                alp_16 = round (alp2);
+
+                s = L_msu (L_mult (alp, sq2), sq, alp_16);
+
+                test ();
+                if (s > 0)
+{
+                    sq = sq2; move16 ();
+                    ps = ps2; move16 ();
+                    alp = alp_16; move16 ();
+                    ia = i4; move16 ();
+                    ib = i5; move16 ();
+}
+}
+}
+        i4 = ia; move16 ();
+        i5 = ib; move16 ();
+
+
+
+
+
+        ps0 = ps; move16 ();
+        alp0 = L_mult (alp, (Word16)(32768L/2));
+
+
+        move16 (); move16 (); move16 (); move16 ();
+        move16 (); move16 (); move16 (); move16 ();
+
+        for (i7 = ipos[7]; i7 < 40; i7 += 5)
+{
+            s = L_mult (rr[i7][i7], (Word16)(32768L/16));
+            s = L_mac (s, rr[i0][i7], (Word16)(32768L/8));
+            s = L_mac (s, rr[i1][i7], (Word16)(32768L/8));
+            s = L_mac (s, rr[i2][i7], (Word16)(32768L/8));
+            s = L_mac (s, rr[i3][i7], (Word16)(32768L/8));
+            s = L_mac (s, rr[i4][i7], (Word16)(32768L/8));
+            s = L_mac (s, rr[i5][i7], (Word16)(32768L/8));
+            rrv[i7] = round (s); move16 ();
+}
+
+
+        sq = -1; move16 ();
+        alp = 1; move16 ();
+        ps = 0; move16 ();
+        ia = ipos[6]; move16 ();
+        ib = ipos[7]; move16 ();
+
+
+        move16 (); move16 (); move16 (); move16 ();
+        move16 (); move16 (); move16 (); move16 ();
+
+        for (i6 = ipos[6]; i6 < 40; i6 += 5)
+{
+            ps1 = add (ps0, dn[i6]);
+
+            alp1 = L_mac (alp0, rr[i6][i6], (Word16)(32768L/64));
+            alp1 = L_mac (alp1, rr[i0][i6], (Word16)(32768L/32));
+            alp1 = L_mac (alp1, rr[i1][i6], (Word16)(32768L/32));
+            alp1 = L_mac (alp1, rr[i2][i6], (Word16)(32768L/32));
+            alp1 = L_mac (alp1, rr[i3][i6], (Word16)(32768L/32));
+            alp1 = L_mac (alp1, rr[i4][i6], (Word16)(32768L/32));
+            alp1 = L_mac (alp1, rr[i5][i6], (Word16)(32768L/32));
+
+
+            move16 (); move16 (); move16 ();
+
+            for (i7 = ipos[7]; i7 < 40; i7 += 5)
+{
+                ps2 = add (ps1, dn[i7]);
+
+                alp2 = L_mac (alp1, rrv[i7], (Word16)(32768L/4));
+                alp2 = L_mac (alp2, rr[i6][i7], (Word16)(32768L/32));
+
+                sq2 = mult (ps2, ps2);
+
+                alp_16 = round (alp2);
+
+                s = L_msu (L_mult (alp, sq2), sq, alp_16);
+
+                test ();
+                if (s > 0)
+{
+                    sq = sq2; move16 ();
+                    ps = ps2; move16 ();
+                    alp = alp_16; move16 ();
+                    ia = i6; move16 ();
+                    ib = i7; move16 ();
+}
+}
+}
+        i6 = ia; move16 ();
+        i7 = ib; move16 ();
+
+
+
+
+
+        ps0 = ps; move16 ();
+        alp0 = L_mult (alp, (Word16)(32768L/2));
+
+
+        move16 (); move16 (); move16 (); move16 (); move16 ();
+        move16 (); move16 (); move16 (); move16 (); move16 ();
+
+        for (i9 = ipos[9]; i9 < 40; i9 += 5)
+{
+            s = L_mult (rr[i9][i9], (Word16)(32768L/16));
+            s = L_mac (s, rr[i0][i9], (Word16)(32768L/8));
+            s = L_mac (s, rr[i1][i9], (Word16)(32768L/8));
+            s = L_mac (s, rr[i2][i9], (Word16)(32768L/8));
+            s = L_mac (s, rr[i3][i9], (Word16)(32768L/8));
+            s = L_mac (s, rr[i4][i9], (Word16)(32768L/8));
+            s = L_mac (s, rr[i5][i9], (Word16)(32768L/8));
+            s = L_mac (s, rr[i6][i9], (Word16)(32768L/8));
+            s = L_mac (s, rr[i7][i9], (Word16)(32768L/8));
+            rrv[i9] = round (s); move16 ();
+}
+
+
+        sq = -1; move16 ();
+        alp = 1; move16 ();
+        ps = 0; move16 ();
+        ia = ipos[8]; move16 ();
+        ib = ipos[9]; move16 ();
+
+
+        move16 (); move16 (); move16 (); move16 (); move16 ();
+        move16 (); move16 (); move16 (); move16 (); move16 ();
+
+        for (i8 = ipos[8]; i8 < 40; i8 += 5)
+{
+            ps1 = add (ps0, dn[i8]);
+
+            alp1 = L_mac (alp0, rr[i8][i8], (Word16)(32768L/128));
+            alp1 = L_mac (alp1, rr[i0][i8], (Word16)(32768L/64));
+            alp1 = L_mac (alp1, rr[i1][i8], (Word16)(32768L/64));
+            alp1 = L_mac (alp1, rr[i2][i8], (Word16)(32768L/64));
+            alp1 = L_mac (alp1, rr[i3][i8], (Word16)(32768L/64));
+            alp1 = L_mac (alp1, rr[i4][i8], (Word16)(32768L/64));
+            alp1 = L_mac (alp1, rr[i5][i8], (Word16)(32768L/64));
+            alp1 = L_mac (alp1, rr[i6][i8], (Word16)(32768L/64));
+            alp1 = L_mac (alp1, rr[i7][i8], (Word16)(32768L/64));
+
+
+            move16 (); move16 (); move16 ();
+
+            for (i9 = ipos[9]; i9 < 40; i9 += 5)
+{
+                ps2 = add (ps1, dn[i9]);
+
+                alp2 = L_mac (alp1, rrv[i9], (Word16)(32768L/8));
+                alp2 = L_mac (alp2, rr[i8][i9], (Word16)(32768L/64));
+
+                sq2 = mult (ps2, ps2);
+
+                alp_16 = round (alp2);
+
+                s = L_msu (L_mult (alp, sq2), sq, alp_16);
+
+                test ();
+                if (s > 0)
+{
+                    sq = sq2; move16 ();
+                    ps = ps2; move16 ();
+                    alp = alp_16; move16 ();
+                    ia = i8; move16 ();
+                    ib = i9; move16 ();
+}
+}
+}
+
+
+
+
+
+        s = L_msu (L_mult (alpk, sq), psk, alp);
+
+        test ();
+        if (s > 0)
+{
+            psk = sq; move16 ();
+            alpk = alp; move16 ();
+            codvec[0] = i0; move16 ();
+            codvec[1] = i1; move16 ();
+            codvec[2] = i2; move16 ();
+            codvec[3] = i3; move16 ();
+            codvec[4] = i4; move16 ();
+            codvec[5] = i5; move16 ();
+            codvec[6] = i6; move16 ();
+            codvec[7] = i7; move16 ();
+            codvec[8] = ia; move16 ();
+            codvec[9] = ib; move16 ();
+}
+
+
+
+
+        pos = ipos[1]; move16 ();
+ j = 1;
+        for (k = 2; k < 10; j++)
+{
+            ipos[j] = ipos[k]; move16 ();
+            k++;
+}
+        ipos[10 - 1] = pos; move16 ();
+}
+}

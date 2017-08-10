@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<design_space xmlns="http://www.multicube.eu/" version="1.0">
+   <simulator>foo</simulator>
+   <parameters>foo</parameters>
+   <system_metrics>
+        <system_metric name="Execution_Cycles" type="integer" unit="Cycle"/>
+        <system_metric name="Latency" type="float" unit="Second"/>
+        <system_metric name="Instruction_Count" type="integer" unit="Instruction"/>
+        <system_metric name="Power_Consumption" type="float" unit="Watts"/>
+   </system_metrics>
+   <rules>foo</rules>
+</design_space>

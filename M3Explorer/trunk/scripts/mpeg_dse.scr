@@ -1,0 +1,15 @@
+db_read "full_mpeg4.db"
+doe_define_doe "m3_two_level_ff"	
+opt_define_optimizer "m3_pareto_doe"
+set objectives =  { "energy" "cycles" }
+db_change_current "solution"
+set dcw = [ "2" "8" ]
+set l2cw = [ "2" "8" ]
+opt_tune
+set write_plot_on_file = 1
+db_change_current "root"
+db_filter_pareto
+db_plot_objectives "root" "solution"
+db_change_current "solution"
+db_compute_ADRS "root"
+show_vars

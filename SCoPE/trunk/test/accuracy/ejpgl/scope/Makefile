@@ -1,0 +1,76 @@
+#==========================================================================
+#	Makefile
+#	Author: Juan Castillo, David Quijano
+#	Date: lun dic 3 2007
+#	Description:
+#==========================================================================
+#  Copyright (C) 2008 Design of Systems on Silicon(DS2)
+#  Main developer: University of Cantabria
+#
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+#  For more information about SCoPE you can visit
+#  http://www.teisa.unican.es/scope or write an e-mail to
+#  scope@teisa.unican.es or a letter to SCoPE, GIM - TEISA, University
+#  of Cantabria, AV. Los Castros s/n, ETSIIT, 39005, Santander, Spain
+#==========================================================================
+
+# SCoPE options:
+SCOPE_CXX = scope-g++
+#SCOPE_FLAGS = --scope-method=op-cost --scope-preserve-files --scope-verbose --scope-crosscompiler=arm-linux-gcc --scope-method=asm-sentences --scope-language=c 
+SCOPE_FLAGS = --scope-method=op-cost 
+#--scope-preserve-files --scope-verbose --scope-crosscompiler=arm-elf-gcc-3.4.3 --scope-method=asm-sentences --scope-language=c --scope-nodcache #--scope-optimizations #--scope-noicache --scope-notime
+SCOPE_INC_DIR =	-I$(SCOPE_HOME)/scope \
+				-I$(SYSTEMC)/include \
+				-I$(SCOPE_HOME)/TLM2/include/tlm
+
+# Compiler options:
+CXX = g++
+DEBUG = -g
+OPT = -O0
+CFLAGS = $(DEBUG) $(OPT) -c
+
+# Linker options:
+LFLAGS = 
+LIB_DIR = -L$(SCOPE_HOME)/scope -L$(SCOPE_HOME)/tinyxml -L$(SYSTEMC)/lib-linux
+LIB = -lscope -ltinyxml -lsystemc -lpthread -lrt
+
+# Executables:
+CJPEG = cjpeg
+
+SRCS = bmp2jpg.c ColorConversion.c dct.c huffman.c jpeg.c io.c zzq.c stream.c
+OBJS = $(SRCS:.c=.o)
+
+.PHONY: $(CJPEG)
+all: $(CJPEG)
+
+# Compile sc_main.cpp with standar g++
+sc_main.o : sc_main.cpp
+	$(CXX) $(CFLAGS) $(SCOPE_INC_DIR) $^ -o $@
+
+$(CJPEG): sc_main.o $(OBJS)
+	$(CXX) $(LFLAGS) $(LIB_DIR) -o $@ $^ $(LIB)
+
+# Implicit Rules
+%.o: %.c
+	$(SCOPE_CXX) $(SCOPE_FLAGS) $(CFLAGS) $(INC_DIR) $< -o $@
+
+.PHONY: clean
+clean:
+	rm -rf $(OBJS) sc_main.o main.o
+
+.PHONY: distclean
+distclean: clean
+	rm -rf $(CJPEG)

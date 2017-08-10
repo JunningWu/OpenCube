@@ -1,0 +1,67 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>SCoPE XML Plug-in</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><a name="config">XML Metrics Definition file</h2>
+<hr>
+<p>The XML Metrics Definition file allows defining the metrics that SCoPE will report once the simulation is finished.</p>
+
+<p>File structure:</p>
+
+<pre>
+&lt; system_metrics &gt;	
+	&lt; metric name="Execution_cycles"  type="integer" unit="cycle" /&gt;
+	&lt; metric name="Power_consumption" type="float"   unit="W"     /&gt;
+	...
+&lt; /system_metrics &gt;
+</pre>
+
+<hr>
+<h2>Metrics supported:</h2>
+The XML plug-in recognizes the following metrics:
+
+<pre>
+- System_Area [mm2]: This metric estimates the overall system area occupied by the architecture.
+
+- Execution_Cycles [Cycle]: Estimates the number of cycles to execute the target application running on the target architecture. 
+
+- Latency [Second]: The latency is given by the number of cycles to execute the target application running on the target architecture times the duration of the clock period.
+
+- Instruction_Count (IC) [Instruction]: This metric estimates the number of instructions to execute the target application running on the target architecture. 
+
+- Clock_Per_Instruction (CPI) [Cycle/Instruction]: Represents the average number of clock cycles required to execute an instruction.
+
+- Instructions_Per_Clock (IPC) [Instruction/Cycle]: Represents the average number of instruction executed in each clock cycle.
+
+- MIPS (Million of Instructions Per Second) [Million of instructions / s] 
+
+- Hit_Rate [Percentage]: This metric represents the percentage of cache hits with respect to the number of cache accesses.
+
+- Memory_Stall_Cycles [Cycle]: This metric is given by the number of cache misses times the miss penalty cycles.
+
+- AMAT (Average Memory Access Time) [Second]: Sum of the cache hit time and the cache miss rate times multiplied by the cache miss penalty, expressed in seconds.
+
+- Bus_Bandwidth [bit/s]: This metric refers to the maximum rate at which information bit can be transferred over the bus per time unit (in case of packet transmission, information includes packet header, payload and trailer).
+
+- Network_Aggregate Bandwidth [bit/s]: This metric refers to the total data bandwidth supplied by the Network-on-Chip.
+
+- Transport Latency [Second]: The transmission time refers to the difference in time between the arrival of the first and the last bits of the packet to the receiver.
+
+- Energy_consumption [Jule]: This metric estimates the energy consumed by the target architecture during the execution of the target application. 
+
+- Power_consumption [Watt]: The average power consumed by the target architecture during the execution of the target application. </pre>
+
+
+<hr>
+<li><a href="index.html"> Index </a></li>
+<li><a href="config.html"> Configuration files </a></li>
+
+</body>
+</html>

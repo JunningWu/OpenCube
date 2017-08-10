@@ -1,0 +1,39 @@
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>SCoPE XML Plug-in</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>HW_Connection</h2>
+<hr>
+<p>Indicates that a predefined instance will be also connected at this point of the platform</p>
+
+<p>General Attributes :</p>
+<pre>
+<li>name      [Mandatory]: Name of the HW instance </li>
+<li>instance  [Mandatory]: Name of the HW instance to be connected </li> 
+<li>master_slave [Optional]: It indicates if the component must be connectedas "master", "slave" or "both". 
+		Slave is selected by default. Instance defined values for address, irq, latency and others are applied   </li> 
+<!--<li>mem_size  [Optional]: Amount of memory associated to the HW component in the memory map </li>
+<li>frequency [Optional]: Component frequency </li>
+<li>start_addr[Optional]: Address at the memory map where the HW instance is placed </li>
+<li>port      [Optional]: Port number the OS will assign to the peripheral </li>
+<li>irq       [Optional]: Interrupt number </li>
+<li>rec_irq   [Optional]: Number of the interruptions the HW instance can receive </li>
+<li>local_id  [Optional]: Identifier for the component. In net_if components is the mac address </li>
+<li>latency   [Optional]: Component latency </li>-->
+</pre>
+<p>Structure:</p>
+
+<pre>
+&lt; HW_Connection name="net_if_1_connection" instance="my_net_if" / &gt;
+</pre>
+
+<hr>
+<li><a href="index.html"> Index </a></li>
+<li><a href="xsd.html"> XML System Description file </a></li>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<design_space xmlns="http://www.multicube.eu/" version="1.3">
+	<simulator>
+		<simulator_executable path="/you/should/not/invoke/the/simulator" />
+	</simulator>
+	<parameters>
+		<parameter name="ics" type="exp2" min="2048" max="16384" />
+		<parameter name="dcs" type="exp2" min="2048" max="16384" />
+		<parameter name="l2cs" type="exp2" min="32768" max="262144" />
+		<parameter name="icw" type="exp2" min="1" max="4" />
+		<parameter name="dcw" type="exp2" min="1" max="8" />
+		<parameter name="l2cw" type="exp2" min="1" max="8" />
+		<parameter name="iwidth" type="exp2" min="1" max="8" />
+		<parameter name="cbs" type="exp2" min="16" max="16" />
+		<parameter name="pn" type="exp2" min="2" max="16" />
+	</parameters>
+	<system_metrics>
+		<system_metric name="energy" type="float" unit="J" desired="small" />
+		<system_metric name="cycles" type="integer" unit="cycles" desired="small" />
+	</system_metrics>
+</design_space>

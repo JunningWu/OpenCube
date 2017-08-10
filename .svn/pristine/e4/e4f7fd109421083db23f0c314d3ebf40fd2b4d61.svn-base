@@ -1,0 +1,132 @@
+
+
+========================================================
+Release Notes for the TLM 2.0 Kit Of 9 June 2008
+========================================================
+
+CONTENTS
+========
+
+  1) Supported SystemC versions
+  2) What's changed in this kit?
+  3) Known issues
+
+1) Supported SystemC versions
+=============================
+SystemC 2.1.v1 and 2.2.0 are supported and have been tested.
+
+2) What's changed in this kit?
+==============================
+
+Compared to the 29 Nov 2007 draft 2 kit, the standard has evolved in the 
+following primary ways:
+  - the file and directory structure has undergone further cleaning
+  - resolved confusion on multiple interfaces, and loosely timed versus untimed 
+    modeling by:
+  	- LT = single phase hence blocking API with support for timing 
+	       annotation (&temporal decoupling)
+	- AT = multi-phase hence non-blocking API with extensible number of 
+	       phases
+  - unified the interfaces: that means both API's need to be implemented by 
+    all compliant models
+  - added convenience sockets (implementing LT-AT conversion and multiple 
+    bindings)
+  - better support for extended protocol definitions by reusing GP for DMI and 
+    debug
+  - support for ignorable phase extentions
+  - added exmaple for instance based extentions
+  - provided with endianness (conversion) helper functions
+  - now using char * for byte-enable array 
+  - Documentation (training presentation and users manual)
+  	- updated for the changes above
+	- additional semantical clarifications
+	- well-defined transaction ordering rules
+  - Examples have been updated for the changes in the standard
+For a more detailed description of all features of TLM 2.0 check out the TLM 2.0
+manual that can be found in the documentation subdirectory of this package
+
+3) Known issues
+===============
+
+a. when using TLM 2.0 with SystemC v2.2.v1 on 64 bit linux you will need to 
+   force 32 bit mode by using the '-m32' flag
+
+b. the tlm_simple_target_socket in tlm_utils does not obey the END_REQ rule
+   when only an nb_ call is registered, an b_ call is being handled in the
+   socket and there is an nb_ call coming in at the same time. In this case
+   the incoming nb_ call will be forwarded to the registered nb_ call without
+   checking whether the earlier b_ call has passed the END_REQ timing point
+ 
+c. the implementation of the PEQ 'peq_with_get' in tlm_utils does not properly
+   distinguish between immediate notifications and delta notifications. In the
+   case that a immediate and delta notification happen at the same simulation
+   time both types of notifications emerge from the PEQ in the same evaluation 
+   phase. This is wrong immediate notifications should overtake delta 
+   notifications
+   
+d. the multi_passthrough_initiator_socket and multi_passthrough_target_socket do
+   depends on a boost library and does not work with SystemC2.1.v1 due to boost
+   incompatibilities
+
+e. the examples do not successfully 'make check' on bigendian machines, messages
+   are not printed correctly in that case.
+   
+f. the lt_dmi example does not run for all platform and library versions. It
+   works for X86 linux, gcc4.0 and SystemCv2.2.0 
+
+
+========================================================
+Release Notes for the TLM 2.0 Draft 2 Kit Of 29 Nov 2007
+========================================================
+
+
+
+CONTENTS
+========
+
+  1) Supported SystemC versions
+  2) What's changed in this kit?
+  3) Areas under construction
+
+
+1) Supported SystemC versions
+=============================
+SystemC 2.1.v1 and 2.2.0 are supported and have been tested.
+
+2) What's changed in this kit?
+==============================
+
+Compared to the 29 Nov 2006 draft 1 kit, draft 2 has evolved in the following
+primary ways:
+  - Many of the features have undergone significant change:
+    - Untimed modeling
+    - Approximately timed modeling
+    - The generic payload and its extension mechanism
+    - Non-intrusive (debug) transactions
+  - Several new features have been incorporated:
+    - Loosely timed modeling
+    - Temporal decoupling
+    - Model synchronization
+    - Direct memory interface (DMI)
+  - Documentation (training presentation and users manual) is provided
+  - Examples have been improved
+
+3) Areas under construction
+===========================
+
+This is a draft kit for public review so any of it is subject to change.  
+During the public review, there will be ongoing work to improve the 
+documentation and provide more examples.  Some of the planned investigations
+are:
+  - consider generic payload support for atomic transactions
+  - improve the analysis ports and integrate them with sockets
+  - extend DMI to support snooping and consider a direct channel for bus
+    bypass to non-memory models
+  - enforce payload modifiability rules
+  - some features of the generic payload need to be programmed differently 
+    depending on host endianness; helper functions will be provided to isolate
+    the modeler from these details; key issues are demonstrated in the 
+    gp_extension/GenericPayloadEndianness unit test, which produces
+    host-endian dependent results and therefore is not part of the automated
+    regression suite
+Additional detail on some of these topics can be found in the users manual.

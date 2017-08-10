@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Description xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" name="vocoder">
+	<HW_Platform name="HWPlat_1" >
+		<HW_Components name="HWComponents_1">
+			<HW_Component category="bus" name="AMBA" frequency="200" />
+			<HW_Component category="network" name="mesh" frequency="200" x_size="2" y_size="1" />
+			<HW_Component category="processor" name="arm926t" frequency="200" />
+			<HW_Component category="memory" name="Memory" mem_size="536870K" frequency="200" mem_type="RAM" />
+			<HW_Component category="net_if" name="network_if" mem_size="100" frequency="200" />
+		</HW_Components>
+		<HW_Architecture name="HWArch_1">
+			<Repeat number="__NUM_NODES" index="a">
+				<HW_Instance component="AMBA" name="bus0" >
+					<HW_Instance component="arm926t" name="Processor%a" />
+					<HW_Instance component="Memory" name="Memory%a" start_addr="__MEM_ADDR" />
+					<HW_Instance component="network_if" name="NoC_if%a" start_addr="__NOC_ADDR" irq="5" />
+				</HW_Instance>
+			</Repeat>
+			<HW_Instance component="mesh" name="NoC" >
+				<HW_Connection instance="//@HW_Platform/@HW_Architecture/@Repeat.0/@HW_Instance.0/@HW_Instance.2" name="conn0"/>
+				<HW_Connection instance="//@HW_Platform/@HW_Architecture/@Repeat.1/@HW_Instance.0/@HW_Instance.2" name="conn1"/>
+			</HW_Instance>
+		</HW_Architecture>
+		<Computing_groups name="HWGrp_1">
+			<Repeat number="__NUM_NODES" index="i">
+				<Computing_group name="node%i" >
+					<Computing_Resource name="//@HW_Platform/@HW_Architecture/@Repeat.%i/@HW_Instance.0/@HW_Instance.0" />
+				</Computing_group>
+			</Repeat>
+		</Computing_groups>
+	</HW_Platform>
+	<SW_Platform name="SWPlat_1">
+		<SW_Components name="SWPlat_1">
+			<SW_Component name="SO" type="OS" />
+		</SW_Components>
+		<SW_Architecture  name="SWArch_1">
+			<Repeat number="__NUM_NODES" index="i">
+				<SW_Instance name="OS%i" component="SO" HW_Resource="node%i" />
+			</Repeat>
+		</SW_Architecture>
+		<Functionality  name="Func_1">
+			<Exec_Component name="Coder" category="SW" function="coder_main" file="./functions.o" />
+			<Exec_Component name="Decoder" category="SW" function="decoder_main" file="./functions.o" />
+			<Exec_Component name="tun" category="driver" function="tun_init" file="./functions.o" />
+		</Functionality>
+	</SW_Platform>
+	<Application>
+		<Allocation  name="Alloc_1">
+			<Exec_Instance name="_Coder" component="Coder" resource="node0" />
+			<Exec_Instance name="_Decoder" component="Decoder" resource="node1" />
+			<Exec_Instance name="tun0" component="tun" resource="node0" />
+			<Exec_Instance name="tun1" component="tun" resource="node1" />
+		</Allocation>
+		<Allocation  name="Alloc_2">
+			<Exec_Instance name="_Coder" component="Coder" resource="node1" />
+			<Exec_Instance name="_Decoder" component="Decoder" resource="node2" />
+			<Exec_Instance name="tun0" component="tun" resource="node0" />
+			<Exec_Instance name="tun1" component="tun" resource="node1" />
+		</Allocation>
+	</Application>
+
+
+	<Simulation time="40 s" >
+		<Implementation HW_Components="HWComponents_1" Allocation="Alloc_1"/>
+	</Simulation>
+</Description>

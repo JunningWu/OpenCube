@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system_metrics>
+        <system_metric name="Latency" type="float" unit="Second"/>
+	<system_metric name="Power_Consumption" type="float" unit="Watts"/>
+</system_metrics>

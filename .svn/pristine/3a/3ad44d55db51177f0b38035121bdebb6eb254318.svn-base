@@ -1,0 +1,15 @@
+set clean_directory_on_exit = "true"
+db_change_current "full_db"
+doe_define_doe "m3_full_doe"
+opt_define_optimizer "m3_pareto_doe"
+opt_tune
+db_write "my_full.db"
+db_change_current "pareto_db"
+db_read "my_full.db"
+db_export "my_full.csv"
+set objectives = { "sum" "difference" "product" }
+db_filter_pareto
+db_report 
+db_write "my_pareto.db"
+db_export "my_pareto.csv"
+

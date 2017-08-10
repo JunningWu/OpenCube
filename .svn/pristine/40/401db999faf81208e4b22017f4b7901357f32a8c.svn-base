@@ -1,0 +1,125 @@
+#!/bin/bash
+# This is a very rudimental script for running custom regression tests on the m3explorer 
+# platform. Every test has its own piece of code for executing it and outputting
+# the result which is of the form PASSED, NOT PASSED. So far there is no support 
+# for creating tests in a simpler way (i.e. through a configuration file).
+# Keep in mind that this is processed by configure to setup destination directory
+# variables.
+# This file should test the executable which is in the @dstdir@/image/bin directory
+# with whatever driver/optimizer needed.
+# Reference test files should be put in the directory tests with a name like testX_output.ref
+# and be compared with the actual output of the m3explorer which should be put in testX_output.
+# Look at Test number 1 for a more detailed description.
+#
+# Author: Vittorio Zaccaria, zaccaria@elet.polimi.it 2008
+#
+
+
+# Test number 1
+#
+# Execute an m3explorer script
+@image@/bin/m3explorer -x @image@/tests/multicube_design_space_test.xml -f @image@/tests/test_xml.scr >& test1_output
+diff test1_output @image@/tests/test1_output.ref > tmp
+if [ "$?" -ne 0 ]; then 
+	echo "1) Tested XML design space construction: NOT PASSED"
+	exit 1
+else
+	echo "1) Tested XML design space construction: PASSED"
+fi
+
+# Test number 2
+#
+# Execute an m3explorer script
+@image@/bin/m3explorer -x @image@/tests/multicube_design_space_test.xml -f @image@/tests/test_xml_ds.scr >& test2_output
+diff test2_output @image@/tests/test2_output.ref > tmp
+if [ "$?" -ne 0 ]; then 
+	echo "2) Tested XML rules                    : NOT PASSED"
+	exit 1
+else
+	echo "2) Tested XML rules                    : PASSED"
+fi
+
+# Test number 3
+#
+# Execute an m3explorer script
+@image@/bin/m3explorer -x @image@/tests/multicube_design_space_test_3.xml -f @image@/tests/test_xml_3.scr >& test3_output
+diff test3_output @image@/tests/test3_output.ref > tmp
+if [ "$?" -ne 0 ]; then 
+	echo "3) Tested XML error reporting          : NOT PASSED"
+	exit 1
+else
+	echo "3) Tested XML error reporting          : PASSED"
+fi
+
+# Test number 4
+#
+# Execute an m3explorer script
+@image@/bin/m3explorer -x @image@/tests/multicube_design_space_test_4.xml -f @image@/tests/test_xml_4.scr >& test4_output
+diff test4_output @image@/tests/test4_output.ref > tmp
+if [ "$?" -ne 0 ]; then 
+	echo "4) Tested XML input/output interface   : NOT PASSED"
+	exit 1
+else
+	echo "4) Tested XML input/output interface   : PASSED"
+fi
+
+# Test number 5
+#
+# Execute an m3explorer script
+@image@/bin/m3explorer -f @image@/tests/test_ff_5.scr >& test5_output
+diff test5_output @image@/tests/test5_output.ref > tmp
+if [ "$?" -ne 0 ]; then 
+	echo "5) Tested full factorial features      : NOT PASSED"
+	exit 1
+else
+	echo "5) Tested full factorial features      : PASSED"
+fi
+
+# Test number 6 
+#
+# Execute an m3explorer script
+tar xzf @image@/examples/mpeg/full_mpeg4.db.tar.gz
+@image@/bin/m3explorer -f @image@/tests/mpeg_dse.scr -x @image@/examples/mpeg/m3_mpeg_use_case.xml >& test6_output
+diff test6_output @image@/tests/test6_output.ref > tmp
+if [ "$?" -ne 0 ]; then 
+	echo "6) Tested database and math functions  : NOT PASSED"
+	exit 1
+else
+	echo "6) Tested database and math functions  : PASSED"
+fi
+
+# Test number 7 
+#
+# Execute an m3explorer script
+if [ ! -f pareto_mpeg4.db ]
+then
+	cp @image@/tests/pareto_mpeg4.db ./
+fi
+@image@/bin/m3explorer -f @image@/tests/mpeg_export_xml.scr -x @image@/examples/mpeg/m3_mpeg_use_case.xml >& test7_output
+diff test7_output @image@/tests/test7_output.ref > tmp
+if [ "$?" -ne 0 ]; then 
+	echo "7) Tested database XML export          : NOT PASSED"
+	diff test7_output @image@/tests/test7_output.ref
+	exit 1
+else
+	diff db7.xml @image@/tests/db7.xml.ref > tmp
+	if [ "$?" -ne 0 ]; then 
+		echo "7) Tested database XML export          : NOT PASSED"
+		diff db7.xml @image@/tests/db7.xml.ref
+		exit 1
+	else
+		echo "7) Tested database XML export          : PASSED"
+	fi
+fi
+
+# Test number 8 
+#
+# Execute an m3explorer script
+@image@/bin/m3explorer -x @image@/tests/multicube_design_space_test_R1.4.xml -f @image@/tests/test_xml.scr >& test8_output
+diff test8_output @image@/tests/test8_output.ref > tmp
+if [ "$?" -ne 0 ]; then 
+	echo "8) Tested XML design space R1.4 extn.  : NOT PASSED"
+	exit 1
+else
+	echo "8) Tested XML design space R1.4 extn.  : PASSED"
+fi

@@ -1,0 +1,9 @@
+#!/bin/sh
+srcdir=`dirname $0`
+srcdir=`cd $srcdir; pwd`
+rm -f tmp_author.txt
+cat $1 | grep "@additional_authors" | awk -F'@' '{print $3}' > tmp_author.txt
+author=`cat tmp_author.txt`
+echo "Additional authors: $author"
+cat $2 | sed "s/@additional@/$author/g" > tmp_license.txt
+rm -f tmp_author.txt

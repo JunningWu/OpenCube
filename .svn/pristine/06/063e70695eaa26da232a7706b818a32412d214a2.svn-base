@@ -1,0 +1,56 @@
+## read database into current_db (initially the root)
+## root DB is priviledged DB where existing simulation results are searched before to perform unuseful simulations
+db_read "full_mpeg4.db"
+
+
+## set constraint for Design Space
+set ics            = [ "2048" "16384" ]  
+set dcs            = [ "2048" "16384" ]  
+set l2cs           = [ "32768" "262144" ]  
+set icw            = [ "1" "4" ]  
+set dcw            = [ "2" "8" ]  
+set l2cw           = [ "2" "8" ]  
+set iwidth         = [ "1" "8" ]  
+set cbs            = [ "16" "16" ]  
+set pn             = [ "2" "16" ]  
+
+
+## set objectives metric (pareto filtering operations are considered on these metrics)
+set objectives =  { "energy" "cycles" }
+
+
+## define initial Design of Experiment module to be load into m3explorer environment
+## NOTE: the population size of the nsga_ii is the size of the doe loaded in m3explorer when opt_tune is called
+doe_define_doe m3_random_doe
+set solutions_number = 45
+
+
+
+
+## define the optimizer, change current DB and perform tuning (optimization)
+db_change_current nsga_exploration30
+opt_define_optimizer m3_nsga_II
+set generations = 30
+
+opt_tune
+
+
+
+## pareto filtering the root DB
+db_change_current root
+db_filter_pareto
+
+
+## compute ADRS from nsga solution with true pareto curve as reference
+db_change_current nsga_exploration30
+db_compute_ADRS root
+set ADRS_nsga_ii30 = $last_ADRS
+set write_plot_on_file = 1
+
+## plot pareto curves and show variables
+db_plot_objectives "root" "nsga_exploration30"
+
+
+show_vars
+
+

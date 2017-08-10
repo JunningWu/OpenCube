@@ -1,0 +1,31 @@
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>SCoPE XML Plug-in</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>SW_Component</h2>
+<hr>
+<p>Description of a SW component that can be instanciated to create the SW platform</p>
+
+<p>General Attributes :</p>
+<pre>
+<li>name      [Mandatory]: Name of the SW component </li>
+<li>type      [Mandatory]: Type of SW component. 
+	      - Possible values: OS, middleware </li>
+</pre>
+<p>Structure:</p>
+
+<pre>
+&lt; SW_Component name="OS_1" type="OS"/ &gt;
+	
+</pre>
+
+<hr>
+<li><a href="index.html"> Index </a></li>
+<li><a href="xsd.html"> XML System Description file </a></li>
+
+</body>
+</html>

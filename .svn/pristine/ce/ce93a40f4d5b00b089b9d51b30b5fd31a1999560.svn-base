@@ -1,0 +1,5 @@
+C++ parser for source code instrumentation</h1>
+
+This work area provides a parser program that produces modified source code for performance estimation. The original code is analyzed indentifying the basic blocks and adding code marks to integrate the blocks execution time and optionally the information for instruction cache modeling. The execution time is stored in a variable declared as : "extern unsigned long long  uc_segment_consumed_time; " in the parsed files. This variable can be read at the end of code semgnets to annotate the execution time. Then, the value has to be cleaned to start the next segment.
+
+It uses an original grammar obtained from http://willink.me.uk/projects/fog/index.html and developed by E.D.Willink

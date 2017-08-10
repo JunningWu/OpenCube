@@ -1,0 +1,8 @@
+<scope_project>
+    <project_name data="config" />
+    <project_path data="/home/posadash/trabajo/scope/svn/test/vocoder_gsm_NoC" />
+    <executable data="" />
+    <cpu data="arm926t" />
+    <estimation_method data="Operators Cost" />
+    <cross_compiler data="" />
+</scope_project>

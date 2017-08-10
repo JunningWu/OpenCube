@@ -1,0 +1,38 @@
+#!/bin/sh
+#!/bin/sh
+srcdir=`dirname $0`
+srcdir=`cd $srcdir; pwd`
+for hdr in $srcdir/../gpl/*.h ; do 
+	echo "Installing license on $hdr" ; 
+	$srcdir/put_gpl_license $hdr 
+done
+
+for fil in $srcdir/../gpl/*.cc ; do 
+	echo "Installing license on $fil" ; 
+	$srcdir/put_gpl_license $fil 
+done
+
+for fil in $srcdir/../gpl/*.c ; do 
+	echo "Installing license on $fil" ; 
+	$srcdir/put_gpl_license $fil 
+done
+
+for fil in $srcdir/../gpl/splines/*.cc ; do 
+	echo "Installing license on $fil" ; 
+	$srcdir/put_gpl_license $fil 
+done
+
+for fil in $srcdir/../gpl/splines/*.h* ; do 
+	echo "Installing license on $fil" ; 
+	$srcdir/put_gpl_license $fil 
+done
+
+for fil in $srcdir/../gpl/rbf/*.c* ; do 
+	echo "Installing license on $fil" ; 
+	$srcdir/put_gpl_license $fil 
+done
+
+for fil in $srcdir/../gpl/rbf/*.h* ; do 
+	echo "Installing license on $fil" ; 
+	$srcdir/put_gpl_license $fil 
+done

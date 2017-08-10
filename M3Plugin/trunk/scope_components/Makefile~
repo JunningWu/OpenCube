@@ -1,0 +1,57 @@
+# 
+# DIRECTORIES = $(shell ls -F | grep "/")
+# #DIRECTORIES = $(shell ls -l | grep ^d | awk '{print $9}')
+# 
+# 
+# all:$(DIRECTORIES)
+# 	$(foreach dir,$(DIRECTORIES),make -C $(dir);)
+# 	ar -cru libcomponents.a */*.o
+# 	mv libcomponents.a ../build/
+# 
+# clean:
+# 	$(foreach dir,$(DIRECTORIES),make -C $(dir) clean;)
+# 
+
+SRCS_CPP = $(shell ls -d */*.cpp)
+OBJS_CPP = $(SRCS_CPP:.cpp=.o)
+
+SRCS_C = $(shell ls -d *.c)
+OBJS_C = $(SRCS_C:.c=.o)
+
+LOCAL_INC_DIRS =        $(SCOPE_HOME)/scope                                     \
+                                        $(SCOPE_HOME)/scope/hal                                 \
+                                        $(SCOPE_HOME)/scope/rtos/api/posix              \
+                                        $(SCOPE_HOME)/scope/rtos/api/ucos               \
+                                        $(SCOPE_HOME)/scope/rtos/drivers                \
+                                        $(SCOPE_HOME)/scope/rtos/kernel                 \
+                                        $(SCOPE_HOME)/scope/rtos/low_level              \
+                                        $(SCOPE_HOME)/scope/rtos/qt_interface   \
+                                        $(SCOPE_HOME)/scope/rtos/utils
+
+INC_DIRS =      	../expatmm\
+                        $(SCOPE_HOME)/scope/sicosys/SC_Simul \
+                        $(SYSTEMC)/include                      \
+                        $(SYSTEMC)/src/sysc/qt          \
+                        $(SCOPE_HOME)/TLM2/include/tlm          \
+                        $(LOCAL_INC_DIRS)
+
+INC_DIR = $(addprefix -I,$(INC_DIRS))
+
+CFLAGS = -c -g -O0 $(INC_DIR)
+
+LFLAGS = -L. -L$(SCOPE_HOME)/scope -L$(SYSTEMC)/lib-linux -L$(SCOPE_HOME)/scope/sicosys/SC_Simul -L$(SCOPE_HOME)/tinyxml -Wsymbolic #--export-dynamic -Bsymbolic
+LIBS = -lscope -ltinyxml -latcs -lsystemc -lpthread -lrt -ldl -lmiexpat
+
+all: $(OBJS_CPP) $(OBJS_C)
+	ar -cru libcomponents.a $(OBJS_CPP) $(OBJS_C) 
+	mv libcomponents.a ../build/
+#	g++ -o run.x $(OBJS_CPP) $(OBJS_C) $(LFLAGS) $(LIBS)
+
+.cpp.o:
+	g++ -g $(CFLAGS) $(INC_DIR) -c $< -o $@
+
+.c.o:
+	g++ -g $(CFLAGS) $(INC_DIR) -c $< -o $@
+
+clean:
+	rm -f */*.o  *.a

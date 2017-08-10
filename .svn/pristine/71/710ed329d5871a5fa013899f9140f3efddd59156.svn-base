@@ -1,0 +1,27 @@
+# 1 "p2.cxx"
+# 1 "<interno>"
+# 1 "<línea de orden>"
+# 1 "p2.cxx"
+extern void *memmove (void *__dest, __const void *__src, size_t __n)
+       throw ();
+
+
+extern __typeof(pthread_getspecific) __gthrw_pthread_getspecific;
+
+
+#pragma START_CODE
+
+typedef struct {
+ int i;
+} aa;
+
+aa i;
+int main(){
+
+ if(i<0){
+  i=2;
+ }
+ return 0;
+}
+
+#pragma END_CODE

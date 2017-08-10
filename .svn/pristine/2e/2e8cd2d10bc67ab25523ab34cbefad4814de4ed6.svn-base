@@ -1,0 +1,227 @@
+#####################################################################################################
+# History file to be updated at each commit of a new snapshot                                       #
+# Please indicate if any test fails.			                                            #
+#                                                                                                   # 
+# In order to crate a snapshot or a tag:                                                            #
+# svn copy m3explorer https://www.alari.ch/svn/marianig/MULTICUBEexplorer/tags/m3explorer/{keyword} #
+#												    #
+# The commit messages should contain as prefix the following suffixes:				    #
+# 												    #	
+# [COPY SNAPSHOT <keyword>] for snapshot copies							    # 
+# [COPY RELEASE  <keyword>] for release copies							    # 
+# [COPY BRANCH   <keyword>] for branch  creation						    #
+# [MERGED BACK FROM <keyword>] when reintegrating from another branch				    #
+#                                                                                                   #
+# Use the keyword snapshot_'date'_num for snapshots                                                 #
+# Use the keyword release_'num' for releases                                                        # 
+#####################################################################################################
+
+release_1_1
+Solved a bug in m3_database.
+Added doxygen comments for other Data Structures
+Added doxygen comments for m3_driver.
+Added doxygen comments for m3_database.
+Added doxygen comments for m3_design_space.
+Added doxygen comments for m3_double and m3_integer.
+Added doxygen comments for m3_doe.
+Added RSM usage example.
+Merged additions on release branch (* next and final release 1.1 *) 
+
+All tests pass.
+
+release_1_0
+Fixed default parameters setting for rsms validation.
+Solved a bug in m3_database.
+
+All tests pass.
+
+release_1_rc0
+Solved some problems with doxygen documentation.
+Solved a bug in m3_mopso.
+Solved html compatability problem with 'internet explorer'.
+Solved rbf compatability problem with UBUNTU system.
+Solved a bug in m3_rsm on handling linear regression.
+Solved leakage problem NN.
+Solved termination problems for NN.
+Solved a bug in m3_preprocess_pipeline::post_process(double).
+Solved leakage problems in RSM management within m3explorer.
+Solved leakage problems in m3_nsga_ii.
+Solved leakage problems in m3_mosa.
+Solved major leakage problems in db_report_html.
+Fixed a bug in handling string vectors.
+Solved leakage problem in m3_mopso.
+Solved a bug in m3_mopso.
+Solved leakage problem in m3_aprs.
+Solved leakage problem in sim_evaluate_doe.
+Solved leakage problem in m3_pareto_doe.
+Solved a bug in m3_point::clear_metrics(m3_env*).
+Solved a bug on handling environmental variables.
+Solved a bug in rsm_train command.
+Solved memory leakage problems in m3_get_build_path and prs_command_drv_define_driver.
+Solved major memory leakage problems in xml_driver.
+Solved some bugs in NSGA-II optimizer.
+Updated makefile for common installation.
+Updated XML driver to R1.4. Added a new test for testing multiple instances for the parameters.
+
+All tests pass.
+
+snapshot_260909
+Added scramble for permutation and masks.
+Added average results for RSMs validation.
+Changed the percentile definition for box-plot representation.
+
+All tests pass.
+
+snapshot_020909
+Added Regression module.
+Added RSMs internal modules.
+Added XDR database management.
+Solved a bug with negative shell variables.
+Added customized licenses and splines.
+Solved compatibility problem with gcc 3.2.3 on Red Hat Linux.
+Added Neural networks. Added XDR API (Multicube Explorer side).
+Added Shepard's interpolation.
+Added GPL license to external RSM modules.
+Solved a bug in the HTML code generation (Box plots).
+Solved compatibility problem with g++-4.3
+Solved a problem with db_read when design space were not defined.
+Bypassed a problem with gnuplot and surface plots generation.
+Added surface plots; changed normalization. Added thermal maps.
+
+All tests pass.
+
+snapshot_160409
+Further tests with latex.
+Initial tests with latex.
+Refined summary page.
+Solved some bugs for small table sizes and interaction analysis.
+Added initial table of interactions to the summary.
+Fixed a bug in the HTML anchor generation.
+Main and interaction effects on objectives.
+Box plots now are on objectives.
+Fixed HTML table generation.
+
+All tests pass.
+
+snapshot_200309
+Solved some bugs in the HTML generation.
+Added binary expression computation.
+Cleaned up HTML.
+Improved HTML reporting capabilities. Still working on.
+Added generic expressions for specifying objectives.
+Fixed a problem with scalar labels generated HTML.
+
+All tests pass.
+
+
+snapshot_100309
+Added HTML generation. 
+Added an example script for reporting HTML.
+
+All tests pass.
+
+snapshot_090309
+Added test of database read and pareto computation.
+Improved database read speed.
+Added mosa example for the mpeg
+Added nsga_ii example
+Modified mpeg design space and boundaries within the script.
+
+All tests pass.
+
+
+snapshot_280209
+Changes to the configure file.
+Added a mpeg_dse.scr script. 
+It computes the ADRS, evaluations no. and graphical comparison of heuristics with respect to a full solution.
+
+All tests pass.
+
+snapshot_270209
+Corrected the design space of the mpeg example.
+Simulated points now are added to the root database.
+Some changes to the NSGA-II.
+
+All tests pass.
+
+release_0_5
+Some changes in the makefile to completely delete intermediate files in the installation.
+RC2 allowed for final release 0.5
+
+All tests pass.
+
+release_0_5_rc2
+XML document version is now 1.0; MULTCUBE document version is 1.3
+
+All tests pass.
+
+release_0_5_rc1
+Added local schema files.
+
+All tests pass.
+
+release_0_5_rc0
+Fixed a bug in the 'to char' conversion in the XML driver.
+Fixed some small bug in the XML driver.
+Added m3_dtlz_driver.
+Added nsga_II optimizer structure. Operative but still missing niching.
+Fixed bug on ADRS computation. Fixed a problem with XML temporary directory management.
+Added MPEG example. Contains XML designs space, a sample db file and a script for generating a postscript plot.
+Added some code for checking consistency of points. Added GNUPLOT invocation.
+
+All tests pass.
+
+snapshot_021108
+Solved a bug in Pareto-Doe. 
+Solved a small inconsistency in error tests.
+Cleaned up database point management. Now it is consistent, though not fast.
+Added ADRS. Added shortcut to "root" database. 
+Added objective evaluation.
+Added "last_ADRS" variable; it contains the last ADRS computed.
+Added "evaluations" variable; it is always incremented when an evaluation through simulation is performed.
+
+All tests pass
+
+snapshot_061008
+Added DoE structure and full search.
+
+All tests pass.
+snapshot_230908
+Modified to version 1.3 all the tests.
+Corrected a problem with macosx paths and XML.
+
+All tests pass.
+
+snapshot_170708
+Added a test for the input/output interface with the simulator. The output is consistent with the specification.
+Added a test of error codes returned by the simulator.
+
+All tests pass.
+
+snapshot_110708
+First tests actually run successfully. Hopefully.
+Added regression tests for design space and rule checking.
+Added set and get error to m3_point. Added design space destructor invocation.
+Some change to the optimizers in order to correctly collect points into databases.
+Refactored code accessing the metrics; now metrics is a vector within the design space.
+Removed statistics.
+Modified and refactored several functions accessing parameters within the shell.
+Modified XML driver to correctly access parameter values within the rule section.
+Modified random search optimizer to work with the new design space.
+Removed psa algorithm and pure random search from optimizers.
+Moved into the m3_design_space the set of functions for computing permutation and converting them to a string.
+New design space is currently operating on the test driver and the pareto_full_search_algorithm.
+
+All tests pass.
+
+snapshot_180608
+XML driver development ongoing. Tests pass.
+Initial slight modification of the driver interface in order to accomodate for 
+variable size permutations and masks.
+
+All tests pass.
+
+snapshot_210508
+Initial version
+
+All tests pass.

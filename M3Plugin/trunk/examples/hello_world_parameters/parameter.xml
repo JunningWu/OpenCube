@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simulator_input_interface xmlns="http://www.multicube.eu/" version="1.3">
+	<parameter name="MEM_ADDR" value="0x80000000" />
+</simulator_input_interface>

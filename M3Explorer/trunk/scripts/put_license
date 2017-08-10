@@ -1,0 +1,10 @@
+#!/bin/sh
+srcdir=`dirname $0`
+srcdir=`cd $srcdir; pwd`
+$srcdir/create_license $1 $srcdir/license.txt
+sed '/M3EXPLORER_LICENSE_START/,/M3EXPLORER_LICENSE_END/d' $1 > $1.temp
+cat ./tmp_license.txt $1.temp > $1.temp.lic
+mv $1.temp.lic $1
+rm $1.temp
+rm -f ./tmp_license.txt
+

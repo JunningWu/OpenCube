@@ -1,0 +1,8 @@
+<simulation>
+    <projectDir data="/home/castillo/workspace/projects/scope/trunk/test/vocoder_gsm_NoC" />
+    <projectName data="vocoder_gsm_NoC" />
+    <makeRule data="" />
+    <processor data="arm926t" />
+    <executable data="vocoder.x" />
+    <api data="posix" />
+</simulation>

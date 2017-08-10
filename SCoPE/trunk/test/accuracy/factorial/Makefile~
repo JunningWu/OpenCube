@@ -1,0 +1,21 @@
+#Makefile for Factorial with SCoPE and Skyeye
+
+.PHONY: all scope skyeye clean distclean
+
+EXE = factorial.x
+
+all: scope skyeye
+	$(MAKE) -C ./scope
+	$(MAKE) -C ./skyeye
+	clear
+	./scope/$(EXE)
+	skyeye -c ./skyeye/skyeye.conf -e ./skyeye/$(EXE)
+
+clean:
+	$(MAKE) -C ./scope clean
+	$(MAKE) -C ./skyeye clean
+
+distclean:
+	$(MAKE) -C ./scope distclean
+	$(MAKE) -C ./skyeye distclean
+

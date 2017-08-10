@@ -1,0 +1,288 @@
+# Makefile for Multicube Explorer 
+# 
+# (C) Politecnico di Milano and V. Zaccaria
+
+DSTDIR = @dstdir@
+SRCDIR = @srcdir@/src
+INCDIR = @srcdir@/src
+GPLDIR = @srcdir@/gpl
+OTHERCFLAGS = @othercflags@
+OTHERCXXFLAGS = @othercxxflags@
+OTHERLINKFLAGS = @otherlinkflags@
+GPLCXXFLAGS = @gplcxxflags@
+GPLLINKFLAGS = @gpllinkflags@
+IMAGE = @image@
+BUILDSHEPARD = @buildshepard@
+BUILDSPLINE= @buildspline@
+BUILDNEURAL= @buildneural@
+BUILDRBF= @buildrbf@
+BUILDREGRESSION= @buildregression@
+
+CXX=g++
+AR=ar cr
+RANLIB=ranlib
+SHLIB_LD=g++ -fPIC
+CFLAGS= $(OTHERCFLAGS) -I$(INCDIR)
+CXXFLAGS= $(OTHERCXXFLAGS) -I$(INCDIR)
+
+GPLCXXFLAGS += $(OTHERCXXFLAGS) 
+
+OS_NAME = $(shell uname -s)
+
+ifeq ("$(OS_NAME)", "SunOS")
+CXXFLAGS += -D__SOLARIS__
+CXXSOFLAGS = -shared -fPIC 
+endif
+
+ifeq ("$(OS_NAME)", "Darwin")
+CXXFLAGS += -g -D__MAC_OSX__
+CXXSOFLAGS = -fno-common -bundle -flat_namespace -undefined suppress
+endif
+
+ifeq ("$(OS_NAME)", "Linux")
+CXXFLAGS += -pthread
+CXXSOFLAGS = -g -shared -fPIC 
+OTHERLINKFLAGS += -ldl -Wl,-export-dynamic -lpthread
+endif
+
+#####################################
+#     CREATE SYMBOLIC TARGETS       #
+#####################################
+
+
+M3EXPLORER_TARGETS = m3_commands.o m3_env.o m3_point.o m3_sim_utils.o m3_database.o m3_grammar.o m3_map.o m3_opt_utils.o m3_pointer_trash.o m3_tokens.o m3_object.o m3_shell.o m3_vector.o m3_driver_utils.o m3_parser.o m3_shell_variables.o m3_list.o m3_object_utils.o m3_arg.o m3_common_utils.o m3_exception.o m3_design_space.o m3_doe_utils.o m3_gen_html.o m3_xdr_api.o m3_rsm.o
+
+M3EXPLORER_INCLUDES = m3_commands.h m3_driver_utils.h m3_list.h m3_object_utils.h m3_parser.h m3_shell_variables.h m3_database.h m3_env.h m3_map.h m3_opt_utils.h m3_point.h m3_sim_utils.h m3_driver.h m3_object.h m3_optimizer.h m3_pointer_trash.h m3_vector.h m3_arg.h m3_common_utils.h m3_exception.h m3_design_space.h m3_doe.h m3_doe_utils.h drivers/libm3_xml_driver.h m3_gen_html.h m3_xdr_api.h m3_rsm.h
+
+M3EXPLORER_INCDIR_INCLUDES = $(patsubst %.h, $(INCDIR)/%.h, $(M3EXPLORER_INCLUDES))
+
+OPTIMIZERS_SRC = libm3_pareto_doe.cc libm3_aprs.cc libm3_mosa.cc libm3_mopso.cc libm3_nsga_II.cc libm3_linear_scan.cc libm3_femo.cc libm3_semo.cc libm3_gemo.cc
+OPTIMIZERS_TARGET = $(patsubst %.cc, %.so, $(OPTIMIZERS_SRC))
+
+DOE_SRC = libm3_full_doe.cc libm3_random_doe.cc libm3_two_level_ff.cc libm3_two_level_ff_extended.cc libm3_scrambled_doe.cc
+DOE_TARGET = $(patsubst %.cc, %.so, $(DOE_SRC))
+
+DRIVERS_SRC = libm3_test_driver.cc libm3_xml_driver.cc libm3_dtlz_driver.cc 
+# libm3_counter_driver.cc
+DRIVERS_TARGET = $(patsubst %.cc, %.so, $(DRIVERS_SRC))
+
+# Tells make to search for sources into SRCDIR, SRCDIR/optimizers and SRCDIR/drivers
+VPATH=$(SRCDIR):$(SRCDIR)/optimizers:$(SRCDIR)/drivers:$(SRCDIR)/doe:$(SRCDIR)/../gpl:$(SRCDIR)/../gpl/splines:$(SRCDIR)/../gpl/rbf
+
+TARGET = m3explorer 
+
+#####################################
+#      CREATE RSM TARGETS           #
+#####################################
+
+RSM_TARGETS=
+
+ifeq ("$(BUILDSHEPARD)", "yes")
+RSM_TARGETS += sh_i 
+CXXFLAGS += -D__M3_COMPILE_SHEPARD_RSM__
+endif
+
+ifeq ("$(BUILDSPLINE)", "yes")
+RSM_TARGETS += spline 
+CXXFLAGS += -D__M3_COMPILE_SPLINE_RSM__
+endif
+
+ifeq ("$(BUILDNEURAL)", "yes")
+RSM_TARGETS += nn 
+CXXFLAGS += -D__M3_COMPILE_NEURAL_RSM__
+endif
+
+ifeq ("$(BUILDRBF)", "yes")
+RSM_TARGETS += rbf_interpolator
+CXXFLAGS += -D__M3_COMPILE_RBF_RSM__
+endif
+
+ifeq ("$(BUILDREGRESSION)", "yes")
+RSM_TARGETS += regressor
+CXXFLAGS += -D__M3_COMPILE_REGRESSION_RSM__
+endif
+
+#####################################
+#     CREATE BUILD TARGETS          #
+#####################################
+
+all: $(TARGET) $(OPTIMIZERS_TARGET) $(DRIVERS_TARGET) $(DOE_TARGET) $(RSM_TARGETS)
+
+#############################
+#       ENGINE BUILD	    #
+#############################
+
+m3explorer: $(M3EXPLORER_TARGETS) 
+	$(CXX) $(OTHERLINKFLAGS) $^ -o $@
+
+
+%.o: %.cc $(M3EXPLORER_INCDIR_INCLUDES)
+	$(CXX) -c  $< -o $@ $(CXXFLAGS) 
+
+%.so: %.cc $(M3EXPLORER_INCDIR_INCLUDES)
+	$(CXX) $< -o $@ $(CXXSOFLAGS) $(CXXFLAGS) 
+
+m3_grammar.o: $(SRCDIR)/m3_grammar.yy 
+	cp $(SRCDIR)/m3_grammar.yy .
+	bison -d $(SRCDIR)/m3_grammar.yy -o bof.cc
+	cp bof*h* m3_grammar.h
+	cp bof*cc m3_grammar.cc
+	$(CXX) -c  m3_grammar.cc -o $@ $(CXXFLAGS)
+
+m3_tokens.o: $(SRCDIR)/m3_tokens.ll 
+	flex $(SRCDIR)/m3_tokens.ll
+	mv lex.yy.c m3_tokens.cc
+	$(CXX) -c  m3_tokens.cc -o $@ -I. $(CXXFLAGS) 
+
+#############################
+#       RSM BUILD	    #
+#############################
+
+XDR_DEPS= gpl_xdr_api.o gpl_xdr_api.h
+
+gpl_xdr_api.o: gpl_xdr_api.cc gpl_xdr_api.h
+	$(CXX) -c  $< -o $@ $(GPLCXXFLAGS) -I$(GPLDIR)
+
+sh_i: sh_i.cc $(XDR_DEPS) 
+	$(CXX) -o $@ $< $(GPLCXXFLAGS) $(GPLLINKFLAGS) -I$(GPLDIR) gpl_xdr_api.o
+
+nn: cascade.c $(XDR_DEPS)
+	 $(CXX) -o $@ $< $(GPLCXXFLAGS) $(GPLLINKFLAGS) -I$(GPLDIR) gpl_xdr_api.o -lpthread
+
+SPLINE_OBJ=converter.o parameters.o spline.o r_wrapper.o spline_script.o
+SPLINE_INC=r_wrapper.hpp spline_script.hpp converter.hpp parameters.h
+
+$(SPLINE_OBJ): %.o: %.cc $(SPLINE_INC) 
+	$(CXX) -c $< -o $@ $(GPLCXXFLAGS) -I$(GPLDIR)
+
+spline: $(SPLINE_OBJ) $(XDR_DEPS)
+	$(CXX) -o $@ $^ $(GPLCXXFLAGS) $(GPLLINKFLAGS) -I$(GPLDIR) 
+
+RBF_OBJ=bvp.o diff_op.o interpolator.o linalg.o utils.o ddm.o error.o func.o rbf.o interpolatorRBF.o
+RBF_INC= bvp.hpp  ddm.hpp  diff_op.hpp  error.hpp  func.hpp  interpolator.hpp  linalg.hpp  rbf.hpp  utils.hpp
+
+$(RBF_OBJ): %.o: %.cpp $(RBF_INC) 
+	$(CXX) -c $< -o $@ $(GPLCXXFLAGS) -I$(GPLDIR)
+
+rbf_interpolator: $(RBF_OBJ) $(XDR_DEPS)
+	$(CXX) -o $@ $^ $(GPLCXXFLAGS) $(GPLLINKFLAGS) -I$(GPLDIR) 
+
+regressor: regressor.cc $(XDR_DEPS) 
+	$(CXX) -o $@ $< $(GPLCXXFLAGS) $(GPLLINKFLAGS) -I$(GPLDIR) gpl_xdr_api.o
+
+#############################
+#       CLEAN BUILD	    #
+#############################
+
+clean:
+	rm -f *.o $(TARGET) *.cc *.hh *.so *.h *.yy
+	rm -rf m3explorer* test*_output tmp
+
+dist-clean:
+	rm -f *.o $(TARGET) *.cc *.hh *.so *.scr *.xml *.scr do_tests *.h *.yy doxygen.cfg makefile config.status
+	rm -rf m3explorer* test*_output tmp $(RSM_TARGETS)
+
+ifeq ("$(OS_NAME)", "Darwin")
+dist:
+	        tar --directory $(SRCDIR)/../.. -c -v -z -f m3explorer_@snapshot@_src.tar.gz m3explorer --exclude "*.svn*" --exclude "build"
+endif
+
+ifeq ("$(OS_NAME)", "Linux")
+dist:
+	        tar --exclude="*.svn*" --directory $(SRCDIR)/../.. -c -v -z -f m3explorer_@snapshot@_src.tar.gz m3explorer 
+endif
+
+doc:
+	        doxygen $(DSTDIR)/doxygen.cfg 
+
+ifeq ("$(OS_NAME)", "Linux")
+bin-dist: install doc
+	        tar --exclude="*.svn*" --directory $(IMAGE)/.. -c -v -z -f m3explorer_@snapshot@_linux_$(shell uname -r)_bin.tar.gz $(shell cd $(IMAGE) && pwd | xargs basename) 
+endif
+
+ifeq ("$(OS_NAME)", "Linux")
+doc-dist: install doc
+	        tar --exclude="*.svn*" --directory $(IMAGE) -c -v -z -f m3explorer_@snapshot@_docs.tar.gz $(shell cd $(IMAGE)/doc && pwd | xargs basename) 
+endif
+
+
+#############################
+#      INSTALL BUILD	    #
+#############################
+
+# Note add: install -m 744 $(SRCDIR)/../tests/*.ref $(IMAGE)/tests
+# install -m 744 $(SRCDIR)/../tests/stub_test.py $(IMAGE)/tests
+
+install: all 
+	@mkdir -p $(IMAGE)
+	@mkdir -p $(IMAGE)/bin
+	@mkdir -p $(IMAGE)/lib
+	@mkdir -p $(IMAGE)/schemas
+	@mkdir -p $(IMAGE)/scripts
+	@mkdir -p $(IMAGE)/examples
+	@mkdir -p $(IMAGE)/examples/simple_sim
+	@mkdir -p $(IMAGE)/examples/beverage_can
+	@mkdir -p $(IMAGE)/examples/mpeg
+	@mkdir -p $(IMAGE)/rsm
+	@mkdir -p $(IMAGE)/tests
+	@mkdir -p $(IMAGE)/html
+	@mkdir -p $(IMAGE)/latex
+	@mkdir -p $(IMAGE)/html/template_results_page_files
+	install -m 744 $(DSTDIR)/*.so $(IMAGE)/lib
+	install -m 744 $(DSTDIR)/multicube_design_space_test*.xml $(IMAGE)/tests
+	install -m 744 $(DSTDIR)/debug_*scr $(IMAGE)/tests
+	install -m 744 $(DSTDIR)/create_*scr $(IMAGE)/tests
+	install -m 744 $(DSTDIR)/do_tests $(IMAGE)/tests
+	install -m 744 $(SRCDIR)/../html/*.html $(IMAGE)/html
+	install -m 744 $(SRCDIR)/../latex/*.tex $(IMAGE)/latex
+	install -m 744 $(SRCDIR)/../html/template_results_page_files/* $(IMAGE)/html/template_results_page_files
+	install -m 744 $(SRCDIR)/../schemas/*.xsd $(IMAGE)/schemas
+	install -m 744 $(SRCDIR)/../scripts/*.scr $(IMAGE)/scripts
+	install -m 744 $(SRCDIR)/../scripts/*.xml $(IMAGE)/examples/mpeg
+	install -m 744 $(SRCDIR)/../scripts/full_*.gz $(IMAGE)/examples/mpeg
+	install -m 744 $(SRCDIR)/../scripts/*mpeg* $(IMAGE)/examples/mpeg
+	install -m 744 $(SRCDIR)/../tests/test*output.ref $(IMAGE)/tests
+	install -m 744 $(SRCDIR)/../tests/db7.xml.ref $(IMAGE)/tests
+	install -m 744 $(SRCDIR)/../tests/test_xml*.scr $(IMAGE)/tests
+	install -m 744 $(SRCDIR)/../tests/test_ff*.scr $(IMAGE)/tests
+	install -m 744 $(SRCDIR)/../tests/mpeg_dse.scr $(IMAGE)/tests
+	install -m 744 $(SRCDIR)/../tests/mpeg_export_xml.scr $(IMAGE)/tests
+	install -m 744 $(SRCDIR)/../tests/pareto_mpeg4.db $(IMAGE)/tests
+	install -m 744 $(SRCDIR)/../tests/stub_*.py $(IMAGE)/tests
+	install -m 744 $(SRCDIR)/../tests/simple_sim/simple_sim.py $(IMAGE)/examples/simple_sim
+	install -m 744 $(SRCDIR)/../tests/simple_sim/simple_sim_scr.scr $(IMAGE)/examples/simple_sim
+	install -m 744 $(DSTDIR)/simple_sim_ds.xml $(IMAGE)/examples/simple_sim
+	install -m 744 $(SRCDIR)/../tests/beverage_can/beverage_can.py $(IMAGE)/examples/beverage_can
+	install -m 744 $(SRCDIR)/../tests/beverage_can/beverage_can_scr.scr $(IMAGE)/examples/beverage_can
+	install -m 744 $(DSTDIR)/beverage_can_ds.xml $(IMAGE)/examples/beverage_can
+	install -m 744 $(SRCDIR)/../gpl/*xdr* $(IMAGE)/rsm
+	@mkdir -p $(IMAGE)/include
+	install -m 744 $(DSTDIR)/m3explorer $(IMAGE)/bin
+	@for hdr in $(INCDIR)/*.h ; do \
+          if cmp -s $$hdr $(IMAGE)/include/`basename $$hdr`; then : ; else \
+            echo "Installing $$hdr to $(IMAGE)/include"; \
+            install -m 644 $$hdr $(IMAGE)/include; \
+          fi; \
+        done
+	if [ -e $(DSTDIR)/sh_i ] ; then \
+		 install -m 744 $(DSTDIR)/sh_i $(IMAGE)/rsm; \
+	fi ; \
+	if [ -e $(DSTDIR)/nn ] ; then \
+		 install -m 744 $(DSTDIR)/nn $(IMAGE)/rsm; \
+	fi ; \
+	if [ -e $(DSTDIR)/spline ] ; then \
+		 install -m 744 $(DSTDIR)/spline $(IMAGE)/rsm; \
+	fi ; \
+	if [ -e $(DSTDIR)/rbf_interpolator ] ; then \
+		 install -m 744 $(DSTDIR)/rbf_interpolator $(IMAGE)/rsm; \
+	fi ; \
+	if [ -e $(DSTDIR)/regressor ] ; then \
+		 install -m 744 $(DSTDIR)/regressor $(IMAGE)/rsm; \
+	fi ; \
+	chmod a+x $(IMAGE)/bin/*
+	chmod a+x $(IMAGE)/lib/*
+	chmod a+x $(IMAGE)/rsm/*
+	chmod a+x $(IMAGE)/tests/do_tests
+
+install-doc: install doc
+

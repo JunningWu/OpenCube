@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Description xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" name="platform">
+	<HW_Platform>
+		<HW_Components>
+			<HW_Component category="icache" name="icache" mem_size="__icache_size" static_power="3" read_energy="40"/>
+			<HW_Component category="processor" name="arm926t" frequency="200Mhz" proc_type="notimes" static_power="2" />
+			<HW_Component category="memory" name="Memory" mem_size="536870K" frequency="200" latency="10ns" mem_type="RAM" />
+		</HW_Components>
+		<HW_Components name="generic_bus">
+			<HW_Component category="bus" name="local_bus" frequency="200Mhz" />
+		</HW_Components>
+		<HW_Components name="amba_bus">
+			<HW_Component category="bus" name="local_bus" frequency="200Mhz" type="AMBA-AHB" library="libcomponents.so" init_func="UC_TLM_bus_amba_init_func"/>
+		</HW_Components>
+			
+		<HW_Architecture>
+			<HW_Instance component="local_bus" name="my_bus" >
+				<Repeat number="__num_cpus" index="i">
+					<HW_Instance component="arm926t" name="Processor_%i" frequency="__freq">
+						<HW_Instance component="icache" name="icache_%i" />
+					</HW_Instance>
+				</Repeat>
+				<HW_Instance component="Memory" name="main_memory" start_addr="0x80000000" >
+				</HW_Instance>
+			</HW_Instance>
+		</HW_Architecture>
+		<Computing_groups>
+			<Computing_group name="node1" >
+				<Repeat number="__num_cpus" index="i">
+					<Computing_Resource name="Processor_%i" />
+				</Repeat>
+			</Computing_group>
+		</Computing_groups>
+	</HW_Platform>
+	<SW_Platform>
+		<SW_Components>
+			<SW_Component name="SO" type="OS" />
+		</SW_Components>
+		<SW_Architecture>
+			<Repeat number="__num_cpus" index="i">
+				<SW_Instance name="OS_%i" component="SO" HW_Resource="Processor_%i" />
+			</Repeat>
+		</SW_Architecture>
+	</SW_Platform>
+	<Application>
+		<Functionality>
+			<Repeat number="__num_cpus" index="i">
+				<Exec_Component name="coder_%i" category="SW" function="uc_main" optimization="1" file="libh264_%i.so" />
+			</Repeat>
+		</Functionality>
+		<Allocation>
+			<Repeat number="__num_cpus" index="i">
+				<Exec_Instance name="main_func" component="coder_%i" os="OS_%i" arguments=""/>
+			</Repeat>
+		</Allocation>
+	</Application>
+	<Simulation time="200s" end_as_sw="1" backtrace="0x0" debug="0" >
+		<Implementation HW_Components="__bus_type" />
+		<Granularity max_time="__m_time" transfer_period="__period" ic_buffer="__icb" />
+	</Simulation>
+</Description>

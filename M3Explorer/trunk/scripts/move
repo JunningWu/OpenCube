@@ -1,0 +1,2 @@
+tmp=`echo $1 | sed -f scripts/sed_script`
+svn mv $1 $tmp

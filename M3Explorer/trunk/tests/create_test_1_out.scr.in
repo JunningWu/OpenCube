@@ -1,0 +1,2 @@
+@image@/bin/m3explorer -x @image@/tests/multicube_design_space_test.xml -f @image@/tests/test_xml.scr
+

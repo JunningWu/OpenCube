@@ -1,0 +1,29 @@
+<Simulation id="M88-BDOR">
+   <Network            id="M88-BDOR">
+   <SimulationCycles   id=8000>
+   <TrafficPattern     id="MODAL" type=SC_TP>
+   <Seed               id=113>
+   <Load               id=0.1>
+   <MessageLength      id=1>
+   <PacketLength       id=10>
+</Simulation>
+
+<Simulation id="T88-BDOR">
+   <Network            id="T88-BDOR">
+   <SimulationCycles   id=8000>
+   <TrafficPattern     id="MODAL" type=RANDOM>
+   <Seed               id=113>
+   <Load               id=0.1>
+   <MessageLength      id=1>
+   <PacketLength       id=10>
+</Simulation>
+
+<Simulation id="W88-BDOR">
+   <Network            id="W88-BDOR">
+   <SimulationCycles   id=8000>
+   <TrafficPattern     id="MODAL" type=RANDOM>
+   <Seed               id=113>
+   <Load               id=0.1>
+   <MessageLength      id=1>
+   <PacketLength       id=10>
+</Simulation>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:design="http://www.multicube.eu/"
+	targetNamespace="http://www.multicube.eu/"
+	elementFormDefault="qualified">
+	<xsd:complexType name="comm_element">
+		<xsd:sequence maxOccurs="unbounded" minOccurs="0">
+			<xsd:element name="item">
+				<xsd:complexType>
+					<xsd:attribute name="index" type="xsd:integer" use="optional" />
+					<xsd:attribute name="position" type="xsd:integer" use="optional" />
+					<xsd:attribute name="value" type="xsd:float" use="required" />
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="name" type="xsd:string" use="required" />
+		<xsd:attribute name="value" type="xsd:string" use="optional" />
+	</xsd:complexType>
+	<xsd:complexType name="parameters">
+		<xsd:sequence maxOccurs="unbounded" minOccurs="1">
+			<xsd:element name="parameter" type="design:comm_element" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="system_metrics">
+		<xsd:sequence maxOccurs="unbounded" minOccurs="1">
+			<xsd:element name="system_metric" type="design:comm_element" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="point">
+		<xsd:all>
+			<xsd:element name="parameters" type="design:parameters" />
+			<xsd:element name="system_metrics" type="design:system_metrics" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="points">
+		<xsd:sequence maxOccurs="unbounded" minOccurs="1">
+			<xsd:element name="point" type="design:point" />
+		</xsd:sequence>
+		<xsd:attribute name="version" type="xsd:decimal" use="required"/>
+	</xsd:complexType>
+	<xsd:element name="points" type="design:points" />
+</xsd:schema>

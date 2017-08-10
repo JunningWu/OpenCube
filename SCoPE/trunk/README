@@ -1,0 +1,50 @@
+====================================================================
+====================         SCoPE README          =================
+====================================================================
+
+SCoPE is an embedded platform simulator based on SystemC. It is
+composed by:
+	- SCoPE main library
+	- Estimation utilities
+
+SCoPE uses external toos and libraries in order to compile and run
+the simulation:
+	- SystemC 2.2
+	- TinyXML
+	- Flex
+	- Bison
+
+The simulation is performed in two steps: compilation of application
+code and execution.
+
+- Compilation of application code
+------------------------------------
+
+This stage includes the preprocessing, parsing, analysis and compilation
+of source code. In order to perform all steps in a direct way, a
+compilation utility has been developed. During the parsing, the code
+is annotated in order to estimate time, consumption, cache miss rates...
+
+The preprocessor must know where the "scope.h" file is located in
+order to include it in all source files. This is achieved by looking at
+the SCOPE_HOME environment variable. "scope.h" should be found in:
+
+	$(SCOPE_HOME)/include
+
+This path must be included as a system-header directory, so the parser
+does not annotate it.
+
+The parser has to know which header files must not be parsed, like system
+headers and scope headers. To do this, when the source file is
+preprocessed, the preprocessor leaves some special marks in order to
+compile the file. One of them indicates if code comes from a special
+header. As this is not enough, it also analyzes the full path of header.
+If it is:
+	$(SCOPE_HOME)/scope
+then, the parser cancels the parsing until user code is again reached.
+
+- Execution of application code
+------------------------------------
+
+In running time, SCoPE must know which processor is being simulated, in
+concordance with the parser annotations (time, power and caches).

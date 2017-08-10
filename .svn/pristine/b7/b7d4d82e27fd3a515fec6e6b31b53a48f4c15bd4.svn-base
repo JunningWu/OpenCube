@@ -1,0 +1,65 @@
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>SCoPE XML Plug-in</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>HW_Instance</h2>
+<hr>
+<p>Instance of a HW component used to create the HW platform</p>
+
+<p>General Attributes :</p>
+<pre>
+<li>name         [Mandatory]: Name of the HW instance </li>
+<li>component    [Mandatory]: Name of the HW component instanciated </li> 
+<li>mem_size     [Optional]: Amount of memory associated to the HW component in the memory map </li>
+<li>frequency    [Optional]: Component frequency. </li>
+<li>width        [Optional]: Component interface width. 
+		In communication components are the number of data lines. 
+		In HW components it represents the bus registers' size </li>
+<li>bus_priority [Optional(Master components)]: Priority for the bus arbiter.  </li>
+<li>burst_size   [Optional(Slave components)]: Maximum burst size.  </li>
+<li>area         [Optional]: HW area required by this component. </li>
+<li>static_power [Optional]: Mean power consumed independently of the events received.(Default unit: mw)
+<li>active_energy [Optional]: Mean power consumed per cycle when the component is active. (Default unit: mw)
+                In processors it is the power per instruction. In caches it is the hit energy.</li>
+<li>read_energy  [Optional]: Energy consumed when a bus read event is received. In caches it is the miss energy</li>
+<li>write_energy [Optional]: Energy consumed when a bus write event is received. </li>
+<li>read_size_energy  [Optional]: Variable energy consumed when a bus read events is received, depending on the buffer size. Total power is obtained as energy = read_size_energy * buffer_size</li>
+<li>write_size_energy [Optional]: Variable energy consumed when a bus write events is received, depending on the buffer size. Total power is obtained as energy = write_size_energy * buffer_size</li>
+<li>start_addr   [Optional]: Address at the memory map where the HW instance is placed </li>
+<li>irq          [Optional]: Interrupt number </li>
+<li>local_id     [Optional]: Identifier for the component. In net_if components is the mac address </li>
+</pre>
+<p> Specific Attributes :</p>
+<pre><!--
+<li>latency   [Optional]: Component latency </li>
+<li>port      [Optional]: Port number the OS will assign to the peripheral </li><li>rec_irq   [Optional]: Number of the interruptions the HW instance can receive </li>Cathegory: cache
+<li>sets      [Optional]: Number of sets </li>
+<li>lines     [Optional]: Number of lines </li>
+-->
+Cathegory: network
+<li>x_size    [Optional]: Number of nodes in the x axis for a mesh network </li>
+<li>y_size    [Optional]: Number of nodes in the y axis for a mesh network </li>
+
+Cathegory: as_hw, dma
+<li>master-slave [Optional]: It indicates if the component must be connected as "master", "slave" or "both". 
+		Slave is selected by default. </li> 
+</pre>
+<p>Structure:</p>
+
+<pre>
+&lt; HW_Instance name="my_net_if" component="net_if_1" start_addr="0x8000000" irq="5"  port="1" / 	&lt; HW_Instance &gt;
+	&lt; <a href="HW_Connection.html">HW_Connection</a> &gt;
+	...
+&gt;
+</pre>
+
+<hr>
+<li><a href="index.html"> Index </a></li>
+<li><a href="xsd.html"> XML System Description file </a></li>
+
+</body>
+</html>

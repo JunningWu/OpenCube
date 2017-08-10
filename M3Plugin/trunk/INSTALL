@@ -1,0 +1,38 @@
+====================================================================
+======  Instructions and requirements for SCOPE XML PLUG_IN  =======
+====================================================================
+
+=== Requirements ===
+
+        - GNU C/C++ compiler > 4.0
+	- SCoPE v1.1.4
+
+=== Environment variables ===
+
+Edit your .bashrc file and add the next environment variables:
+
+        SCOPE_HOME=/path/to/scope
+        SYSTEMC=/path/to/systemc
+	
+
+=== Make and Install ===
+
+Before makeing SCoPE plug-in ensure that SCoPE tool has been compiled
+
+To compile the plug-in type:
+
+        $> make
+
+To compile the examples, type:
+
+        $> make examples
+
+To execute the examples, type:
+
+        $> make run
+
+Examples are located in the $(scope_plug-in_input)/examples directory.
+
+=== Notes ===
+
+Using the Scope under CygWin is not suported. Use it at your own risk.

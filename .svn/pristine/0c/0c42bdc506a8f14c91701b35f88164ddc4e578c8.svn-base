@@ -1,0 +1,417 @@
+#ifndef _FRAME_LSP_CC
+#define _FRAME_LSP_CC
+
+extern "C" void *frame_lsp_fun(void *args);
+
+void *frame_lsp_fun(void *args){
+
+frame_lsp_fifos();
+
+	Word16 i; 
+	bool reset; 
+	int	dtx_mode_var; 
+	Word16 txdtx_ctrl_var; 
+	 
+	// signal buffer for preprocessed (prefiltered signal) 
+	// It is stored the length corresponding to the windowing 
+	// done (previous to Auto correlation. 
+	// After each frame processing the last L_WINDOW-L_FRAME 
+	// samples are shifted to the begining of the buffer to 
+	// give pass to the next L_FRAME samples of next frame 
+	Word16 x[L_WINDOW]; 
+	Word16 scal_acf; 	 
+	Word16 r_l[MP1], r_h[MP1];      // Autocorrelations lo and hi            
+	Word16 rc[4]; 	 
+	Word16 lsp_new[M]; 
+	Word16 lsp_new_q[M]; // LSPs at 4th subframe (**) 
+	Word16 lsp_mid[M]; 
+	Word16 lsp_mid_q[M]; // LSPs at 2nd subframe (**)                 
+ 	Word16 lsp_old[M]; 
+	Word16 lsp_old_q[M]; 
+ 	Word16 A2[MP1], A4[MP1]; 		// non-quant. synth parameters for 2nd and 4th subframe 
+	Word16 Aq_t[(MP1) * 4];	// A(z)   quantized for the 4 subframes  
+ 	// Last A(z) for case of unstable filter in Levinson function 
+	Word16 old_A[M + 1]; 
+ 	// Past quantized prediction error 
+	Word16 past_r2_q[M]; 
+	// Comfort noise LSF averaging buffer 
+	Word16 lsf_old_tx[DTX_HANGOVER][M]; 
+ 	// encoding parameters: frame_lsp module generate first 5 EFR-Vocoder encoding parameters 
+	Word16 enc_parameters[5]; 
+ 
+	
+	BEGIN_PROF(); 
+ 	#ifndef _CODER_2PORTS
+	#ifdef DBG_MSG	
+		printf("FRAME_LSP: Before reading dtx_mode\n"); 
+	#endif	
+#ifndef HW_ACCESS
+//	CH_MONITOR(dtx_mode_var = dtx_mode_in->read();) 
+	dtx_mode_var = 0;
+#else
+	int* dtx_mode_in = (int*)0xBF000004;
+	HW_ACCESS_READ(dtx_mode_var, dtx_mode_in);
+#endif
+
+	CH_MONITOR(dtx_mode_1->write(dtx_mode_var);)
+	CH_MONITOR(dtx_mode_2->write(dtx_mode_var);) 
+	CH_MONITOR(dtx_mode_3->write(dtx_mode_var);) 
+	#ifdef DBG_MSG	
+		printf("FRAME_LSP: After reading dtx_mode\n");	
+	#endif
+ 
+	#else 
+ 
+		#ifdef DTX_MODE	 
+			dtx_mode_var = DTX_MODE_ENABLED; 
+		#else 
+			dtx_mode_var = DTX_MODE_DISABLED; 
+		#endif 
+ 
+	#endif 
+ 
+	while(true) { 
+		#ifdef DBG_MSG	 
+			printf("FRAME_LSP:------------------HOMING RESET---------------------- \n"); 
+		#endif			 
+		// INBAND-RESET LOOP 
+		// Initialize lsp_old [] 
+	 	lsp_old[0] = 30000; 
+		lsp_old[1] = 26000; 
+		lsp_old[2] = 21000; 
+		lsp_old[3] = 15000; 
+		lsp_old[4] = 8000; 
+		lsp_old[5] = 0; 
+		lsp_old[6] = -8000; 
+		lsp_old[7] = -15000; 
+		lsp_old[8] = -21000; 
+		lsp_old[9] = -26000; 
+		 
+		// Initialize lsp_old_q[] 
+		Copy (lsp_old, lsp_old_q, M); 
+	 
+		// speech window buffer (only necessary to iniialize first L_WINDOW-L_FRAME samples) 
+		Set_zero (x, L_WINDOW-L_FRAME); 
+		 
+		// Last A(z) for case of unstable filter in Levinson algortihm 
+		old_A[0] = 4096;             
+		for (i = 1; i < M + 1; i++) { 
+			old_A[i] = 0; 
+		} 
+		 
+		// Past quantized prediction error		 
+		for (i = 0; i < M; i++) { 
+			past_r2_q[i] = 0; 
+		} 
+ 
+		// Comfort noise LSF averaging buffer 
+		for (i = 0; i < DTX_HANGOVER; i++) { 
+			lsf_old_tx[i][0] = 1384; 
+			lsf_old_tx[i][1] = 2077; 
+			lsf_old_tx[i][2] = 3420; 
+			lsf_old_tx[i][3] = 5108; 
+			lsf_old_tx[i][4] = 6742; 
+			lsf_old_tx[i][5] = 8122; 
+			lsf_old_tx[i][6] = 9863; 
+			lsf_old_tx[i][7] = 11092; 
+			lsf_old_tx[i][8] = 12714; 
+			lsf_old_tx[i][9] = 13701; 
+		} 
+				 
+		while(true) { 
+			 
+			// MAIN LOOP 
+		 
+			// Transfer lsp_old to frame_int_tol block	 
+			for (i = 0; i < M; i++) { 
+				CH_MONITOR(lsp->write(lsp_old[i]);) 
+			} 
+		#ifdef DBG_MSG			 
+			printf("FRAME_LSPPREV: \n"); 
+			printf("x: "); 
+			for(i=0;i<L_WINDOW;i++) printf("%d,",x[i]); 
+			printf("\n"); 
+		#endif 
+		for (i = 0; i < L_FRAME; i++) { 
+			CH_MONITOR(x[i+L_WINDOW-L_FRAME]=preproc_sample_1->read();) 
+		} 
+			 
+		#ifdef DBG_MSG			 
+			printf("FRAME_LSP: \n"); 
+			printf("x: "); 
+			for(i=0;i<L_WINDOW;i++) printf("%d,",x[i]); 
+			printf("\n"); 
+		#endif 
+		// ---------------------------------------- 
+		// LP analysis centered at 2nd subframe  
+		// ---------------------------------------- 
+		scal_acf = Autocorr (x, M, r_h, r_l, window_160_80); 
+		// Autocorrelations 
+		Lag_window (M, r_h, r_l);   // Lag windowing   
+	 	#ifdef DBG_MSG 
+			printf("FRAME_LSP: \n"); 
+			printf("r_h: "); 
+			for(i=0;i<MP1;i++) printf("%d,",r_h[i]); 
+			printf("\n"); 
+			printf("r_l: "); 
+			for(i=0;i<MP1;i++) printf("%d,",r_l[i]); 
+			printf("\n"); 
+			printf("old_A: "); 
+			for(i=0;i<MP1;i++) printf("%d,",old_A[i]); 
+			printf("\n"); 
+		#endif 
+ 
+		Levinson (r_h, r_l, old_A, A2, rc); // Levinson-Durbin			 
+ 		#ifdef DBG_MSG			 
+			printf("FRAME_LSP: \n"); 
+			printf("A2: "); 
+			for(i=0;i<MP1;i++) printf("%d,",A2[i]); 
+			printf("\n");				 
+		#endif 
+		// (A2 obtained) and sent 
+		for(i=0;i<MP1;i++) { 
+			#ifdef SW_MSG				 
+				#if LEVEL == SW_GENERATION 
+					#ifdef _TRACE_STACK_USE 
+						// only for openrisc with an eCos 2.0 configuration supporting it 
+						execution_context.print_stack_use(); 
+					#endif				 
+				#endif 
+			#endif				 
+			CH_MONITOR(A_24->write(A2[i]);) 
+			} 
+			 
+		Az_lsp (A2, lsp_mid, lsp_old); // From A(z) to lsp 
+ 		#ifdef DBG_MSG			 
+			printf("FRAME_LSP: Before sending lsp mid\n"); 
+		#endif 
+		// -->	// SENDING OF THE NON-QUANTIZIED LSPs AT 2th subframe 
+		for(i=0;i<M;i++) { 
+			CH_MONITOR(lsp->write(lsp_mid[i]);) 
+		} 
+		#ifdef DBG_MSG				 
+			printf("FRAME_LSP: lsp mid sent.\n");	 
+		#endif			 
+		// ---------------------------------------- 
+		// LP analysis centered at 4th subframe 
+		// ---------------------------------------- 
+		
+		// Autocorrelations 
+		scal_acf = Autocorr (x, M, r_h, r_l, window_232_8); 
+			 
+		// Here data can already been shifted (previniendo una nueva partici�n que permitiera 
+		// de nuevo el volcado de datos) 
+		Copy (&x[L_FRAME], x, L_WINDOW - L_FRAME); 
+			 
+		// here scal_acf can already be sent to the VAD computation block 
+		// (no before!! in the original ANSI-C it is used for VAD computation 
+		//  scal_acf of the 4th subframe... the same for... 
+		if(dtx_mode_var) { 
+			#ifdef DBG_MSG				 
+				printf("FRAME_LSP: Before sending scal_acf.\n"); 
+			#endif				 
+			CH_MONITOR(scal_acf_->write(scal_acf);) 
+			#ifdef DBG_MSG				 
+				printf("FRAME_LSP: After sending scal_acf.\n"); 
+			#endif				 
+		} 
+			 
+		Lag_window (M, r_h, r_l);   // Lag windowing 
+ 
+		#ifdef DBG_MSG 	
+			printf("FRAME_LSP: \n"); 
+			printf("r_h: "); 
+			for(i=0;i<MP1;i++) printf("%d,",r_h[i]); 
+			printf("\n"); 
+			printf("r_l: "); 
+			for(i=0;i<MP1;i++) printf("%d,",r_l[i]); 
+			printf("\n"); 
+			printf("old_A: "); 
+			for(i=0;i<MP1;i++) printf("%d,",old_A[i]); 
+			printf("\n"); 
+		#endif 
+			 
+		// ... autocorrelations of the 4th subframe and the same for  .. 
+		if(dtx_mode_var) { 
+			#ifdef DBG_MSG								 
+				printf("FRAME_LSP: Sending high Autocorrelations.\n"); 
+			#endif				 
+			for (i=0;i<MP1;i++) { 
+				CH_MONITOR(r->write(r_h[i]);) 
+			} 
+			#ifdef DBG_MSG				 
+				printf("FRAME_LSP: Sending low Autocorrelations.\n");; 
+			#endif 
+			for (i=0;i<MP1;i++) { 
+				CH_MONITOR(r->write(r_l[i]);) 
+			} 
+			#ifdef DBG_MSG				 
+				printf("FRAME_LSP: All Autocorrelations sent."); 
+			#endif				 
+		} 
+			 
+		Levinson (r_h, r_l, old_A, A4, rc); // Levinson-Durbin 
+ 
+		#ifdef DBG_MSG						 
+			printf("FRAME_LSP: \n"); 
+			printf("A4: "); 
+			for(i=0;i<MP1;i++) printf("%d,",A4[i]); 
+			printf("\n");		 
+			printf("FRAME_LSP: rc= "); 
+			for(i=0;i<4;i++) printf("%d,",rc[i]); 
+			printf("\n"); 
+		#endif 
+ 
+		// (A4 obtained) and sent 
+		for(i=0;i<MP1;i++) { 
+			CH_MONITOR(A_24->write(A4[i]);) 
+		} 
+			 
+		// ... for rc factors, here they can be sent. 
+		if(dtx_mode_var) {		 
+			for (i=0;i<4;i++) { 
+				CH_MONITOR(rc_->write(rc[i]);) 
+			} 
+		} 
+				 
+		Az_lsp (A4, lsp_new, lsp_mid); // From A(z) to lsp 
+		#ifdef DBG_MSG 
+			printf("FRAME_LSP: Before sending lsp new\n"); 
+		#endif 
+		// -->	// SENDING OF THE NON-QUANTIZIED LSPs AT 4th subframe 
+		for(i=0;i<M;i++) { 
+			CH_MONITOR(lsp->write(lsp_new[i]);) 
+		} 
+		#ifdef DBG_MSG					 
+			printf("FRAME_LSP: Before reading txdtx_ctrl variable generated by VAD computation module.\n"); 
+		#endif 
+			 
+		// txdtx_ctrl_var its is not readed till is strictly necessary, just here 
+		CH_MONITOR(txdtx_ctrl_var = txdtx_ctrl_vad_1->read();) 
+ 		#ifdef DBG_MSG			 
+			printf("FRAME_LSP: txdtx_ctrl %x\n",txdtx_ctrl_var); 
+			printf("FRAME_LSP: \n"); 
+			printf("lsp_mid: "); 
+			for(i=0;i<M;i++) printf("%d,",lsp_mid[i]); 
+			printf("\n");				 
+			printf("lsp_new: "); 
+			for(i=0;i<M;i++) printf("%d,",lsp_new[i]); 
+			printf("\n");				 	
+			printf("lsp_mid_q: "); 
+			for(i=0;i<M;i++) printf("%d,",lsp_mid_q[i]); 
+			printf("\n"); 
+			printf("lsp_new_q: "); 
+			for(i=0;i<M;i++) printf("%d,",lsp_new_q[i]); 
+			printf("\n"); 
+			printf("past_r2_q: "); 
+			for(i=0;i<M;i++) printf("%d,",past_r2_q[i]); 
+			printf("\n"); 
+			printf("lsf_old_tx: "); 
+			for (i = 0; i < DTX_HANGOVER; i++) { for(int j=0;j<M;j++) printf("%d,",lsf_old_tx[i][j]); printf("\n");} 
+		#endif			 
+		// LSP quantization (lsp_mid[] and lsp_new[] jointly quantized) 
+		Q_plsf_5 (lsp_mid, lsp_new, lsp_mid_q, lsp_new_q, enc_parameters, txdtx_ctrl_var,past_r2_q,lsf_old_tx);									 
+ 		#ifdef DBG_MSG 
+			printf("lsp_mid: "); 
+			for(i=0;i<M;i++) printf("%d,",lsp_mid[i]); 
+			printf("\n");				 
+			printf("lsp_new: "); 
+			for(i=0;i<M;i++) printf("%d,",lsp_new[i]); 
+			printf("\n");				 
+			printf("lsp_mid_q: "); 
+			for(i=0;i<M;i++) printf("%d,",lsp_mid_q[i]); 
+			printf("\n"); 
+			printf("lsp_new_q: "); 
+			for(i=0;i<M;i++) printf("%d,",lsp_new_q[i]); 
+			printf("\n"); 
+			printf("past_r2_q: "); 
+			for(i=0;i<M;i++) printf("%d,",past_r2_q[i]); 
+			printf("\n"); 
+			printf("lsf_old_tx: "); 
+			for (i = 0; i < DTX_HANGOVER; i++) { for(int j=0;j<M;j++) printf("%d,",lsf_old_tx[i][j]); printf("\n");} 
+		#endif 
+		// SENDING OF THE PARAMETERS 
+		for(i=0;i<5;i++) { 
+			CH_MONITOR(lpc_prm->write(enc_parameters[i]);) 
+		} 
+ 
+		// Interpolating quantizied lsp and obtaining all Aq (Aq1, Aq2, Aq3 and Aq4) 
+		if ((txdtx_ctrl_var & TX_SP_FLAG) != 0) 
+		{ 
+			Int_lpc (lsp_old_q, lsp_mid_q, lsp_new_q, Aq_t); 
+		
+			for(i=0;i<(4*MP1);i++) { 
+				CH_MONITOR(Aq_lpc->write(Aq_t[i]);) 
+			} 
+		 
+			// update the LSPs for the next frame 
+			for (i = 0; i < M; i++) 
+			{ 
+				lsp_old[i] = lsp_new[i];                              
+				lsp_old_q[i] = lsp_new_q[i];                          
+			} 
+		} 
+		else 
+		{ 
+			// Use unquantized LPC parameters in case of no speech activity 
+			for (i = 0; i < MP1; i++)	 
+			{ 
+				// Aq_t[i] = A_t[i];                                     
+				Aq_t[i + MP1] = A2[i]; 
+				// Aq_t[i + MP1 * 2] = A_t[i + MP1 * 2]; 
+				Aq_t[i + MP1 * 3] = A4[i];                 
+			} 
+			for (i = 0; i < MP1; i++) { 
+				CH_MONITOR(Aq_t[i] = A_13->read();) 
+			} 
+			for (i = 0; i < MP1; i++) { 
+				CH_MONITOR(Aq_t[i + MP1 * 2] = A_13->read();) 
+			} 
+	 
+			for(i=0;i<(4*MP1);i++) { 
+				CH_MONITOR(Aq_lpc->write(Aq_t[i]);) 
+			} 
+								 
+			// update the LSPs for the next frame 
+			for (i = 0; i < M; i++) 
+			{ 
+				lsp_old[i] = lsp_new[i];                              
+				lsp_old_q[i] = lsp_new[i];                            
+			} 
+				 
+		} 
+			 
+		#ifdef DBG_MSG	 
+			printf("FRAME_LSP: \n"); 
+			printf("lsp_old: "); 
+			for(i=0;i<M;i++) printf("%d,",lsp_old[i]); 
+			printf("\n");				 
+		#endif			 
+		// CHECK OF IN-BAND RESET (lectura del canal siempre_hecha) 
+		// the read is separated in order to avoid the break affects 
+		// counters update when CH_MONITOR macro is used at SW_GENERATION 
+		// level for profiling!! 
+		CH_MONITOR(reset = inband_reset_1->read();) 
+		if(reset) break; 
+			 
+		// En los SC_THREAD la estructura break permite salir del bucle 
+		// principar y saltar al bucle de reset. Este contiene las sentencias 
+		// de inicializaci�n (en nuestro caso las de reset en banda) Si hay alguna 
+		// sentencia incluida en el reset inicial, pero no en el reset en banda, 
+		// se antepone al inicio del reset en banda. 
+		// La estructura mediante bucles de reset y main y break tiene una 
+		// coincidencia grande con respecto al estilo de comportamiento en VHDL y 
+		// una traslaci�n pr�cticamente directa al SystemC de comportamiento 
+		// (eliminado el lazo de reset, usando el watching en los SC_CTHREAD...) 
+		 
+		//		La estructura if(in_band_reset->read()) goto inband_reset_label; no se usar� 
+		//	para evitar cualquier referencia a lenguage no estructurado.		 
+		 
+		}	// END MAIN LOOP 
+	}	// END INBAND-RESET LOOP 
+
+
+
+}//frame_lsp_fun
+#endif
+ 

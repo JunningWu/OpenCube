@@ -1,0 +1,4 @@
+#!/bin/sh
+tar xvzf full_mpeg4.db.tar.gz
+../../bin/m3explorer -x m3_mpeg_use_case.xml -f mpeg_dse_gemo.scr 
+

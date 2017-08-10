@@ -1,0 +1,166 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>SCope Parser</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">C++ parser for source code instrumentation</h1>
+<hr>
+<p>This work area provides a parser program that produces modified source code for performance estimation. The original code is analyzed indentifying the basic blocks and adding code marks to integrate the blocks execution time and optionally the information for instruction cache modeling. The execution time is stored in a variable declared as : "extern unsigned long long  uc_segment_consumed_time; " in the parsed files. This variable can be read at the end of code semgnets to annotate the execution time. Then, the value has to be cleaned to start the next segment. </p>
+
+<p>The work area requires only <em>lex</em>
+and <em>yacc</em>, or <em>flex</em> and <em>bison</em>.</p>
+
+<p>Index: </p>
+<li><a href="index.html#commands"> Command line options </a></li>
+<li><a href="index.html#files"> Files that compose the parser source code </a></li> 
+<li><a href="index.html#builds"> How to build the parser </a></li>
+<li><a href="index.html#config"> Description of the configuration files </a></li>
+<li><a href="index.html#tests"> How to execute the test </a></li>
+<li><a href="index.html#examples"> Examples provided </a></li>
+<li><a href="index.html#original"> Original C++ grammar used </a></li>
+<hr>
+
+<h2><a name="commands">Command Line</a></h2>
+
+<p>The test grammar is a simple command line utility, for
+analysing a single <strong>pre-processed</strong> source file
+(use CC -E to run just the preprocessor on your source files)..</p>
+
+<pre>	grammar [options] &lt; source-file</pre>
+
+<p>The full set of command line options is:</p>
+
+<pre>	Parser options:
+	-i: prepare the code to model instruction caches
+	-c: print each keywork in stdout
+	-t: print the number of the line analyzed
+	-m: print makrs when gramatical rules are discarded during checking
+	-y: print all gramatical operations (shifts and reductions)
+	-p processor: define the processor where the code will run
+	-f files: list of files to be parsed. The list ends when other option is speficied.
+	          If no -f option is used, stdin and stdout are used by default
+	-a: parse all included files that are not in /usr/ directory
+	          If option -a is not used only the code between START_CODE and END_CODE pragmas is parsed 
+</pre>
+
+<p>On completion a three line diagnostic summarises the search
+activity. </p>
+
+<hr>
+
+<h2><a name="files"></a>Files</h2>
+
+<p><a href="CxxLexer.l">CxxLexer.l</a> A simple lexer for all C
+and/or C++ tokens</p>
+
+<p><a href="CxxParser.y">CxxParser.y</a> The parser,
+automatically extracted from FogParser.y.</p>
+
+<p><a href="CxxToken.hxx">CxxToken.hxx</a>, <a
+href="CxxToken.cxx">CxxToken.cxx</a> A trivial class used by the
+parser to represent each parsed token.</p>
+
+<p><a href="CxxLexing.hxx">CxxLexing.hxx</a>, <a
+href="CxxLexing.cxx">CxxLexing.cxx</a> Interface and
+implementation of token creation routines for the lexer.</p>
+
+<p><a href="CxxParsing.hxx">CxxParsing.hxx</a>, <a
+href="CxxParsing.cxx">CxxParsing.cxx</a> Interface and
+implementation of token manioulation routines for the parser.</p>
+
+<p><a href="CxxCosts.hxx">CxxCosts.hxx</a>, <a
+href="CxxCosts.cxx">CxxCosts.cxx</a> Configuration file loader.</p>
+
+<p><a href="CxxAnnotation.hxx">CxxAnnotation.hxx</a>, <a
+href="CxxAnnotation.cxx">CxxAnnotation.cxx</a> Introduces the annotation instructions in the code.</p>
+
+<p><a href="CxxLexer.cpp">CxxLexer.cpp</a>, <a
+href="CxxParser.cpp">CxxParser.cpp</a>, <a href="CxxToken.cpp">CxxToken.cpp</a>
+Degenerate compilation units for the above.</p>
+
+<p><a href="makefile">makefile</a>, <a href="makefile.macros">makefile.macros</a>,
+<a href="CxxLexer.l">makefile.unix</a> Unix build scripts</p>
+
+
+<p><a><u>sun4o/parser</u></a> Built executable (on Unix)</p>
+
+<p><a><u>tests</u></a> Tests directory</p>
+<p><a><u>examples</u></a> Examples directory</p>
+<p>The work area is self-sufficient, requiring only <em>lex</em>
+and <em>yacc</em>, or <em>flex</em> and <em>bison</em>.</p>
+
+<hr>
+
+<h2><a name="builds">Linux / Unix Builds</h2>
+
+<p>The code builds with Gnu gcc 4.1 release, with flex 2.5.33, bison 2.3</p>
+
+<pre>	make gnu</pre>
+
+<p>or under Solaris 2.5 and with Sun C++ 4.2.</p>
+
+<pre>	make sun</pre>
+
+<hr>
+
+<h2><a name="config">Configuration files</h2>
+
+<p>The parser annotates the code with the execution costs provided by the file "time_param.dat":</p>
+
+<pre>	clause &lt;processor&gt;: Encapsulates all the information regarding a processor type
+		clause &lt;type&gt;: Indicates the processor type. The name is selected by the parser when the "-f name" option is used
+		clause &lt;time&gt;: Execution time costs for the C/C++ operators
+		clause &lt;instructions&gt;: Number of  words in the binary code needed to implement the C/C++ operators
+			clause &lt;int&gt;: Execution time costs for int operators
+			clause &lt;float&gt;: Execution time costs for float operators
+			clause &lt;char&gt;: Execution time costs for char operators
+			clause &lt;bool&gt;: Execution time costs for boolean operators
+			clause &lt;control&gt;: Execution time costs for C/C++ control statmenets
+</pre>
+
+<hr>
+
+<h2><a name="tests">Tests</h2>
+
+<p>There are several tests to chech if the parser is correct. To check it run:</p>
+
+<pre>	make check</pre>
+
+<hr>
+
+<h2><a name="examples">Examples</h2>
+
+<p>There is a large example provided together with the parser. The example is a gsm vocoder, modeled as a single task. To compile the example go to the "examples/vocoder_gsm/simgle_source_parsed" directory. There are two options to compile the code,  compile without instruction cache:</p>
+
+<pre>	make [nocache]</pre>
+
+<p>or with instruction cache.</p>
+
+<pre>	make icache</pre>
+
+<p>To run the example, execute "vocoder.x"</p>
+<p>This process requires SCope tool running and having the environment variable SCOPE_HOME  properly configured</p>
+<hr>
+
+<hr>
+
+<h1 align="center"><a name="original">Original C++ Grammar</h1>
+
+<hr>
+
+<p>The parser is based on a demonstration of the superset C++
+grammar downloadable from <a 
+href=http://willink.me.uk/projects/fog/index.html"> </a>
+The grammar is described in Chapter 5 of <a
+href="mailto:Ed.Willink@rrl.co.uk">Ed Willink</a>'s thesis on <a
+href="http://www.computing.surrey.ac.uk/research/dsrg/fog/FogThesis.html">Meta-Compilation
+for C++</a>. </p>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+====================================================================
+=========         SCoPE XML PLUG-IN README (v1.0.5)       ==========
+====================================================================
+
+This is a plug-in for SCoPE tool. This plug-in allows defining the 
+platform through an XML file instead of creating it an the sc_main 
+file.
+
+SCoPE xml plug-in requires the following elements to be installed:
+	- SCoPE v1.1.1 and all its requirements
+	
+To use the plug-in, compile your description following the examples.
+
+The plug-in allows using the following options when executing the example:
+
+        -xml file_name
+        --xml-system-desription file_name     File with the platform and allocation information
+
+        -xsc file_name
+        --xml-system-configuration file_name  File with the system configuration parameters
+
+        -xmd file_name
+        --xml-metric_definition file_name     File with the definition of the metrics to be reported
+
+        -xof file_name
+        --xml-system-metrics file_name        File name for the output metric report

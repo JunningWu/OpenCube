@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<design_space xmlns="http://www.multicube.eu/" version="1.0">
+	<simulator>
+		<simulator_executable path="/some/path/to/bin" />
+	</simulator>
+	<parameters>
+		<parameter name="foo0" type="integer" min="3" max="5" />
+		<parameter name="foo1" type="integer" min="0" max="2" />
+		<parameter name="foo2" type="integer" min="1" max="2" />
+		<parameter name="foo3" type="string">
+			<item value="value1" />
+			<item value="value2" />
+		</parameter>
+		<parameter name="foo4" type="exp2" min="512" max="1024" />
+		<parameter name="foo5" type="exp2" min="512" max="1024" />
+		<parameter name="foo6" type="boolean" />
+		<parameter name="foo7" type="on_off_mask" dimension="@foo0" />
+		<parameter name="foo8" type="permutation" dimension="@foo0" />
+	</parameters>
+	<rules>
+		<rule>
+			<and>
+				<greater-equal>
+					<parameter name="foo1" />
+					<parameter name="foo2" />
+				</greater-equal>
+				<if>
+					<equal>
+						<parameter name="foo4" />
+						<parameter name="foo5" />
+					</equal>
+					<then>
+						<equal>
+							<parameter name="foo3" />
+							<constant value="value2" />
+						</equal>
+					</then>
+					<else>
+						<equal>
+							<parameter name="foo3" />
+							<constant value="value1" />
+						</equal>
+					</else>
+				</if>
+			</and>
+		</rule>
+	</rules>
+	<system_metrics>
+		<system_metric name="metric1" type="integer" unit="cycles" desired="small" />
+	</system_metrics>
+</design_space>

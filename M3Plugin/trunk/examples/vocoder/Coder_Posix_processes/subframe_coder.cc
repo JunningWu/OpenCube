@@ -1,0 +1,578 @@
+#ifndef _SUBFRAME_CODER_CC
+#define _SUBFRAME_CODER_CC
+
+extern "C" void *subframe_coder_fun(void *args);
+
+/************************************************************************* 
+ * 
+ *   FUNCTION NAME: tx_dtx 
+ * 
+ *   PURPOSE: DTX handler of the speech encoder. Determines when to add 
+ *            the hangover period to the end of the speech burst, and 
+             also determines when to use old SID parameters, and when 
+ *            to update the SID parameters. This function also initializes 
+ *            the pseudo noise generator shift register. 
+ * 
+ *            Operation of the TX DTX handler is based on the VAD flag 
+ *            given as input from the speech encoder. 
+ * 
+ *   INPUTS:      VAD_flag      Voice activity decision 
+ *                *txdtx_ctrl   Old encoder DTX control word 
+ * 
+ *   OUTPUTS:     *txdtx_ctrl   Updated encoder DTX control word 
+ *                L_pn_seed_tx  Initialized pseudo noise generator shift 
+ *                              register (global variable) 
+ * 
+ *   RETURN VALUE: Returns if PN INITALZATION MUST BE DONE 
+ * 
+ *************************************************************************/ 
+
+ 
+	bool tx_dtx(Word16 VAD_flag,Word16 *txdtx_ctrl,Word16 &txdtx_hangover,	Word16 &txdtx_N_elapsed){ 
+
+		bool assign_PN_INITIAL_SEED=false; 
+	 
+    		/* N_elapsed (frames since last SID update) is incremented. If SID 
+		       is updated N_elapsed is cleared later in this function */ 
+ 
+		txdtx_N_elapsed = add (txdtx_N_elapsed, 1); 
+ 		/* If voice activity was detected, reset hangover counter */ 
+ 	        if (sub (VAD_flag, 1) == 0)
+		{ 
+		        txdtx_hangover = DTX_HANGOVER;            
+		        *txdtx_ctrl = TX_SP_FLAG | TX_VAD_FLAG;    
+    		}	 
+    		else 
+		{ 
+		        if (txdtx_hangover == 0) 
+		        { 
+            			/* Hangover period is over, SID should be updated */ 
+ 			        txdtx_N_elapsed = 0;                  
+            			/* Check if this is the first frame after hangover period */ 
+                                if ((*txdtx_ctrl & TX_HANGOVER_ACTIVE) != 0) 
+            			{ 
+			                *txdtx_ctrl = TX_PREV_HANGOVER_ACTIVE  | TX_SID_UPDATE;               
+		        	        //*L_pn_seed_tx = PN_INITIAL_SEED;   
+					assign_PN_INITIAL_SEED=true; 
+            			} 
+            			else 
+            			{ 
+			                *txdtx_ctrl = TX_SID_UPDATE;      
+            			} 
+        		} 
+        		else 
+        		{ 
+		                /* Hangover period is not over, update hangover counter */ 
+            			txdtx_hangover = sub (txdtx_hangover, 1); 
+ 		               /* Check if elapsed time from last SID update is greater than 
+                                 threshold. If not, set SP=0 (although hangover period is not 
+                                 over) and use old SID parameters for new SID frame. 
+                                 N_elapsed counter must be summed with hangover counter in order 
+                                 to avoid erroneus SP=1 decision in case when N_elapsed is grown 
+                                 bigger than threshold and hangover period is still active */  	         
+			        if (sub (add (txdtx_N_elapsed, txdtx_hangover),DTX_ELAPSED_THRESHOLD) < 0) 
+            			{ 
+			                /* old SID frame should be used */ 
+			                *txdtx_ctrl = TX_USE_OLD_SID;     
+            			}	 
+            			else 
+            			{  
+			                if ((*txdtx_ctrl & TX_HANGOVER_ACTIVE) != 0) 
+			                { 
+			                    *txdtx_ctrl = TX_PREV_HANGOVER_ACTIVE | TX_HANGOVER_ACTIVE | TX_SP_FLAG;       
+                			} 
+					else 
+                			{ 
+			                    *txdtx_ctrl = TX_HANGOVER_ACTIVE 
+                        			| TX_SP_FLAG;              
+                			} 
+            			} 
+        		} 
+    		}	 
+	        return assign_PN_INITIAL_SEED; 
+	}
+
+
+	
+const Word16 pred_energy[4] = {44,37,22,12}; 
+Word16 buf_p_tx;
+
+void *subframe_coder_fun(void *args){
+	
+ subframe_fifos();
+ 
+	// MA prediction coeff 
+//	const Word16 pred[4] = {44,37,22,12}; 
+	
+	Word16 x[L_FRAME+M]; 
+	// Included as member functions
+	Word16 xn[L_SUBFR];         // Target vector for pitch search	
+	Word16 res2[L_SUBFR];       // Long term prediction residual  
+	Word16 y_1[L_SUBFR];        // Filtered adaptive excitation          
+	Word16 ai_zero[L_SUBFR + MP1]; 
+	Word16 *zero;	
+	Word16 *h1; 
+	Word16 hvec[L_SUBFR * 2]; 
+	Word16 old_exc[L_FRAME + PIT_MAX + L_INTERPOL]; 
+	Word16 *exc; 
+	Word16 mem_syn[M], mem_w0[M]; 
+	Word16 mem_err[M + L_SUBFR], *error; 
+	Word16 i_subfr;		// Variable del bucle de subtrama 
+	bool dtx_mode_var; 
+	Word16 txdtx_ctrl_var; 
+	bool reset; 
+	
+	bool L_pn_seed_tx_reset_var; 
+	int k; 
+	Word16 gain_pit_par; // (**) communication variable 
+	Word16 T_op[2]; 	// Pitch parameters for fisrt two and last two subframes 
+	Word16 T0_par;		// (**) communication variable : pitch parameter in closed loop 
+	// quantizied and non-quantizied LPC parameters (input) for each subframe 
+	Word16	A_s[MP1]; 
+	Word16	Aq_s[MP1]; 
+	// quantizied and non-quantizied LPC parameters (input)	
+	Word16	long_term_prm[2];
+	Word16	codebook_prm[11];
+	Word16 syn[L_FRAME];        // Buffer for synthesis speech
+ 	Word16 CN_excitation_gain_par;	 
+ 	Word32	L_pn_seed_tx_var; 
+ 	// past quantized energies. (innovative codebook) 
+	// initialized to -14.0/constant, constant = 20*Log10(2) 
+	Word16 past_qua_en[4]; 
+ 	// Comfort noise gain averaging buffer 
+	Word16 gain_code_old_tx[4 * DTX_HANGOVER]; // Comfort noise gain averaging buffer 
+	
+	BEGIN_PROF(); 
+ 
+	#ifndef _CODER_2PORTS 
+ 
+	#ifdef DBG_MSG				 
+		printf("SUBFRAME_CODER: Before reading dtx_mode\n"); 
+	#endif
+	CH_MONITOR(dtx_mode_var = dtx_mode_2->read();) 
+	#ifdef DBG_MSG	
+		printf("SUBFRAME_CODER: After reading dtx_mode\n");
+	#endif 
+ 
+	#else 
+ 
+		#ifdef DTX_MODE	 
+			dtx_mode_var = DTX_MODE_ENABLED; 
+		#else 
+			dtx_mode_var = DTX_MODE_DISABLED; 
+		#endif 
+ 
+	#endif 
+ 
+	while(true) { 
+		#ifdef DBG_MSG		 
+			printf("SUBFRAME_CODER:------------------ HOMING RESET---------------------- \n"); 
+		#endif 
+		// INBAND-RESET LOOP 
+		// Initialization
+		#ifdef PERF 
+			uc_prof_control->add_function_time(); 
+		#endif	 
+	
+	    	exc = old_exc + PIT_MAX + L_INTERPOL; 
+		zero = ai_zero + MP1; 
+		error = mem_err + M; 
+		h1 = &hvec[L_SUBFR];
+		
+		Set_zero (old_exc, PIT_MAX + L_INTERPOL); 
+	        Set_zero (mem_syn, M); 
+		Set_zero (mem_w0, M); 
+		Set_zero (mem_err, M);	 
+		Set_zero (zero, L_SUBFR); 
+		Set_zero (hvec, L_SUBFR);   // set to zero "h1[-L_SUBFR..-1]" 
+		// past quantized energies. (innovative codebook) 
+		// initialized to -14.0/constant, constant = 20*Log10(2) 
+		for (k = 0; k < 4; k++) { 
+			past_qua_en[k] = -2381; /* past quantized energies */ 
+		} 
+		// speech window buffer (only necessary to iniialize first M samples) 
+		Set_zero (x,M); 
+	 	// L_pn_seed_tx initialization (SE TIENE QUE INCLUIR TAMBIEN EN EL RESET EN BANDA)
+		L_pn_seed_tx_var = PN_INITIAL_SEED; 
+	 	// speech window buffer (only necessary to iniialize first M samples) 
+		Set_zero (x,M); 
+		// txdtx reset 
+	        for (k = 0; k < 4 * DTX_HANGOVER; k++) { 
+			gain_code_old_tx[k] = 0; 
+		} 
+ 
+		buf_p_tx = 0; 
+	
+		while(true) { 
+			#ifdef DBG_MSG							
+				printf("SUBFRAME_CODER: Start the subframe calculation.\n");
+			#endif	
+			// Read open loop pitch parameter (necesarry for first two subframes analysis) 
+			//CH_MONITOR(T_op[0] = Tol_in->read();) 
+			 
+			// (1) 
+			// interpolated LPC parameters for 1st subframe 
+			for (k=0;k<MP1;k++) { 
+				CH_MONITOR(A_s[k]  = A_->read();) 
+			} 
+			for (k=0;k<MP1;k++) { 
+				CH_MONITOR(Aq_s[k] = Aq_lpc->read();) 
+			} 
+			 
+			// Read open loop pitch parameter (necesarry for first two subframes analysis) 
+			CH_MONITOR(T_op[0] = tol->read();) 
+			 
+			i_subfr =0; 
+	 
+			// signal is not readed till is strictly necessary, just here 
+			for (k=M;k<(L_FRAME+M);k++) { 
+				CH_MONITOR(x[k] = preproc_sample_3->read();) 
+			} 
+				 
+			// txdtx_trl_var its is not readed till is strictly necessary, (txdtx_trl_var necessary at the 
+			// beginnng of both Adaptive and innovative functions) 
+			CH_MONITOR(txdtx_ctrl_var = txdtx_ctrl_vad_3->read();) 
+	 
+		
+			Adaptive_Codebook_Search(txdtx_ctrl_var,A_s,Aq_s,T_op,long_term_prm,T0_par,gain_pit_par,&CN_excitation_gain_par,ai_zero,h1,zero,x,i_subfr,res2,exc,error,mem_err,xn, mem_w0,y_1); 
+	 
+			for (k=0;k<2;k++) { 
+				CH_MONITOR(subfrm_prm->write(long_term_prm[k]);) 
+			} 
+				 
+			// when dtx mode is activated, it is allways done a synchronization in the subframe 
+			// module to know if a PN_SEED initialization must be done 
+			if (dtx_mode_var) { 
+				CH_MONITOR(L_pn_seed_tx_reset_var = l_pn_seed_tx_reset->read();) 
+				if(L_pn_seed_tx_reset_var) L_pn_seed_tx_var=PN_INITIAL_SEED; 
+			} 
+			 
+		
+			Innovative_Codebook_Search(txdtx_ctrl_var,Aq_s,T0_par,gain_pit_par,&CN_excitation_gain_par,codebook_prm,syn,past_qua_en,&L_pn_seed_tx_var,gain_code_old_tx,y_1,xn,exc,i_subfr,res2,h1,mem_syn,mem_err,x,mem_w0); 
+ 
+			for (k=0;k<11;k++) { 
+				CH_MONITOR(subfrm_prm->write(codebook_prm[k]);) 
+			} 
+			 
+			// (2)
+			// interpolated LPC parameters for 2nd subframe 
+			for (k=0;k<MP1;k++) { 
+				CH_MONITOR(A_s[k]  = A_->read();) 
+			} 
+			for (k=0;k<MP1;k++) { 
+				CH_MONITOR(Aq_s[k] = Aq_lpc->read();) 
+			} 
+	 
+			i_subfr = L_SUBFR; 
+	 
+			
+			Adaptive_Codebook_Search(txdtx_ctrl_var,A_s,Aq_s,T_op,long_term_prm,T0_par,gain_pit_par,&CN_excitation_gain_par,ai_zero,h1,zero,x,i_subfr,res2,exc,error,mem_err,xn, mem_w0,y_1); 
+ 
+			for (k=0;k<2;k++) { 
+				CH_MONITOR(subfrm_prm->write(long_term_prm[k]);) 
+			}
+			 
+			Innovative_Codebook_Search(txdtx_ctrl_var,Aq_s,T0_par,gain_pit_par,&CN_excitation_gain_par,codebook_prm,syn,past_qua_en,&L_pn_seed_tx_var,gain_code_old_tx,y_1,xn,exc,i_subfr,res2,h1,mem_syn,mem_err,x,mem_w0); 
+ 
+			for (k=0;k<11;k++) { 
+				CH_MONITOR(subfrm_prm->write(codebook_prm[k]);) 
+			} 
+	 
+			// Read open loop pitch parameter (necesarry for first two subframes analysis) 
+			CH_MONITOR(T_op[1] = tol->read();) 
+	 
+			// (3) 
+			// interpolated LPC parameters for 3th subframe 
+			for (k=0;k<MP1;k++) { 
+				CH_MONITOR(A_s[k]  = A_->read();) 
+			} 
+			for (k=0;k<MP1;k++) { 
+				CH_MONITOR(Aq_s[k] = Aq_lpc->read();) 
+			} 
+			 
+			i_subfr = 2*L_SUBFR; 
+	 
+			Adaptive_Codebook_Search(txdtx_ctrl_var,A_s,Aq_s,T_op,long_term_prm,T0_par,gain_pit_par,&CN_excitation_gain_par,ai_zero,h1,zero,x,i_subfr,res2,exc,error,mem_err,xn, mem_w0,y_1); 
+	 
+			for (k=0;k<2;k++) { 
+				CH_MONITOR(subfrm_prm->write(long_term_prm[k]);) 
+			}
+			 
+			Innovative_Codebook_Search(txdtx_ctrl_var,Aq_s,T0_par,gain_pit_par,&CN_excitation_gain_par,codebook_prm,syn,past_qua_en,&L_pn_seed_tx_var,gain_code_old_tx,y_1,xn,exc,i_subfr,res2,h1,mem_syn,mem_err,x,mem_w0); 
+ 
+			for (k=0;k<11;k++) { 
+				CH_MONITOR(subfrm_prm->write(codebook_prm[k]);) 
+			} 
+			 
+			// (4) 
+			// interpolated LPC parameters for 4th subframe 
+			for (k=0;k<MP1;k++) { 
+				CH_MONITOR(A_s[k]  = A_->read();) 
+			} 
+			for (k=0;k<MP1;k++) { 
+				CH_MONITOR(Aq_s[k] = Aq_lpc->read();) 
+			} 
+	 
+			i_subfr = 3*L_SUBFR; 
+	 
+			Adaptive_Codebook_Search(txdtx_ctrl_var,A_s,Aq_s,T_op,long_term_prm,T0_par,gain_pit_par,&CN_excitation_gain_par,ai_zero,h1,zero,x,i_subfr,res2,exc,error,mem_err,xn, mem_w0,y_1); 
+	 
+			for (k=0;k<2;k++) { 
+				CH_MONITOR(subfrm_prm->write(long_term_prm[k]);) 
+			} 
+	 
+			Innovative_Codebook_Search(txdtx_ctrl_var,Aq_s,T0_par,gain_pit_par,&CN_excitation_gain_par,codebook_prm,syn,past_qua_en,&L_pn_seed_tx_var,gain_code_old_tx,y_1,xn,exc,i_subfr,res2,h1,mem_syn,mem_err,x,mem_w0); 
+			 
+			for (k=0;k<11;k++) { 
+				CH_MONITOR(subfrm_prm->write(codebook_prm[k]);) 
+			} 
+
+			// per frame
+			Copy (&old_exc[L_FRAME], &old_exc[0], PIT_MAX + L_INTERPOL); 
+	 
+			// Here data can already been shifted 
+			Copy (&x[L_FRAME], x, M);		 
+			 
+			// CHECK OF IN-BAND RESET (lectura del canal siempre_hecha) 
+			// the read is separated in order to avoid the break affects 
+			// counters update when CH_MONITOR macro is used at SW_GENERATION 
+			// level for profiling!! 
+			CH_MONITOR(reset = inband_reset_3->read();) 
+			if(reset) break; 
+				 
+			 
+			// En los SC_THREAD la estructura break permite salir del bucle 
+			// principar y saltar al bucle de reset. Este contiene las sentencias 
+			// de inicializaci�n (en nuestro caso las de reset en banda) Si hay alguna 
+			// sentencia incluida en el reset inicial, pero no en el reset en banda, 
+			// se antepone al inicio del reset en banda. 
+			// La estructura mediante bucles de reset y main y break tiene una 
+			// coincidencia grande con respecto al estilo de comportamiento en VHDL y 
+			// una traslaci�n pr�cticamente directa al SystemC de comportamiento 
+			// (eliminado el lazo de reset, usando el watching en los SC_CTHREAD...) 
+			 
+			//		La estructura if(in_band_reset->read()) goto inband_reset_label; no se usar� 
+			//	para evitar cualquier referencia a lenguage no estructurado.		 
+						
+		}	// END MAIN LOOP 
+	}	// END INBAND-RESET LOOP 
+
+
+}//subframe_coder_fun
+
+
+
+
+
+
+
+/************************************************************************* 
+ * 
+ *   FUNCTION NAME: update_gain_code_history_tx 
+ * 
+ *   PURPOSE: Update the fixed codebook gain parameter history of the 
+ *            encoder. The fixed codebook gain parameters kept in the buffer 
+ *            are used later for computing the reference fixed codebook 
+ *            gain parameter value and the averaged fixed codebook gain 
+ *            parameter value. 
+ * 
+ *   INPUTS:      new_gain_code   New fixed codebook gain value 
+ * 
+ *                gain_code_old_tx[0..4*DTX_HANGOVER-1] 
+ *                                Old fixed codebook gain history of encoder 
+ * 
+ *   OUTPUTS:     gain_code_old_tx[0..4*DTX_HANGOVER-1] 
+ *                                Updated fixed codebook gain history of encoder 
+ * 
+ *   RETURN VALUE: none 
+ * 
+ *************************************************************************/ 
+ 
+
+void update_gain_code_history_tx ( 
+    Word16 new_gain_code, 
+    Word16 gain_code_old_tx[4 * DTX_HANGOVER] 
+) 
+{ 
+ 
+	// Circular buffer 
+    	gain_code_old_tx[buf_p_tx] = new_gain_code;          
+ 
+      
+    	if (sub (buf_p_tx, (4 * DTX_HANGOVER - 1)) == 0) 
+    	{ 
+     	   buf_p_tx = 0;                                    
+    	} 
+    	else 
+    	{ 
+     	   buf_p_tx = add (buf_p_tx, 1); 
+	} 
+ 
+        return; 
+} 
+ 
+ 
+// average innovation energy.                          
+// MEAN_ENER  = 36.0/constant, constant = 20*Log10(2) 
+ 
+#define MEAN_ENER  783741L      // 36/(20*log10(2)) 
+ 
+Word16 q_gain_code (    // Return quantization index                 
+    
+    Word16 code[],      // (i)      : fixed codebook excitation      
+    Word16 lcode,       // (i)      : codevector size                
+    Word16 *gain,       // (i/o)    : quantized fixed codebook gain  
+	Word16 past_qua_en[], // past quantized energies. 
+    Word16 txdtx_ctrl, 
+    Word16 i_subfr, 
+	Word16 CN_excitation_gain, 
+	Word16 gain_code_old_tx[]  // Input/output 
+) 
+{ 
+ 
+    Word16 i, index; 
+    Word16 gcode0, err, err_min, exp, frac; 
+    Word32 ener, ener_code; 
+    Word16 aver_gain; 
+    static Word16 gcode0_CN; 
+ 
+       
+    if ((txdtx_ctrl & TX_SP_FLAG) != 0) 
+    { 
+        //------------------------------------------------------------------- 
+        //  energy of code:                                                   
+        //  ~~~~~~~~~~~~~~~                                                   
+        //  ener_code(Q17) = 10 * Log10(energy/lcode) / constant              
+        //                 = 1/2 * Log2(energy/lcode)                         
+        //                                           constant = 20*Log10(2)   
+        //------------------------------------------------------------------- 
+ 
+        // ener_code = log10(ener_code/lcode) / (20*log10(2)) 
+        ener_code = 0;                            
+        for (i = 0; i < lcode; i++) 
+        { 
+            ener_code = L_mac (ener_code, code[i], code[i]); 
+        } 
+        // ener_code = ener_code / lcode 
+        ener_code = L_mult (round (ener_code), 26214); 
+ 
+        // ener_code = 1/2 * Log2(ener_code) 
+        Log2 (ener_code, &exp, &frac); 
+        ener_code = L_Comp (sub (exp, 30), frac); 
+ 
+        // predicted energy 
+ 
+        ener = MEAN_ENER;                         
+        for (i = 0; i < 4; i++) 
+        { 
+            ener = L_mac (ener, past_qua_en[i], pred_energy[i]); 
+        } 
+ 
+        //------------------------------------------------------------------- 
+        //  predicted codebook gain                                            
+        //  ~~~~~~~~~~~~~~~~~~~~~~~                                            
+        //  gcode0(Qx) = Pow10( (ener*constant - ener_code*constant) / 20 )    
+        //             = Pow2(ener-ener_code)                                  
+        //                                           constant = 20*Log10(2)    
+        //------------------------------------------------------------------- 
+ 
+        ener = L_shr (L_sub (ener, ener_code), 1); 
+        L_Extract (ener, &exp, &frac); 
+ 
+        gcode0 = extract_l (Pow2 (exp, frac));  // predicted gain 
+ 
+        gcode0 = shl (gcode0, 4); 
+ 
+        // ------------------------------------------------------------------- 
+        //                   Search for best quantizer                         
+        // ------------------------------------------------------------------- 
+ 
+        err_min = abs_s (sub (*gain, mult (gcode0, qua_gain_code[0]))); 
+        index = 0;                
+ 
+        for (i = 1; i < NB_QUA_CODE; i++) 
+        { 
+            err = abs_s (sub (*gain, mult (gcode0, qua_gain_code[i]))); 
+ 
+              
+            if (sub (err, err_min) < 0) 
+            { 
+                err_min = err;                    
+                index = i;                        
+            } 
+        } 
+ 
+        *gain = mult (gcode0, qua_gain_code[index]); 
+                                                  
+ 
+        //------------------------------------------------------------------ 
+        //   update table of past quantized energies                          
+        //   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                          
+        //   past_qua_en(Q12) = 20 * Log10(qua_gain_code) / constant          
+        //                    = Log2(qua_gain_code)                           
+        //                                            constant = 20*Log10(2)  
+        // ------------------------------------------------------------------ 
+ 
+        for (i = 3; i > 0; i--) 
+        { 
+            past_qua_en[i] = past_qua_en[i - 1];  
+        } 
+        Log2 (L_deposit_l (qua_gain_code[index]), &exp, &frac); 
+ 
+        past_qua_en[0] = shr (frac, 5);           
+        past_qua_en[0] = add (past_qua_en[0], shl (sub (exp, 11), 10)); 
+                                                  
+        update_gain_code_history_tx (*gain, gain_code_old_tx); 
+    } 
+    else 
+    {             
+        if ((txdtx_ctrl & TX_PREV_HANGOVER_ACTIVE) != 0 && (i_subfr == 0)) 
+        { 
+            gcode0_CN = update_gcode0_CN (gain_code_old_tx); 
+            gcode0_CN = shl (gcode0_CN, 4); 
+        } 
+        *gain = CN_excitation_gain;               
+ 
+            
+        if ((txdtx_ctrl & TX_SID_UPDATE) != 0) 
+        { 
+            aver_gain = aver_gain_code_history (CN_excitation_gain, 
+                                                gain_code_old_tx); 
+            // --------------------------------------------------------------- 
+            //                    Search for best quantizer                    
+            // --------------------------------------------------------------- 
+ 
+            err_min = abs_s (sub (aver_gain,  
+                                  mult (gcode0_CN, qua_gain_code[0]))); 
+            index = 0;                            
+ 
+            for (i = 1; i < NB_QUA_CODE; i++) 
+            { 
+                err = abs_s (sub (aver_gain,  
+                                  mult (gcode0_CN, qua_gain_code[i]))); 
+ 
+                  
+                if (sub (err, err_min) < 0) 
+                { 
+                    err_min = err;                
+                    index = i;                    
+                } 
+            } 
+        } 
+        update_gain_code_history_tx (*gain, gain_code_old_tx); 
+ 
+        //------------------------------------------------------------------- 
+        //   reset table of past quantized energies                            
+        //   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                            
+        //------------------------------------------------------------------- 
+ 
+        for (i = 0; i < 4; i++) 
+        { 
+            past_qua_en[i] = -2381;               
+        } 
+    } 
+ 
+    return index; 
+} 
+ 
+#endif

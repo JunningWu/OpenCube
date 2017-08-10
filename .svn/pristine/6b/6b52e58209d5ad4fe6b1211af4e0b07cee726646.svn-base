@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simulator_output_interface xmlns="http://www.multicube.eu/" version="1.0">
+	<error reason="System Description file not found" kind="fatal" />
+</simulator_output_interface>

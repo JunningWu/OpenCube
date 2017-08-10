@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Description xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" name="Hello_world">
+	<HW_Platform>
+	<HW_Components>
+		<HW_Component category="bus" name="AMBA" frequency="200" />
+		<HW_Component category="processor" name="arm926t" frequency="200"/>
+		<HW_Component category="as_hw" name="uc_IO_hw" frequency="200" mem_size="40" init_func="load_hw"  library="libvocoder.so"/>
+		<HW_Component category="memory" name="Memory" mem_size="500000K"  frequency="200" mem_type="RAM" />
+	</HW_Components>	
+	<HW_Architecture name="arch2" >
+		<HW_Instance component="AMBA" name="my_bus" >
+			<HW_Instance component="arm926t" name="my_proc" />
+			<HW_Instance component="uc_IO_hw" name="my_hw" start_addr="0x40000000" />
+			<HW_Instance component="uc_IO_hw" name="my_hw2" start_addr="0xBF000000" />
+			<HW_Instance component="Memory" name="my_memory" start_addr="0x80000000" />
+		</HW_Instance>
+	</HW_Architecture>
+	<HW_Architecture name="arch1" >
+		<HW_Instance component="AMBA" name="my_bus" >
+			<HW_Instance component="arm926t" name="my_proc" />
+			<HW_Instance component="Memory" name="my_memory" start_addr="0x80000000" />
+		</HW_Instance>
+	</HW_Architecture>
+	</HW_Platform>
+	<SW_Platform>
+		<SW_Components>
+			<SW_Component name="SO" type="OS" />
+		</SW_Components>
+		<SW_Architecture>
+			<SW_Instance name="my_OS" component="SO" hw_resource="my_proc" />
+		</SW_Architecture>
+	</SW_Platform>
+	<Application>
+		<Functionality>
+			<Exec_Component name="RadioSubSystem"  category="SW" function="RadioSubSystem" file="libvocoder.so" />
+			<Exec_Component name="PCMStream_gen"  category="SW" function="PCMStream_gen" file="libvocoder.so" />
+			<Exec_Component name="pre_filtering"  category="SW" function="pre_filtering" file="libvocoder.so" />
+			<Exec_Component name="homing_frame_test" category="SW" function="homing_frame_test" file="libvocoder.so" />
+			<Exec_Component name="frame_lsp_fun"  category="SW" function="frame_lsp_fun" file="libvocoder.so" />
+			<Exec_Component name="frame_int_tol"  category="SW" function="frame_int_tol" file="libvocoder.so" />
+			<Exec_Component name="subframe_coder_fun" category="SW" function="subframe_coder_fun" file="libvocoder.so" />
+			<Exec_Component name="serializer_fun" category="SW" function="serializer_fun" file="libvocoder.so" />
+			<Exec_Component name="vad_comp_fun"   category="SW" function="vad_comp_fun" file="libvocoder.so" />
+			<Exec_Component name="CN_encoder_fun" category="SW" function="CN_encoder_fun" file="libvocoder.so" />
+			<Exec_Component name="sid_encoding_fun" category="SW" function="sid_encoding_fun" file="libvocoder.so" />
+		</Functionality>
+		<Allocation name="alloc1">
+			<Exec_Instance name="RadioSubSystem" component="RadioSubSystem" os="my_OS" />
+			<Exec_Instance name="PCMStream_gen" component="PCMStream_gen" os="my_OS" />
+			<Exec_Instance name="pre_filtering" component="pre_filtering" os="my_OS" />
+			<Exec_Instance name="homing_frame_test" component="homing_frame_test" os="my_OS" />
+			<Exec_Instance name="frame_lsp_fun" component="frame_lsp_fun" os="my_OS" />
+			<Exec_Instance name="frame_int_tol" component="frame_int_tol" os="my_OS" />
+			<Exec_Instance name="subframe_coder_fun" component="subframe_coder_fun" os="my_OS" />
+			<Exec_Instance name="serializer_fun" component="serializer_fun" os="my_OS" />
+			<Exec_Instance name="vad_comp_fun" component="vad_comp_fun" os="my_OS" />
+			<Exec_Instance name="CN_encoder_fun" component="CN_encoder_fun" os="my_OS" />
+			<Exec_Instance name="sid_encoding_fun" component="sid_encoding_fun" os="my_OS" />
+		</Allocation>
+		<Allocation name="alloc2">
+			<Exec_Instance name="pre_filtering" component="pre_filtering" os="my_OS" />
+			<Exec_Instance name="homing_frame_test" component="homing_frame_test" os="my_OS" />
+			<Exec_Instance name="frame_lsp_fun" component="frame_lsp_fun" os="my_OS" />
+			<Exec_Instance name="frame_int_tol" component="frame_int_tol" os="my_OS" />
+			<Exec_Instance name="subframe_coder_fun" component="subframe_coder_fun" os="my_OS" />
+			<Exec_Instance name="serializer_fun" component="serializer_fun" os="my_OS" />
+			<Exec_Instance name="vad_comp_fun" component="vad_comp_fun" os="my_OS" />
+			<Exec_Instance name="CN_encoder_fun" component="CN_encoder_fun" os="my_OS" />
+			<Exec_Instance name="sid_encoding_fun" component="sid_encoding_fun" os="my_OS" />
+		</Allocation>
+	</Application>
+	<Simulation time="30s" backtrace="0" end_as_sw="1">
+		<Implementation HW_Architecture="arch2" Allocation="alloc2" />
+	</Simulation>
+</Description>

@@ -1,0 +1,37 @@
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>SCoPE XML Plug-in</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+sc_gen_unique_name(instance->name), atoi_null(instance->start_addr), atoi_null(instance->start_addr) + size -1, atoi_null(instance->irq), latency, simulator_list[0]
+
+<h2>Struct xml_component_info</h2>
+<hr>
+<p>Structure that contain all the parameters of a HW Instance.</p>
+<p>It contain the parameters specified in the HW_Instance. Otherwise, the base HW_Component values are used.</p>
+
+<p>General Attributes :</p>
+<pre>
+<li>Name               Type   Description </li>
+<li>name               char*: Name of the HW_Component </li>
+<li>category           char*: Cathegory of component. </li>
+<li>type               char*: Type of Component. </li>
+<li>mem_size           int:   Amount of memory associated to the HW component in the memory map </li>
+<li>latency            float: Component latency </li>
+<li>frequency          float: Component frequency. </li>
+<li>width              int:   Component interface width.  </li>
+<li>area               float: HW area required by this component. </li>
+<li>static_power       float: Mean power consumed when no bus events are received.  </li>
+<li>read_energy        float: Energy consumed when a bus read event is received. In caches it is the miss energy</li>
+<li>write_energy       float: Energy consumed when a bus write event is received. </li>
+<li>read_size_energy   float: Variable energy consumed when a bus read events is received, depending on the buffer size. </li>
+<li>write_size_energy  float: Variable energy consumed when a bus write events is received, depending on the buffer size. </li>
+<li>component_specific char*: Additional parameters required for a non-default SCoPE component. 
+                              It is provided to the init_func function as char*.</li>
+</pre>
+
+</body>
+</html>

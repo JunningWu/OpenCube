@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Description xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" name="Hello_world">
+	<HW_Platform>
+	<HW_Components>
+		<HW_Component category="bus" name="AMBA" frequency="200" />
+		<HW_Component category="processor" name="arm926t" frequency="200"/>
+		<HW_Component category="memory" name="Memory"					mem_size="500000K"  frequency="200" mem_type="RAM" />
+		</HW_Components>	
+		<HW_Architecture>
+			<HW_Instance component="AMBA" name="my_bus" >
+				<HW_Instance component="arm926t" name="my_proc" />
+				<HW_Instance component="Memory" name="my_memory" 					start_addr="0x80000000" />
+			</HW_Instance>
+		</HW_Architecture>
+	</HW_Platform>
+	<SW_Platform>
+		<SW_Components>
+			<SW_Component name="SO" type="OS" />
+		</SW_Components>
+		<SW_Architecture>
+			<SW_Instance name="my_OS" component="SO" hw_resource="my_proc" />
+		</SW_Architecture>
+	</SW_Platform>
+	<Application>
+		<Functionality>
+			<Exec_Component name="hello" category="SW" function="hello_main" file="hello.so"/>
+		</Functionality>
+		<Allocation>
+			<Exec_Instance name="Hello_world" component="hello" 						os="my_OS" />
+		</Allocation>
+	</Application>
+	<Simulation time="1 s" />
+</Description>

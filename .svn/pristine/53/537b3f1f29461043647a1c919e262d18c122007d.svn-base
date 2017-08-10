@@ -1,0 +1,11 @@
+<!-- ***************************************** -->
+<!-- *                                       * -->
+<!-- *  Paths to SGML files                  * -->
+<!-- *                                       * -->
+<!-- ***************************************** --> 
+
+<RouterFile      id="Router.sgm"  >
+<NetworkFile     id="Network.sgm" >
+<SimulationFile  id="Simula.sgm"  >
+
+<!-- fin del fichero -->

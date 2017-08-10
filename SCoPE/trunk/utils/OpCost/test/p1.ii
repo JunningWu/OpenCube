@@ -1,0 +1,6 @@
+#pragma START_CODE
+int i=0;
+extern "C" {
+char i[10]="hola";
+};
+int main(){}

@@ -1,0 +1,43 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>SCoPE XML Plug-in</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Implementation</h2>
+<hr>
+<p>Contains the set of previous descriptions selected to create the system model. </p>
+<p>Note: If any clause set is not specified, all the sets present of this clause in the file will be loaded. This can produce inconsistences if all these sets are not compatible. If it is not required to specify any set, the 'Implementation' clause is optional. If a clause has no name, it is always loaded.</p>
+<p>Note2: There is only one possible name selection for each type of clause.</p>
+
+<pre>
+<p>Attributes (Set type names):</p>
+<li>HW_Platform      [Optional]: Name of the HW_Platform set to be loaded for the system model </li>
+<li>HW_Components    [Optional]: Name of the HW_Components set to be loaded for the system model </li>
+<li>HW_Architecture  [Optional]: Name of the HW_Architecture set to be loaded for the system model </li>
+<li>Computing_Groups [Optional]: Name of the Computing_Groups set to be loaded for the system model </li>
+<li>SW_Platform      [Optional]: Name of the SW_Platform set to be loaded for the system model </li>
+<li>SW_Components    [Optional]: Name of the SW_Components set to be loaded for the system model </li>
+<li>SW_Architecture  [Optional]: Name of the SW_Architecture set to be loaded for the system model </li>
+<li>Application      [Optional]: Name of the Application set to be loaded for the system model </li>
+<li>Functionality    [Optional]: Name of the Functionality set to be loaded for the system model </li>
+<li>Allocation       [Optional]: Name of the Allocation set to be loaded for the system model </li>
+</pre>
+<p>Structure:</p>
+
+<pre>
+&lt; Implementation HW_Platform="HW_Plat_1" SW_Platform="SW_Plat_1" Allocation="Alloc_2"/ &gt;
+	
+</pre>
+
+<hr>
+<li><a href="index.html"> Index </a></li>
+<li><a href="xsd.html"> XML System Description file </a></li>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simulator_input_interface xmlns="http://www.multicube.eu/" version="1.0">
+	<parameter name="MEM_ADDR" value="0x80000000" />
+	<parameter name="NOC_ADDR" value="0x60000000" />
+	<parameter name="NUM_NODES" value="2" />
+</simulator_input_interface>

@@ -1,0 +1,4 @@
+
+<MeshNetwork id="M88-BDOR"    sizeX=8  sizeY=8  router="DOR2D-BU-H1"    delay=0>
+<TorusNetwork id="T88-BDOR"    sizeX=8  sizeY=8  router="DOR2D-BU-H1"    delay=0>
+<MidimewNetwork id="W88-BDOR"    sizeX=64  sizeY=1  router="DOR2D-BU-H1"    delay=0>

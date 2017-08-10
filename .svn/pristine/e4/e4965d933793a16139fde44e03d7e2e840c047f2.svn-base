@@ -1,0 +1,36 @@
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>SCoPE XML Plug-in</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Exec_Instance</h2>
+<hr>
+<p>Description of a SW task instance used to create the Application SW</p>
+
+<p>General Attributes :</p>
+<pre>
+<li>name      [Mandatory]: Name of the SW executable instance </li>
+<li>component [Mandatory]: Name of SW executable component</li>
+<li>resource  [Optional]: HW resource where the task will run (HW_Instance or Computing_Group). If <li>os        [Optional]: OS where the task will run. If no Resource is defined it is mandatory   no OS is defined it is mandatory  </li>
+<li>arguments [Optional]: List of arguments the task will receive at startup  </li>
+<li>policy    [Optional]: Policy of the new task </li>
+<li>priority  [Optional]: Priority of the new task  </li>
+</li>
+</pre>
+
+<p>Structure:</p>
+
+<pre>
+&lt; Exec_Instance name="my_task" component="task_1" resource="node0" arguments="-s -t -f file"/ &gt;
+	
+</pre>
+
+<hr>
+<li><a href="index.html"> Index </a></li>
+<li><a href="xsd.html"> XML System Description file </a></li>
+
+</body>
+</html>

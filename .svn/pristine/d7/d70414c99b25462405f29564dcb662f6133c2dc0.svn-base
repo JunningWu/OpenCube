@@ -1,0 +1,42 @@
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>SCoPE XML Plug-in</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Exec_Component</h2>
+<hr>
+<p>Description of a SW task that can be instanciated to create the Application SW</p>
+
+<p>General Attributes :</p>
+<pre>
+<li>name      [Mandatory]: Name of the SW executable component </li>
+<li>category  [Mandatory]: Type of component. 
+	      - Possible values: SW, driver and taskload </li>
+</pre>
+<p> Specific Attributes :</p>
+<pre>
+Cathegory: SW and driver
+<li>function  [Mandatory]: Name of the function to be loaded. For compatibility reasons, it is recommended to declare the function as 'extern "C" ' in the source code </li>
+<li>file      [Optional]: File where the function code is</li>
+
+Cathegory: taskload
+<li>compute_time [Mandatory]: Time the task requires to be executed. In periodic tasks, the time of each execution </li>
+<li>period       [Optional]: For periodic tasks, the task period </li>
+<li>data_size    [Optional]: Amount of data transferred through the bus on each execution</li>
+</pre>
+<p>Structure:</p>
+
+<pre>
+&lt; Exec_Component name="task_1" category="SW" function="my_function"/ &gt;
+	
+</pre>
+
+<hr>
+<li><a href="index.html"> Index </a></li>
+<li><a href="xsd.html"> XML System Description file </a></li>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+
+
+#include <iostream>
+using namespace std;
+
+#include <pthread.h>
+#include <sys/time.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#include "../../time_class.h"
+
+extern int test_return;
+
+timespec f1_begin, f1_end;
+
+void* f1( void* arg )
+{
+	clock_gettime(CLOCK_REALTIME, &f1_begin);
+	
+	uc_segment_time += 1500000000;
+	
+	clock_gettime(CLOCK_REALTIME, &f1_end);
+		
+	return NULL;
+}
+
+timespec f2_begin, f2_end;
+
+void* f2( void* arg )
+{
+	clock_gettime(CLOCK_REALTIME, &f2_begin);
+	uc_segment_time += 20000000;
+	clock_gettime(CLOCK_REALTIME, &f2_end);
+	
+	return NULL;
+}
+
+void * test1(void *) 
+{
+	sched_param process_sched_param;
+	process_sched_param.sched_priority = 10;
+	sched_setscheduler( 0, SCHED_FIFO, &process_sched_param );
+	
+	pthread_attr_t thread_attr_1;
+	pthread_attr_t thread_attr_2;
+	
+	pthread_attr_init( &thread_attr_1 );
+	pthread_attr_init( &thread_attr_2 );
+	
+	sched_param sched_param_1;
+	sched_param sched_param_2;
+	
+	sched_param_1.sched_priority = 7;
+	
+	pthread_attr_setschedparam( &thread_attr_1, &sched_param_1 );
+	pthread_attr_setschedpolicy( &thread_attr_1, SCHED_FIFO );
+	pthread_attr_setscope( &thread_attr_1, PTHREAD_SCOPE_SYSTEM );
+	pthread_attr_setinheritsched( &thread_attr_1, PTHREAD_EXPLICIT_SCHED );
+	
+	sched_param_2.sched_priority = 9;
+	
+	pthread_attr_setschedparam( &thread_attr_2, &sched_param_2 );
+	pthread_attr_setschedpolicy( &thread_attr_2, SCHED_FIFO );
+	pthread_attr_setscope( &thread_attr_2, PTHREAD_SCOPE_SYSTEM );
+	pthread_attr_setinheritsched( &thread_attr_2, PTHREAD_EXPLICIT_SCHED );
+	
+	pthread_t thread_1;
+	pthread_t thread_2;
+	
+	int res = pthread_create( &thread_1, &thread_attr_1, &f1, NULL );
+	if( res != 0 ) {
+		exit(-1);
+	}
+	
+	sleep( 1 );
+	
+	res = pthread_create( &thread_2, &thread_attr_2, &f2, NULL );
+	if( res != 0 ) {
+		exit(-1);
+	}
+	
+	pthread_join( thread_1, NULL );
+	pthread_join( thread_2, NULL );
+	
+	if ((f1_begin < f2_begin) && (f2_begin < f2_end) && (f2_end < f1_end)) {
+		test_return = 0;
+	}
+	
+	cerr << "f1 begin == " << f1_begin.tv_sec << "," << f1_begin.tv_nsec << endl
+			<< "f1 end ==   " << f1_end.tv_sec << "," << f1_end.tv_nsec << endl
+			<< "f2 begin ==   " << f2_begin.tv_sec << "," << f2_begin.tv_nsec << endl
+			<< "f2 end == " << f2_end.tv_sec << "," << f2_end.tv_nsec << endl;
+ 
+	return NULL;
+}

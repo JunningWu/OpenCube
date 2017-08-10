@@ -1,0 +1,224 @@
+#!/bin/sh
+
+set -e
+
+
+# =======
+# Startup
+# =======
+
+echo
+echo "------------------------------------------------------------------------"
+echo Configure build directory: `pwd`
+
+
+# ==============
+# Default values
+# ==============
+
+shepard="no"
+spline="no"
+neural="nn"
+gsl="no"
+fann="no"
+boost="no"
+rbf="no"
+regression="no"
+
+srcdir=`dirname $0`
+srcdir=`cd $srcdir; pwd`
+dstdir=`pwd`
+
+othercflags=""
+snapshot_or_release=`grep "^snapshot\|^release" $srcdir/HISTORY | head -n 1`
+
+# ==================
+# Diagnostic message
+# ==================
+
+xml2_include=`xml2-config --cflags`
+xml2_libs=`xml2-config --libs`
+
+othercxxflags="-D__M3EXPLORER_VERSION__=\\\\\"$snapshot_or_release\\\\\" $xml2_include"
+
+
+otherlinkflags="-L. $xml2_libs" ## Just in case LD_LIBRARY_PATH does not include current directory
+install_doc=""
+
+image=$dstdir/image
+image_np="yes"
+
+# ==================================
+# Process the command line arguments
+# ==================================
+
+all_arg=$*
+args=
+
+while :
+do
+# no args
+        case $# in
+	0)
+		break
+		;;
+	esac
+
+# get first arg and shuffle
+	option=$1
+	shift
+
+# make all options have two hyphens
+	orig_option=$option
+	case $option in
+		--*) ;;
+		-*) option=-$option ;;
+	esac
+
+# split the option to get its argument
+	case $option in
+	--*=*)
+		optarg=`echo $option | sed -e 's/^[^=]*=//'`
+		;;
+	esac
+
+# process the options
+	case $option in
+
+	    --optimized) othercxxflags="$othercxxflags -O2";;
+
+	    --dbg)       othercxxflags="$othercxxflags -g";;
+	    
+	    --image=*)    image="$optarg"
+			  image_np="no";;
+
+	    --shepard)   gsl="yes"
+			 shepard="yes";;
+	    
+	    --spline)    spline="yes";;
+	    
+	    --neural=*)   fann="yes"
+			  neural="yes"
+			  fannpath=$optarg;;
+	    
+	    --rbf=*)   	  boost="yes"
+			  rbf="yes"
+			  gsl="yes"
+			  boostpath=$optarg;;
+
+	    --regression) regression="yes"
+			  gsl="yes";;
+
+	  *)
+	    echo "Error : unknown option $option"
+
+            echo "Usage: $0 [flags]"
+            echo "flags:"
+            echo "	"
+            echo "--dbg                 Enable symbolic debugging"
+            echo "--optimized           Enables compile level optimization switches"
+            echo "--image=<path>        Specify the path in which the simulator should be installed"
+            echo "--shepard             Compile external Shepard interpolation RSM (GSL needed)."
+            echo "--neural=<fann_path>  Compile external Neural network interpolation (FANN library needed)."
+            echo "--spline              Compile external Spline interpolation RSM (R needed for execution)."
+            echo "--rbf=<boost_path>    Compile external RBF interpolation (BOOST library needed)."
+	    echo "--regression          Compile external Linear regression (GSL needed)."
+            exit 1
+	esac
+done
+
+if [ "$image_np" != "no" ]
+then
+	image_dd=`dirname $image`
+	image_dd=`cd $image_dd; pwd`
+	echo "Installation directory   : $image_dd/image" 
+else
+	image_dd=`cd $image; pwd`
+	echo "Installation directory   : $image_dd" 
+	image=$image_dd
+fi
+
+gplcxxflags=""
+gpllinkflags=""
+
+if [ "$gsl" != "no" ]
+then
+	which gsl-config > /dev/null
+	if [ $? -ne 0 ]; then
+		echo "Assuming GSL library located in /usr/lib"
+		gsl_include="-I/usr/include"
+		gsl_libs="-lgsl -lgslcblas"
+	else
+		gsl_include=`gsl-config --cflags`
+		gsl_libs=`gsl-config --libs`
+	fi
+	gplcxxflags="$gplcxxflags $gsl_include"
+	gpllinkflags="$gpllinkflags $gsl_libs"
+fi
+
+if [ "$fann" != "no" ]
+then
+	if [ "x$fannpath" = "x" ]
+	then
+		fannpath="/usr/local"
+		echo "Assuming FANN library located in $fannpath"
+	fi
+	gplcxxflags="$gplcxxflags -I$fannpath/include"
+	gpllinkflags="$gpllinkflags -L$fannpath/lib -lfann"
+fi
+
+if [ "$boost" != "no" ]
+then
+	if [ "x$boostpath" = "x" ]
+	then
+		boospath="/usr/local"
+		echo "Assuming BOOST library located in $boostpath"
+	fi
+	gplcxxflags="$gplcxxflags -I$boostpath/include"
+	gpllinkflags="$gpllinkflags -L$boostpath/lib"
+fi
+
+cat << EOF > sedscript
+    s?@srcdir@?$srcdir?g
+    s?@dstdir@?$dstdir?g
+    s?@image@?$image?g
+    s?@othercflags@?$othercflags?g
+    s?@othercxxflags@?$othercxxflags?g
+    s?@otherlinkflags@?$otherlinkflags?g
+    s?@gplcxxflags@?$gplcxxflags?g
+    s?@gpllinkflags@?$gpllinkflags?g
+    s?@with_doc@?$install_doc?g
+    s?@snapshot@?$snapshot_or_release?g
+    s?@buildshepard@?$shepard?g
+    s?@buildspline@?$spline?g
+    s?@buildneural@?$neural?g
+    s?@buildrbf@?$rbf?g
+    s?@buildregression@?$regression?g
+EOF
+
+sed -f sedscript $srcdir/makefile.in > $dstdir/makefile
+sed -f sedscript $srcdir/tests/do_tests.in > $dstdir/do_tests
+sed -f sedscript $srcdir/tests/multicube_design_space_test.xml.in > $dstdir/multicube_design_space_test.xml
+sed -f sedscript $srcdir/tests/multicube_design_space_test_R1.4.xml.in > $dstdir/multicube_design_space_test_R1.4.xml
+sed -f sedscript $srcdir/tests/multicube_design_space_test_3.xml.in > $dstdir/multicube_design_space_test_3.xml
+sed -f sedscript $srcdir/tests/multicube_design_space_test_4.xml.in > $dstdir/multicube_design_space_test_4.xml
+sed -f sedscript $srcdir/tests/debug_test_1.gdb.scr.in > $dstdir/debug_test_1.gdb.scr
+sed -f sedscript $srcdir/tests/debug_test_2.gdb.scr.in > $dstdir/debug_test_2.gdb.scr
+sed -f sedscript $srcdir/tests/create_test_1_out.scr.in > $dstdir/create_test_1_out.scr
+sed -f sedscript $srcdir/tests/create_test_2_out.scr.in > $dstdir/create_test_2_out.scr
+sed -f sedscript $srcdir/tests/create_test_3_out.scr.in > $dstdir/create_test_3_out.scr
+sed -f sedscript $srcdir/tests/create_test_4_out.scr.in > $dstdir/create_test_4_out.scr
+sed -f sedscript $srcdir/tests/create_test_5_out.scr.in > $dstdir/create_test_5_out.scr
+sed -f sedscript $srcdir/tests/create_test_6_out.scr.in > $dstdir/create_test_6_out.scr
+sed -f sedscript $srcdir/scripts/doxygen.cfg.in > $dstdir/doxygen.cfg
+sed -f sedscript $srcdir/tests/simple_sim/simple_sim_ds.xml.in > $dstdir/simple_sim_ds.xml
+sed -f sedscript $srcdir/tests/beverage_can/beverage_can_ds.xml.in > $dstdir/beverage_can_ds.xml
+rm -f sedscript
+
+# =========================
+# Creation of config.status
+# =========================
+
+echo $0 $all_arg > $dstdir/config.status
+chmod +x $dstdir/config.status
+

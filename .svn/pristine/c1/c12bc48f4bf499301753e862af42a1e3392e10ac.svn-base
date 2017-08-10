@@ -1,0 +1,30 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>SCoPE XML Plug-in</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><a name="config">Additional rules</h2>
+<hr>
+How to name a component:
+<li> By name: "component_name" </li>
+<li> By path: "//@HW_Platform/@HW_Architecture/@HW_Instance" </li>
+<li> By path when there are multiple components: "//@HW_Platform/@HW_Architecture/@HW_Instance.0/@HW_Connection.2" </li>
+<hr>
+How to name a component which is in a repeat clause:
+<li> By name: "component_name%i" </li>
+<li> By path: "//@HW_Platform/@HW_Architecture/@Repeat.1/@HW_Instance" </li>
+<hr>
+How to use a configuration parameter:
+<li> Adding '_' before the parameter name: mem_size="_parameter_name" </li>
+
+<hr>
+<li><a href="index.html"> Return to index </a></li>
+
+</body>
+</html>

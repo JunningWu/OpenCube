@@ -1,0 +1,62 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>SCoPE XML Plug-in</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><a name="files"></a>Internal structure of the plug-in</h2>
+<hr>
+<h2><a name="directories"></a>Directories</h2>
+<hr>
+
+<p><u>src</u> 		Sources of the plug-in</p>
+<p><u>examples</u> 	Examples directory</p>
+<p><u>doc</u> 		Directory with the documentation</p>
+<p><u>build</u> 	Directory where the library is placed when the plug-in is built </p>
+
+<hr>
+<h2><a name="files"></a>Source files</h2>
+<hr>
+
+<h2>SCoPE link</h2>
+<p><a href="../src/uc_load_xml.cpp">uc_load_xml.cpp</a> Main file; contains the sc_main, which calls the functions to read the xml files and to create the system model.</p>
+
+<p><a href="../src/uc_create_xml_platform.cpp">uc_create_xml_platform.cpp</a> Functions to create in SCoPE the model of the system described in the XML files</p>
+
+<hr>
+
+<h2>XML files management</h2>
+
+<p><a href="../src/xml_main.c">xml_main.c</a> Main functions to read the XML System Description file.</p>
+
+<p><a href="../src/xml_configuration_file.c">xml_configuration_file.c</a> Functions to read the XML System Configuration file.</p>
+
+<p><a href="../src/xml_metric_definition.c">xml_metric_definition.c</a> Functions to read and manage the XML Metrics Definition file.</p>
+
+<p><a href="../src/xml_metric_output.c">xml_metric_output.c</a> Functions to create the output file with the required metrics.</p>
+<hr>
+
+<h2>Files to decode the XML System Description file</h2>
+
+<p><a href="../src/xml_if.c">xml_if.c</a> Decode the attributes of the clauses in the System Description file.</p>
+
+<p><a href="../src/xml_input.c">xml_input.c</a> Organizes the decoded attibutes.</p>
+
+<hr>
+
+<h2>XML generic management</h2>
+
+<p><a href="../src/xml_list.c">xml_list.c</a> Auxiliar file implementing a simple list.</p>
+<p><a href="../src/xml_reader.c">xml_reader.c</a> Functions to read the XML files and extract the clauses and attributes. Can be replaced by the expat library</p>
+<p><a href="../src/xml_hierarchy.c">xml_hierarchy.c</a> Create the XML structures to maintain the XML file hierarchy. Used to read the System Description file</p>
+<hr>
+<li><a href="index.html"> Return to index </a></li>
+
+
+</body>
+</html>

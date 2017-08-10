@@ -1,0 +1,220 @@
+//==========================================================================
+//	uc_cpu_xml_if.cpp
+//	Author: David Quijano, Juan Castillo, Héctor Posadas
+//	Date: vie ago 8 2008
+//	Description:
+//==========================================================================
+//  Copyright (C) 2008 Design of Systems on Silicon(DS2)
+//  Main developer: University of Cantabria
+//
+//  This program is free software; you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License (GPL) or GNU Lesser General Public License(LGPL) as published by
+//  the Free Software Foundation; either version 2 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License (GPL) or GNU Lesser General Public License(LGPL) for more details.
+//
+//  You should have received a copy of the GNU General Public License (GPL) or GNU Lesser General Public License(LGPL)
+//  along with this program; if not, write to the Free Software
+//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+//
+//  For more information about SCoPE you can visit
+//  http://www.teisa.unican.es/scope or write an e-mail to
+//  scope@teisa.unican.es or a letter to SCoPE, GIM - TEISA, University
+//  of Cantabria, AV. Los Castros s/n, ETSIIT, 39005, Santander, Spain
+//==========================================================================
+/*!
+ * \file uc_cpu_xml_if.cpp
+ */
+#if 0
+#include <stdio.h>
+#include "uc_os_xml_if.h"
+//#include "uc_cpu_class.h"
+
+std::vector<char*> uc_os_xml_if_class::m_names;
+std::vector<uc_os_xml_if_class*> uc_os_xml_if_class::m_os_params;
+
+/*!
+ * \fn uc_load_os_info
+ * \brief Return the parameters of an os from a xml file
+ * \param *name The name of the os
+ * \param *file The name of the xml file with the os descriptions
+ */
+uc_os_xml_if_class * uc_load_os_info(char *name, char *file){
+	int i;
+	uc_os_xml_if_class *info;
+
+	//Check if the OS parameters have been priously loaded
+	for(i=0; i<uc_os_xml_if_class::m_names.size();i++){
+		if(strcmp(uc_os_xml_if_class::m_names[i]->m_os_name, name)==0){
+			return uc_os_xml_if_class::m_os_params[i];
+		}
+	}	
+	info = new uc_os_xml_if_class();
+	info->load_os(name,file);
+	return info;
+}
+
+/*!
+ * \fn uc_cpu_xml_if_class
+ * \brief Constructor. Receives the processors file
+ * \param *fileName The name of the xml file with cpu's descriptions
+ */
+uc_os_xml_if_class::uc_os_xml_if_class() {
+	int i;
+	for (i=0; i<_TOTAL_POSIX_NUM; i++) m_os_posix_time[i]=0;
+	for (i=0; i<_TOTAL_UCOS_NUM; i++) m_os_ucos_time[i]=0;
+	for (i=0; i<_TOTAL_INTERNALS_NUM; i++) m_os_internal_time[i]=0;
+	for (i=0; i<_TOTAL_IRQ_NUM; i++) m_os_irq_time[i]=0;
+}
+
+/*!
+ * \fn load_os_times
+ * \brief Load the class members with the os information from the xml file
+ * \param *name The name of the os
+ * \param *file The name of the xml file with the os descriptions
+ */
+uc_os_xml_if_class::load_os(char *name, char *file) {
+	
+
+	m_os_fileName = (char *)malloc(strlen(file)+1);
+	m_os_name = (char *)malloc(strlen(name)+1);
+	strcpy(m_os_fileName,file);
+	strcpy(m_os_name,name);
+
+	if (m_doc.LoadFile(m_cpu_fileName) == false) {
+		fprintf(stderr, "\n#ERROR: cannot read processors file: %s\n\n", m_cpu_fileName);
+		exit(-1);
+	}
+	m_root = m_doc.RootElement();
+	//Search the current cpu:
+	m_os = m_root->FirstChildElement();
+	while (m_os != NULL) {
+		if (strcmp(m_cpu->Attribute("type"), m_os_name) == 0) {
+			break;
+		}
+		m_cpu = m_cpu->NextSiblingElement();
+	}
+	if (m_os == NULL) {
+		fprintf(stderr, "\n#ERROR: OS %s not found in %s file!\n\n", m_os_name, m_os_fileName);
+		exit(-1);
+	}
+	load_os_times();
+	m_names.push_back(m_os_name);
+	m_os_params.push_back(this);
+}
+
+
+/*!
+ * \fn ~uc_cpu_xml_if_class
+ * \brief Destructor
+ */
+uc_cpu_xml_if_class::~uc_cpu_xml_if_class() {
+	free(m_os_fileName);
+	free(m_os_name);
+}
+
+/*!
+ * \fn load_os_times
+ * \brief Load the time arrays with the information from the xml node
+ */
+int uc_cpu_xml_if_class::load_os_times() {
+	int ret = 0;
+	TiXmlElement *l1Elem;
+	const char *l1Tag;
+	char *data;
+	float mips, cpi;
+	float instr_energy;
+	float IC_access_energy, IC_fetch_energy;
+	long long clock;
+	data = (char *)malloc(2048);
+	
+
+	l1Elem = m_os->FirstChildElement();
+	while (l1Elem != NULL) {
+		l1Tag = l1Elem->Value();
+		if (strcmp(l1Tag, "time") == 0) {
+			break;
+		}
+	}
+	if(l1Elem == NULL){
+		fprintf(stderr, "\n#ERROR: Time information for OS %s not found in %s file!\n\n", m_os_name, m_os_fileName);
+		exit(-1);
+	}
+	l1Elem = l1Elem->FirstChildElement();
+	while (l1Elem != NULL) {
+		l1Tag = l1Elem->Value();
+		if (strcmp(l1Tag, "irq") == 0) {
+			load_irq_times(l1Elem);
+		}
+		else if (strcmp(l1Tag, "internals") == 0) {
+			load_internals_times(l1Elem);
+			continue;
+		}
+		else if (strcmp(l1Tag, "posix") == 0) {
+			load_internals_times(l1Elem);
+			continue;
+		}
+		else if (strcmp(l1Tag, "ucos") == 0) {
+			load_internals_times(l1Elem);
+			continue;
+		}
+		else{
+			fprintf(stderr, "\n#WARNING: Clause %s for OS %s not recognized\n\n", l1Tag, m_os_name);
+		}
+	}
+	return 0;
+}
+
+/*!
+ * \fn load_os_times
+ * \brief Load the irq time arrays with the information from the provided xml node
+ * \param *node The irq time node from the xml tree
+ */
+int uc_cpu_xml_if_class::load_irq_times(TiXmlElement *node) {
+
+	typeNode = timeNode->FirstChild();
+	while (typeNode != NULL) {
+		typeTag = typeNode->Value();
+		if (strcmp(typeTag, "int") == 0) {
+			weightsNode = typeNode->FirstChild();
+			timeInt = weightsNode->ToText()->Text();
+			//Get all times for int operations into an array:
+			for (int i=0, j=0, k=0 ; i<TOTAL_DATA_OP ; i++, j++, k=0) {
+				data[0] = '\0'; //Clear previous value
+				while (timeInt[j] != ' ' && timeInt[j] != '\0') {
+					data[k] = timeInt[j];
+					j++;
+					k++;
+				}
+				data[k] = '\0';
+				proc_data_costs.time_data[INT_TYPE_OP][i] = atoi(data);
+			}
+		}
+	}
+	return ret;
+}
+
+
+
+void uc_cpu_xml_if_class::get_environment(void) {
+	char *aux;
+	aux = getenv("SCOPE_HOME");
+	if (aux == NULL) {
+		fprintf(stderr, "\n#ERROR: SCOPE_HOME not set!\n\n");
+		exit(-1);
+	}
+	strcpy(m_cpu_fileName, aux);
+	strcat(m_cpu_fileName, "/config/processors.xml");
+	
+	aux = getenv("SCOPE_PROJECT");
+	if (aux == NULL) {
+		fprintf(stderr, "\n#ERROR: SCOPE_PROJECT not set!\n\n");
+		exit(-1);
+	}
+	strcpy(m_prj_fileName, aux);
+}
+#endif

@@ -1,0 +1,42 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>SCoPE XML Plug-in</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Simulation</h2>
+<hr>
+<p>Contains the description parameters required to perform the simulation.</p>
+<p>If the time is not specified and there is not required to specify an <a href="Implementation.html">Implementation</a>, the cathegory can be ommited in the XML file.</p>
+<p>Attributes:</p>
+<li>time [Optional]: maximum simulation time. Requires indicating value and unit (s, ms, us, ns)</li>
+
+<li>backtrace [Optional]: Debug option. Indicates if any backtrace must be generated. <br>
+- Use backtrace="3" for printing the final thread status<br>
+- Use backtrace="5" for online debugging<br>
+- Use backtrace="15" for continous printing the thread status<br>
+</li>
+<li>end_as_sw [Optional]: indicate to finish the simulation when all SW processes has been finished, even though the time is not completed or any HW component is active (usually, HW timer is always active).</li>
+
+<p>Structure:</p>
+
+<pre>
+&lt; Simulation time="200 ms" end_as_sw="1" &gt;	
+	&lt; <a href="Implementation.html">Implementation</a> &gt;
+	&lt; <a href="Variable.html">Variable</a> &gt;
+	&lt; <a href="Plugin.html">Plugin</a> &gt;
+&lt; / Simulation &gt;
+
+</pre>
+
+<hr>
+<li><a href="index.html"> Index </a></li>
+<li><a href="xsd.html"> XML System Description file </a></li>
+
+</body>
+</html>

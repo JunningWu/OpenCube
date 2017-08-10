@@ -1,0 +1,51 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>SCoPE XML Plug-in</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><a name="config">XML System Configuration file</h2>
+<hr>
+<p>The XML System Configuration file allows defining the value of the platform configuration paramenters. Number of processors in a SMP system, size of caches, bandwidth of a bus or memory delay are possible configuration parameters.</p>
+
+<p>File structure:</p>
+
+<pre>
+&lt; simulator_input_interface &gt;	
+	&lt; parameter name="mem_size" value="256" /&gt;
+	&lt; parameter name="num_proc" value="3"   /&gt;
+	...
+&lt; /simulator_input_interface &gt;
+</pre>
+
+<hr>
+<h2>Parameter use:</h2>
+Paarameter defined values are used to replace the parameter names in the XML System Description file. The parameter to be replaced is named with the same name starting with "__".
+
+<p>Example:</p>
+<pre>
+XML System Configuration file:
+	
+	...
+	&lt; parameter name="msize" value="256" /&gt;
+	...
+
+XML System Description file:
+
+	...
+	&lt; HW_Component name="memory" mem_size="__msize" /&gt;
+	...
+</pre>
+
+
+<hr>
+<li><a href="index.html"> Index </a></li>
+<li><a href="config.html"> Configuration files </a></li>
+
+</body>
+</html>

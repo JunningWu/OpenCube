@@ -1,0 +1,323 @@
+//==========================================================================
+//	uc_thread_class.cpp
+//	Author: David Quijano, Juan Castillo, Héctor Posadas
+//	Date: mar oct 30 2007
+//	Description:
+//==========================================================================
+//  The following code is derived, directly or indirectly, from PERFidiX,
+//  released June 30, 2006. Copyright (C) 2006 Design of Systems on Silicon(DS2)
+//  The Initial Developer of the Original Code is the University of Cantabria
+//  for Design of Systems on Silicon (DS2)
+//
+//  This program is free software; you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License (GPL) or GNU Lesser General Public License(LGPL) as published by
+//  the Free Software Foundation; either version 2 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License (GPL) or GNU Lesser General Public License(LGPL) for more details.
+//
+//  You should have received a copy of the GNU General Public License (GPL) or GNU Lesser General Public License(LGPL)
+//  along with this program; if not, write to the Free Software
+//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+//
+//  For more information about SCope you can visit
+//  http://www.teisa.unican.es/scope or write an e-mail to
+//  scope@teisa.unican.es or a letter to SCope, GIM - TEISA, University
+//  of Cantabria, AV. Los Castros s/n, ETSIIT, 39005, Santander, Spain
+//==========================================================================
+
+#include "uc_thread_class.h"
+#include "uc_rtos_class.h"
+#include "uc_os_defines.h"
+
+extern unsigned long long uc_segment_time;
+extern unsigned long long uc_segment_instr;
+
+#ifdef DIC_RTLINUX
+	int dic_destroy_thread(UC_thread_class *linux_thread ,UC_rtos_class *parent_rtos);
+	int dic_change_status(UC_thread_class *linux_thread ,UC_rtos_class *parent_rtos,
+						  UC_process_states initial_state, UC_process_states final_state);
+	int dic_check_domain(UC_thread_class *linux_thread ,UC_rtos_class *parent_rtos);
+#endif
+
+/**
+ * \brief Constructor
+ *
+ * \param task The parent task of this process
+ */
+UC_thread_class::UC_thread_class(UC_task_class *task)
+{
+	m_parent_task = task;
+	m_stp = NULL;
+	m_initial_function = NULL;
+	m_initial_function_args = NULL;
+	m_RR_counter = NICE_TO_TICKS(task->m_parent_process->m_nice);
+	m_cpu = -1;
+	m_priority = 0;
+	m_state = CREATED;
+	m_kernel_mode = true;
+	m_parser_time = 0;
+	m_switches_time = 0;
+	m_parser_instr = 0;
+	m_tid = 0;
+	m_func_name = NULL;
+	m_blocked_in_list = NULL;
+	m_timeout_expired = false;
+	m_in_rwlock = 0;
+
+	MicroCOS_flags_ready = 0;
+
+	task->m_parent_process->m_parent_rtos->m_tic_timer->create_clock(this);
+}
+
+
+UC_thread_class::~UC_thread_class()
+{
+	if (m_func_name != NULL) {
+		delete m_func_name;
+	}
+	m_parent_task->m_parent_process->m_parent_rtos->m_tic_timer->destroy_clock(this);
+}
+
+/**
+ * \brief Initializes the thread
+ *
+ * This funtions is called by UC_user_code_wrapper that executes the user code.\n
+ * It must be executed before the user code.
+ * \param stp The pointer to the qt execution structure
+ */
+void UC_thread_class::init_thread(stp_t *stp) {
+	m_stp = stp;
+
+	set_next_state(CREATED, READY);
+	update_state();
+// 	stp_yield();
+	set_next_state(READY, SUPER_USER);
+	update_state();
+// 	stp_yield();
+	set_next_state(SUPER_USER, WAITING);
+	update_state();
+	stp_yield();
+// 	set_next_state(WAITING, USER);
+}
+
+/**
+ * \brief Destroy the thread
+ *
+ * This funtions is called by UC_user_code_wrapper that executes the user code.\n
+ * It must be executed after the user code.
+ */
+void UC_thread_class::destroy_thread() {
+#ifdef DIC_RTLINUX
+	if( dic_destroy_thread(this, m_parent_task->m_parent_process->m_parent_rtos)) {
+		return;
+	}
+#endif
+	set_next_state(USER, SUPER_USER);
+	update_state();
+	set_next_state(SUPER_USER, ZOMBIE);
+// 	stp_yield();
+ 	//update_state();
+
+	// Destroy the clock associated
+	m_parent_task->m_parent_process->m_parent_rtos->m_tic_timer->destroy_clock(this);
+
+	// Delete from a list if blocked
+	if (m_blocked_in_list != NULL) {
+		vector<UC_thread_class *>::iterator it_thread;
+		for (it_thread = m_blocked_in_list->begin(); it_thread != m_blocked_in_list->end(); it_thread++) {
+			if ((*it_thread) == this) {
+				m_blocked_in_list->erase(it_thread);
+				break;
+			}
+		}
+	}
+
+	// Awake blocked threads
+	while (m_blocked_thread_list.size() != 0) {
+		m_blocked_thread_list[0]->unblock();
+	}
+}
+
+/**
+ * \brief Changes the thread state and update the task state
+ *
+ * \param initial_state The initial state of the task for checking
+ * \param final_state The final state of the task
+ * \return Returns true if success and false if failure
+ */
+bool UC_thread_class::set_next_state(UC_process_states initial_state, UC_process_states final_state) {
+	// USER annotation
+	annotate_user_time(uc_segment_time, uc_segment_instr);
+	uc_segment_time = 0;
+	uc_segment_instr = 0;
+
+#ifdef DIC_RTLINUX
+	if( dic_change_status(this, m_parent_task->m_parent_process->m_parent_rtos,
+		initial_state, final_state)){
+			return true;
+		}
+#endif
+
+	if (initial_state != m_state) {
+		return false;
+	}
+
+	switch (initial_state) {
+		case ZOMBIE:
+			break;
+		case BLOCKED:
+			if (final_state == READY) {
+				m_next_state = final_state;
+				return true;
+			}
+			break;
+		case WAITING:
+			if (final_state == USER) {
+				m_next_state = final_state;
+				return true;
+			}
+			break;
+		case CREATED:
+			if (final_state == READY) {
+				m_next_state = final_state;
+				return true;
+			}
+			break;
+		case READY:
+			if (final_state == SUPER_USER) {
+				m_next_state = final_state;
+				return true;
+			}
+			break;
+		case USER:
+			if (final_state == SUPER_USER) {
+				m_next_state = final_state;
+				return true;
+			}
+			break;
+		case SUPER_USER:
+			if (final_state == WAITING ||
+				final_state == BLOCKED ||
+				final_state == ZOMBIE)
+			{
+				m_next_state = final_state;
+				return true;
+			}
+			break;
+	}
+	return false;
+}
+
+/**
+ * \brief Changes the thread state and update the task state
+ *
+ * \return Returns true if success and false if failure
+ */
+bool UC_thread_class::update_state() {
+	UC_process_states prev_state = m_state;
+	m_state = m_next_state;
+	return m_parent_task->m_thread_scheduler->change_state(this, prev_state, m_next_state);
+}
+
+/**
+ * \brief Adds time to the user time of the thread
+ *
+ * \param time The time to annotate
+ */
+void UC_thread_class::annotate_user_time(unsigned long long time, unsigned long long instr) {
+	m_parser_time += time;
+	m_parser_instr += instr;
+}
+
+/**
+ * \brief Adds time to the switches time of the thread
+ *
+ * \param time The time to annotate
+ */
+void UC_thread_class::annotate_switch_time(unsigned long long time) {
+	m_switches_time += time;
+}
+
+/**
+ * \brief Blocks the thread in a list (semaphores, mutexes...)
+ *
+ * \param block_list The list to block the thread in
+ */
+void UC_thread_class::block(vector<UC_thread_class *> *block_list) {
+	set_next_state(SUPER_USER, BLOCKED);
+// 	update_state();
+	block_list->push_back(this);
+	m_blocked_in_list = block_list;
+	stp_yield();
+}
+
+/**
+ * \brief Blocks the thread in a list (semaphores, mutexes...) until it is awaked or a timeout
+ *
+ * \param block_list The list to block the thread in
+ * \param abs_timeout The maximum time to be blocked
+ * \return If the time has expired returns true
+ */
+bool UC_thread_class::block(vector<UC_thread_class *> *block_list, const struct timespec *abs_timeout) {
+	// FIXME
+	set_next_state(SUPER_USER, BLOCKED);
+// 	update_state();
+	block_list->push_back(this);
+	m_blocked_in_list = block_list;
+	stp_yield();
+	return false;
+}
+
+/**
+ * \brief Blocks the thread
+ */
+void UC_thread_class::block() {
+ 	set_next_state(SUPER_USER, BLOCKED);
+//  	update_state();
+ 	m_blocked_in_list = NULL;
+	stp_yield();
+}
+
+/**
+ * \brief Blocks the thread until it is awaked or a timeout
+ *
+ * \param abs_timeout The maximum time to be blocked
+ * \return If the time has expired returns true
+ */
+bool UC_thread_class::block(const struct timespec *abs_timeout) {
+	// FIXME
+	set_next_state(SUPER_USER, BLOCKED);
+// 	update_state();
+	m_blocked_in_list = NULL;
+	stp_yield();
+	return false;
+}
+
+
+/**
+ * \brief Unblocks the thread from the knowned list
+ */
+void UC_thread_class::unblock() {
+	if (m_blocked_in_list == NULL) {
+		if (m_state == BLOCKED) {
+			set_next_state(BLOCKED, READY);
+			update_state();
+		}
+		return;
+	}
+
+	set_next_state(BLOCKED, READY);
+	update_state();
+	vector<UC_thread_class *>::iterator it_thread;
+	for (it_thread = m_blocked_in_list->begin(); it_thread != m_blocked_in_list->end(); it_thread++) {
+		if ((*it_thread) == this) {
+			m_blocked_in_list->erase(it_thread);
+			break;
+		}
+	}
+	m_blocked_in_list = NULL;
+}

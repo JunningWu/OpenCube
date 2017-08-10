@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding ="UTF-8"?>
+
+<simulator_input_interface xmlns="http://www.multicube.eu/" version="1.3">
+	<parameter name="icache_size" value="32768"/>
+	<parameter name="num_cpus" value="1"/>
+	<parameter name="freq" value="200M"/>
+	<parameter name="bus_type" value="generic_bus"/>
+	<parameter name="m_time" value="1us"/>
+	<parameter name="period" value="0"/>
+	<parameter name="icb" value="0"/>
+</simulator_input_interface>	
+	

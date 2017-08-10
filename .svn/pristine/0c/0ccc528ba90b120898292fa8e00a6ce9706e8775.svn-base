@@ -1,0 +1,25 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>SCoPE XML Plug-in</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><a name="config">Configuration files</h2>
+<hr>
+<p>The SCoPE XML plug-in allows defining four types of XML files. The first two files can be used to describe the system to be modeled. The third is related to the output metrics. The last file is the file where SCoPE has to put the output data, and thus is not a configuration file itself.</p>
+
+<p>XML files: </p>
+<li><a href="xsd.html"> XML System Description:</a> Contains the system description, that is, component descriptions, architecture and allocation.</li>
+<li><a href="xsc.html"> XML System Configuration:</a> Contains the system configuration parameters, that is, all these parameters that can be configured in the platform and have not been fixed in the System Description.</li>
+<li><a href="xmd.html"> XML Metric Definition:</a> Contains definition of the metrics to be reported by SCoPE.</li>
+
+<hr>
+<li><a href="index.html"> Return to index </a></li>
+
+</body>
+</html>

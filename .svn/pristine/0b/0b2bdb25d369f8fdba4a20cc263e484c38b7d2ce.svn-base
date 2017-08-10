@@ -1,0 +1,87 @@
+<processors>
+    <processor type="arm926t" >
+        <common clock="200" ICAccessEnergy="1.49" instrEnergy="1.26" ICFetchEnergy="53.6" mips="135" />
+        <time>
+            <int>15 15 0 5 15 10 10 10 10 10 50 150 15 15 15 65 80 15 15 15 15 15 15 5 5 10 10 10 15 15 15 10 15 10 15</int>
+            <float>15 15 0 5 15 10 10 10 10 10 50 150 15 15 15 65 80 15 15 15 15 15 15 5 5 10 10 10 15 15 15 10 15 10 15</float>
+            <char>15 15 0 5 15 10 10 10 10 10 50 150 15 15 15 65 80 15 15 15 15 15 15 5 5 10 10 10 15 15 15 10 15 10 15</char>
+            <bool>15 15 0 5 15 10 10 10 10 10 50 150 15 15 15 65 80 15 15 15 15 15 15 5 5 10 10 10 15 15 15 10 15 10 15</bool>
+            <access>30 15 15 10 10 15 50 50 </access>
+            <control>5 5 50 50 15 </control>
+        </time>
+        <instructions>
+            <int>3 3 0 1 3 2 2 2 2 2 10 30 3 3 3 13 16 3 3 3 3 3 3 1 1 2 2 2 3 3 3 2 3 2 3</int>
+            <float>3 3 0 1 3 2 2 2 2 2 10 30 3 3 3 13 16 3 3 3 3 3 3 1 1 2 2 2 3 3 3 2 3 2 3</float>
+            <char>3 3 0 1 3 2 2 2 2 2 10 30 3 3 3 13 16 3 3 3 3 3 3 1 1 2 2 2 3 3 3 2 3 2 3</char>
+            <bool>3 3 0 1 3 2 2 2 2 2 10 30 3 3 3 13 16 3 3 3 3 3 3 1 1 2 2 2 3 3 3 2 3 2 3</bool>
+            <access>6 3 3 2 2 3 10 10 </access>
+            <control>1 1 10 10 3 </control>
+        </instructions>
+        <caches>
+			<icache size="16384" line_size="8" associativity="64" instr_size="4" />
+			<dcache size="16384" line_size="8" associativity="64" instr_size="4" />
+        </caches>
+    </processor>
+    <processor type="arm926tnc" >
+	    <common clock="200" ICAccessEnergy="1.49" instrEnergy="1.26" ICFetchEnergy="53.6" mips="135" />
+	    <time>
+		    <int>15 15 0 5 15 10 10 10 10 10 50 150 15 15 15 65 80 15 15 15 15 15 15 5 5 10 10 10 15 15 15 10 15 10 15</int>
+		    <float>15 15 0 5 15 10 10 10 10 10 50 150 15 15 15 65 80 15 15 15 15 15 15 5 5 10 10 10 15 15 15 10 15 10 15</float>
+		    <char>15 15 0 5 15 10 10 10 10 10 50 150 15 15 15 65 80 15 15 15 15 15 15 5 5 10 10 10 15 15 15 10 15 10 15</char>
+		    <bool>15 15 0 5 15 10 10 10 10 10 50 150 15 15 15 65 80 15 15 15 15 15 15 5 5 10 10 10 15 15 15 10 15 10 15</bool>
+		    <access>30 15 15 10 10 15 50 50 </access>
+		    <control>5 5 50 50 15 </control>
+	    </time>
+	    <instructions>
+		    <int>3 3 0 1 3 2 2 2 2 2 10 30 3 3 3 13 16 3 3 3 3 3 3 1 1 2 2 2 3 3 3 2 3 2 3</int>
+		    <float>3 3 0 1 3 2 2 2 2 2 10 30 3 3 3 13 16 3 3 3 3 3 3 1 1 2 2 2 3 3 3 2 3 2 3</float>
+		    <char>3 3 0 1 3 2 2 2 2 2 10 30 3 3 3 13 16 3 3 3 3 3 3 1 1 2 2 2 3 3 3 2 3 2 3</char>
+		    <bool>3 3 0 1 3 2 2 2 2 2 10 30 3 3 3 13 16 3 3 3 3 3 3 1 1 2 2 2 3 3 3 2 3 2 3</bool>
+		    <access>6 3 3 2 2 3 10 10 </access>
+		    <control>1 1 10 10 3 </control>
+	    </instructions>
+	    <caches />
+    </processor>
+    <processor type="notimes" >
+        <common clock="200" ICAccessEnergy="1" instrEnergy="1" ICFetchEnergy="1" mips="200" />
+        <time>
+            <int>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</int>
+            <float>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</float>
+            <char>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</char>
+            <bool>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</bool>
+            <access>0 0 0 0 0 0 0 0 </access>
+            <control>0 0 0 0 0 </control>
+        </time>
+        <instructions>
+            <int>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</int>
+            <float>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</float>
+            <char>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</char>
+            <bool>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</bool>
+            <access>0 0 0 0 0 0 0 0 </access>
+            <control>0 0 0 0 0 </control>
+        </instructions>
+        <caches/>
+    </processor>
+    <processor type="ADRES" >
+	    <common clock="100" ICAccessEnergy="0" instrEnergy="1.26" ICFetchEnergy="0" mips="100" />
+	    <time>
+		    <int>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</int>
+		    <float>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</float>
+		    <char>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</char>
+		    <bool>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</bool>
+		    <access>0 0 0 0 0 0 0 0 </access>
+		    <control>0 0 0 0 0 </control>
+	    </time>
+	    <instructions>
+		    <int>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</int>
+		    <float>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</float>
+		    <char>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</char>
+		    <bool>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</bool>
+		    <access>0 0 0 0 0 0 0 0 </access>
+		    <control>0 0 0 0 0 </control>
+	    </instructions>
+	    <caches>
+	    </caches>
+    </processor>
+
+</processors>

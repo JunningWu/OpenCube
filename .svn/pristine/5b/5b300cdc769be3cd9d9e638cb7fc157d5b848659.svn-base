@@ -1,0 +1,32 @@
+<operating_systems>
+    <os name="linux_01" >
+        <common clock="200" ICAccessEnergy="1.49" instrEnergy="1.26" ICFetchEnergy="53.6" mips="135" />
+        <time>
+		<irq> </irq>
+		<internals> 
+		</internals>
+		<posix> 
+			<sys_time> 
+				<gettimeofday c0="100" preemptible="false" />
+			</sys_time>
+			<sys_wait> 
+				<wait c0="100" />
+				<waitpid c0="100" />
+			</sys_wait>
+			<mqueue> </mqueue>
+			<pthread> </pthread>
+			<pthread_cond> </pthread_cond>
+			<pthread_mutex> </pthread_mutex>
+			<pthread_rwlock> </pthread_rwlock>
+			<pthread_spin> </pthread_spin>
+			<sched> </sched>
+			<semaphore> </semaphore>
+			<signal> </signal>
+			<stdlib> </stdlib>
+			<time> </time>
+			<unistd> </unistd>
+		</posix>
+		<ucos> </ucos>
+        </time>
+   </os>
+</operating_systems>

@@ -1,0 +1,71 @@
+## To correcly run this script you need to install m3explorer with the SHEPARD interpolation plugin.
+
+
+## remeind that m3explorer starts with "root" as current_db
+## root DB is priviledged DB where existing simulation results are searched before to perform unuseful simulations
+## in this case we have all data available but in realistic case you do not have it
+db_read full_mpeg4.db
+
+
+## set the same Design Space constraints used on generating the full_mpeg4 database
+set ics            = [ "2048" "16384" ]  
+set dcs            = [ "2048" "16384" ]  
+set l2cs           = [ "32768" "262144" ]  
+set icw            = [ "1" "4" ]  
+set dcw            = [ "2" "8" ]  
+set l2cw           = [ "2" "8" ]  
+set iwidth         = [ "1" "8" ]  
+set cbs            = [ "16" "16" ]  
+set pn             = [ "2" "16" ] 
+
+
+## change current_db for sampling a partial db out from the root db
+db_change_current training
+
+
+## load m3_random_doe and m3_pareto to set up the sampling
+doe_define_doe m3_random_doe
+opt_define_optimizer m3_pareto_doe
+
+
+## We want to perform about 2500 experiments for the training
+## Remeind the size of the DS is above 27000
+set solutions_number = 2500
+
+
+## execute the sampling
+opt_tune
+
+
+## Starting from 1000 points, we want to make predictions for the overall DS
+## We need to load the m3_full_doe
+doe_define_doe m3_full_doe
+
+
+## define te variable for the rsm you want to use (in our case the SHEPARD interpolation)
+## refer to the documentation to know which variables you can set
+set power = 5
+set preprocess = log
+
+
+## perform the predictions
+rsm_train predictions SHEPARD
+
+
+## compute pareto curves
+set objectives = {"energy" "cycles"}
+db_change_current root
+db_filter_pareto
+db_write pareto_mpeg4.db
+db_change_current predictions
+db_filter_pareto
+db_write predicted_pareto_mpeg4.db
+
+## generate plot for comparing observations and predictions
+set write_plot_on_file = 1
+db_plot_objectives root predictions
+
+## close m3explorer
+exit
+
+

@@ -1,0 +1,200 @@
+#
+#  Author : Fernando Herrera
+#  TEISA DPT.
+#  University of Cantabria
+#  January 2004
+#
+#  README FILE
+#
+
+This is an example of adaptation of a vocoder code (based on the Bit-Exact C
+Simulation Code for GSM standard - GSM 6.53 (EN 301 244) / 6.54  (EN 301 244) )
+- to SystemC for single source  methodology. From the same SystemC sources,
+Makefile files are provided able to produce:
+
+* SystemC executable models to check system functionality and performance
+under environment conditions.
+
+* Inclusion of performance through SystemC performance library (perfidy)
+(Pending)
+
+* SW generation with SC2OS library (currently SC2eCos) both targeted to Linux-PC
+platform and OpenRISC platform. (A simple modification of Makefiles would adapt
+these for a ARM based platform).
+
+Basic requirements for compiling this example are:
+	
+* PC-Linux (Unix Platforms could be used at least for the SystemC examples, but 
+	a little modification is necessary for using the little endian test files)
+* SystemC instalation
+* eCos configuration for Linux PC platform + PC-i386 precompiled tools.
+* eCos configuration for OpenRISC platform + OpenRISC tools (tested over those
+developped 	by UC team, Opencores versions seem to have some bugs, i.e. the ISS)
+The tested configuration currently supported is preemptive.
+
+The main specification files in sc_EFRVocoder are:
+
+Makefile: General Makefile
+
+Makefile.base: common Makefile definitions. In this Makefile the specification
+paths and soft tools paths must be settled. The main settings in these files
+are:
+	METHODOLOGY_PATH: pointing to the single-source methodology library (for 
+		SW generation).
+	SPECIFICATION_PATH: pointing to the folder where sc_EFRVocoder is placed
+		(includig this).
+	SOFT_PATH: pointing to the folder where SystemC and eCos has been installed.
+		Thus SYSTEMC_PATH and ECOS_PATH.
+	
+	LEVEL:
+		These variable can currently support three values:
+			SPECIFICATION: For SystemC executables generation(*).
+			COSIMULATION: For mapping from SystemC to eCos over Linux target.
+				It is eCos because OS_PLATFORM=_ECOS is currently supported.
+			SWGENERATION: For For mapping from SystemC to eCos over embedded
+				target. Target is defined by HW_PLATFORM=_OPENRISC.
+
+(* The use of compiling tools, directories, etc... is defined by these LEVEL
+variable)
+
+The main specification directories are:
+
+.\c_base: 
+Basic C-sources (most of the almost equal to the original C- reference
+code). It is separated in diferent folders:
+	.\c_base\common: C-sources common to both coder and decoder specification.
+	.\c_base\coder: C-sources used by coder.
+	.\c_base\decoder: C-sources used by decoder.
+	
+All these sources are separately compiled and should generate a:
+.\lib directory (for LEVEL=SPECIFICATION)
+.\COS_lib directory (for LEVEL=COSIMULATION)
+.\OR_lib directory (for LEVEL=SW_GENERATION)
+	
+	This folder shoul contain .\coder, .\decoder and .\common folders with each
+	.o file. In adittion, it should contain a .\libcommon.a library with all
+	.o within .\common, and similarly a .\libcoder.a and a .\libdecoder.a.
+	
+.\coder:
+	SystemC sources for coder.
+	SystemC sources for coder testbench. This includes a testbench version which
+	is able to read some speech file tests and a built-in auto selftestable
+	versions that can be used for its inclusion in the binary file (for a full
+	SW generation including testbench). Which test version is used is controlled
+	by means of activating either FILE_TESTBENCH variable or BUILTIN_TESTBENCH
+	variable. There are another variables for activating messages and debuging
+	messages at specification-level.
+
+.\decoder:
+	SystemC sources for decoder.
+	SystemC sources for decoder testbench. This includes a testbench version
+	which is able to read some speech file tests and a built-in auto selftestable
+	versions that can be used for its inclusion in the binary file (for a full
+	SW generation including testbench). Which test version is used is controlled
+	by means of activating either FILE_TESTBENCH variable or BUILTIN_TESTBENCH
+	variable. There are another variables for activating messages and debuging
+	messages at specification-level.
+	Decoder is still i a more raw version, in the sense that:
+		* Not totally locality has ben provided to the specification variables.
+		* Test for Discontinuos Transmission mode (DTX) are not currently
+		supported (they can be executed but results are not correct. (Thus this
+		can be applied for the whole vocoder).
+		This code supports all the FILE checks provided in thies example.
+
+.\vocoder:
+	SystemC sources for vocoder.
+	SystemC sources for vocoder testbench. This includes a testbench version
+	which is able to read some speech file tests and a built-in auto selftestable
+	versions that can be used for its inclusion in the binary file (for a full
+	SW generation including testbench). Which test version is used is controlled
+	by means of activating either FILE_TESTBENCH variable or BUILTIN_TESTBENCH
+	variable. The inbuilt test is performed using the first speech test including
+	homming frames and continous transmission mode. It can be configured for 1,
+	2, 10 0r the full 285 frames. There are another variables for activating
+	messages and debuging messages at specification-level.
+	For the reasons discussed for decoder, DTX tests are not currently supported.
+	There is also an interactive testbench. You can record your own voice register,
+	to run it through the SystemC EFR Vocoder and play the output file from the
+	same testbench. That testbench is also able to run the same voice register
+	through the precompiled reference EFR Vocoder and to compare its output 
+	against SystemC version output, figuring out a message telling the user if
+	the results matched or not.
+
+.\interface:
+	SystemC sources for adaptation interface for closing the lopp between coder
+	and decoder. This takes out and put the info used by transmitting and
+	receiving RSS (Radio SubSystem, which includes channel codification/
+	decodification, etc...) and channel noise and losses.
+	SystemC testbench for interface. Only FILE testbench is provided and the
+	three batteries of tests are suported.
+
+.\tests:
+	tests FILES for vocoder, coder, decoder and interface modules.
+	there are 4 versions: .INP, .COD (input and output of coder) and .DEC
+						and .OUT (input and output of decoder).
+	.\tests\dev_tests: tests FILES  used for initial development. 2frames.inp
+						and 2frames.cod are a very short 2 frames version used
+						for the initial developmente of coder.
+	.\tests\dev_tests: test files used for check of homing characteristic and
+						continuous transmission modes. Taken from GSM 6.54).
+	.\tests\dev_tests: test files used for check of discontinuous transmission
+						mode. Taken from GSM 6.54).
+				
+.\HW: 
+	It containts some initial versions of modules transfered to HW as well as
+	input and output files for the inbuilt sw and hw chekings.
+	
+other folders (that could suffer changes or dissapear):
+
+.\sw_simulation: contains a sim.cfg in oder to call from these directory the
+	Opencores ISS. It can be used also for calling other simulators that dump
+	output reports.
+	
+.\WAV and .\wav2lo are some trials to generate from WAV files those files in the
+	.inp format (mono-PCM-13bits-8KHz).This is still not ready.
+
+
+
+In order to generate the executables the following commands can be used:
+
+$> make
+or 
+$> make vocoder
+	to generate vocoder executable (it is done compiling the c_base automatically
+	compiling dependencies). Depending on the level:
+	SPECIFICATION: vocoder_top.exe is generated in .\vocoder\workspec	
+	COSIMULATION: vocoder_top.emu is generated in .\vocoder\workcosim
+	SWGENERATION: vocoder_top.bin is generated in .\vocoder\workswgen
+	
+
+In order to execute specification we should move to .\vocoder and there
+	SPECIFICATION:
+		if builtin-version was compiled: 
+			$> make execution (or $>.\workspec\vocoder_top.exe)
+		if file-version was compiled:
+			$> make check_dev : for passing development tests
+			$> make check_speech : for passing basic continous mode speech tests
+			$> make check_dtx : for passing dtx mode tests
+		
+	COSIMULATION:
+			$> make cosimulation (or $>.\workcosim\vocoder_top.emu)
+	SWGENERATION:
+			For this task we should use a platform ISS, platform simulator or
+			RT-model. For example, by using the or1k5sim platform simulator
+			developped by the OpenRISC University of Cantabria team:
+			$> make sw_run (or $>or1k5sim .\workswgen\vocoder_top.bin)
+			
+$> make coder
+	basically the same but only for coder module.
+	
+$> make coder
+	basically the same but only for decoder module.
+	The DTX tests are not currently supported.
+	
+$> make interface
+	basically the same but only for interface module.
+
+
+$> make all
+	It will perform a make vocoder, make coder, make decoder and make interface.
+

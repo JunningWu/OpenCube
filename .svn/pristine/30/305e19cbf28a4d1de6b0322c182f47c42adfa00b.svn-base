@@ -1,0 +1,40 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>SCoPE XML Plug-in</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><a name="commands">Command Line</a></h2>
+<hr>
+<p>The xml plug-in is an extension to SCoPE and thus to SystemC. The plug-in provides a generic sc_main function and handles a set of command line options. These options can be used to define the XML files to be loaded to configure SCoPE. These XML files contain the system description and the output definition.</p>
+<pre>	Usage: SystemC_executable_name [option(s)]</pre>
+
+<p>The full set of command line options is:</p>
+<pre>	-xml file_name
+        --xml-system-desription file_name     File with the platform and allocation information
+
+        -xsc file_name
+        --xml-system-configuration file_name  File with the system configuration parameters
+
+        -xmd file_name
+        --xml-metric_definition file_name     File with the definition of the metrics to be reported
+
+        -xof file_name
+        --xml-system-metrics file_name        File name for the output metric report
+
+	-h
+	--help				      Shows the command options
+
+</pre>
+
+<hr>
+
+<li><a href="index.html"> Return to index </a></li>
+
+</body>
+</html>

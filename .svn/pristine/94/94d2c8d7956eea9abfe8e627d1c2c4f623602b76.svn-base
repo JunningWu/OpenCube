@@ -1,0 +1,35 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>SCoPE XML Plug-in</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Allocation</h2>
+<hr>
+<p>Contains the description of the SW elements instanciated to compose the application.</p>
+
+<p>Attributes:</p>
+<li>name [Optional]: Name to identify the HW platform (See <a href="Implementation.html">Implementation</a>)</li>
+
+<p>Structure:</p>
+
+<pre>
+&lt; Allocation name="name" &gt;	
+	&lt; <a href="Exec_Instance.html">Exec_Instance</a> &gt;
+	&lt; <a href="Exec_Instance.html">Exec_Instance</a> &gt;
+	...
+&lt; / Allocation &gt;
+
+</pre>
+
+<hr>
+<li><a href="index.html"> Index </a></li>
+<li><a href="xsd.html"> XML System Description file </a></li>
+
+</body>
+</html>

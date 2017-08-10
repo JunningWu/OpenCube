@@ -1,0 +1,100 @@
+ -------------------------------------------------------------- 
+  This file contains statistics for the last encoded sequence   
+ -------------------------------------------------------------- 
+ Sequence                     : video/coastguard.yuv
+ No.of coded pictures         :    3
+ Freq. for encoded bitstream  :   30
+ Bitrate(kb/s)                : 440.56
+ Hadamard transform           : Used
+ Image format                 : 176x144
+ Error robustness             : Off
+ Search range                 : 16
+ MV resolution                : 1/4-pel
+ No of frame used in P pred   : 2
+ Entropy coding method        : UVLC
+ Search range restrictions    : none
+ RD-optimized mode decision   : not used
+ -------------------|---------------|---------------|
+     Item           |     Intra     |   All frames  |
+ -------------------|---------------|---------------|
+ SNR Y(dB)          |  0.00         |  0.00         |
+ SNR U/V (dB)       |  0.00/ 0.00   |  0.00/ 0.00   |
+ Average quant      |    15         | 16.00         |
+
+ -------------------|---------------|
+   Intra            |   Mode used   |
+ -------------------|---------------|
+ Mode  0 intra old  |    98         |
+ Mode  1 intra new  |     0         |
+ Mode  2 intra new  |     0         |
+ Mode  3 intra new  |     0         |
+ Mode  4 intra new  |     0         |
+ Mode  5 intra new  |     0         |
+ Mode  6 intra new  |     0         |
+ Mode  7 intra new  |     0         |
+ Mode  8 intra new  |     0         |
+ Mode  9 intra new  |     0         |
+ Mode 10 intra new  |     0         |
+ Mode 11 intra new  |     0         |
+ Mode 12 intra new  |     0         |
+ Mode 13 intra new  |     0         |
+ Mode 14 intra new  |     0         |
+ Mode 15 intra new  |     1         |
+ Mode 16 intra new  |     0         |
+ Mode 17 intra new  |     0         |
+ Mode 18 intra new  |     0         |
+ Mode 19 intra new  |     0         |
+ Mode 20 intra new  |     0         |
+ Mode 21 intra new  |     0         |
+ Mode 22 intra new  |     0         |
+ Mode 23 intra new  |     0         |
+ Mode 24 intra new  |     0         |
+
+ -------------------|---------------|---------------|
+   Inter            |   Mode used   | Vector bit use|
+ -------------------|---------------|---------------|
+ Mode  0  (copy)    |    27         |     0         |
+ Mode  1  (16x16)   |    67         |   162         |
+ Mode  2  (16x8)    |    42         |   196         |
+ Mode  3  (8x16)    |    25         |   126         |
+ Mode  4  (8x8)     |    17         |   148         |
+ Mode  5  (8x4)     |     9         |   154         |
+ Mode  6  (4x8)     |    11         |   178         |
+ Mode  7  (4x4)     |     0         |     0         |
+ Mode  8 intra old  |     0         | --------------|
+ Mode  9 intr.new   |     0         |
+ Mode 10 intr.new   |     0         |
+ Mode 11 intr.new   |     0         |
+ Mode 12 intr.new   |     0         |
+ Mode 13 intr.new   |     0         |
+ Mode 14 intr.new   |     0         |
+ Mode 15 intr.new   |     0         |
+ Mode 16 intr.new   |     0         |
+ Mode 17 intr.new   |     0         |
+ Mode 18 intr.new   |     0         |
+ Mode 19 intr.new   |     0         |
+ Mode 20 intr.new   |     0         |
+ Mode 21 intr.new   |     0         |
+ Mode 22 intr.new   |     0         |
+ Mode 23 intr.new   |     0         |
+ Mode 24 intr.new   |     0         |
+ Mode 25 intr.new   |     0         |
+ Mode 26 intr.new   |     0         |
+ Mode 27 intr.new   |     0         |
+ Mode 28 intr.new   |     0         |
+ Mode 29 intr.new   |     0         |
+ Mode 30 intr.new   |     0         |
+ Mode 31 intr.new   |     0         |
+ Mode 32 intr.new   |     0         |
+
+ --------------------|----------------|----------------|----------------|
+  Bit usage:         |      Intra     |     Inter      |    B frame     |
+ --------------------|----------------|----------------|----------------|
+ Header+modeinfo     |      112       |      112       |        0       |
+ CBP Y/C             |   298.00       |   342.50       |     0.00       |
+ Coeffs. Y           | 33200.00       |  3035.50       |     0.00       |
+ Coeffs. C           |   502.00       |     0.00       |     0.00       |
+ Delta quant         |    99.00       |    44.50       |     0.00       |
+ --------------------|----------------|----------------|----------------|
+ average bits/frame  |    34318       |     4830       |        0       |
+ --------------------|----------------|----------------|----------------|

@@ -1,0 +1,17 @@
+opt_define_optimizer "m3_pareto_full_search"
+
+drv_define_driver "m3_test_driver"
+
+set ics = [ "1" "8" ]
+set ibs = [ "8" "256" ]
+set iw = [ "1" "16" ]
+
+set max_total_area = 200.0
+set min_total_area = 50.0
+set visited_solution = "full_solution.db"
+set metric1 = "total_energy"
+set metric2 = "total_delay"
+
+opt_tune
+
+

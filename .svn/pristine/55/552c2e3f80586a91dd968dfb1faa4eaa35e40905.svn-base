@@ -1,0 +1,3 @@
+tar xvzf @image@/examples/mpeg/full_mpeg4.db.tar.gz
+@image@/bin/m3explorer -f @image@/tests/mpeg_dse.scr -x @image@/examples/mpeg/m3_mpeg_use_case.xml
+

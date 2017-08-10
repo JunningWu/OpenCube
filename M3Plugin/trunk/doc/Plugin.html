@@ -1,0 +1,34 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>SCoPE XML Plug-in</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Plugin</h2>
+<hr>
+<p>Adds additional plugins to the simulation.</p>
+<p>It allows indicating the library containing the plugin and the starting function.</p>
+<p>Attributes:</p>
+<li>name    [Mandatory]: Name of the plug-in</li>
+
+<li>library [Optional]: Library to be included</li>
+<li>entry   [Optional]: Name of the function to be executed to integrate the plugin in M3-SCoPE.</li>
+
+<p>Structure:</p>
+
+<pre>
+&lt; Plugin name="debug" library="libscopedbg.so" name="scopedbg_loading" / &gt;	
+
+</pre>
+
+<hr>
+<li><a href="index.html"> Index </a></li>
+<li><a href="xsd.html"> XML System Description file </a></li>
+
+</body>
+</html>

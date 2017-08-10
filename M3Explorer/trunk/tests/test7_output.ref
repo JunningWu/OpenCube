@@ -1,0 +1,10 @@
+Information: Creating the xml_driver
+Information: Loading the xml_driver
+Information: Reading database pareto_mpeg4.db
+Information: Database read
+Information: Assigned value { "energy" "cycles" } to objectives
+Information: Filtering the database for pareto points..
+Information: Assigned value [ "energy" ] to sorting_metrics
+Information: Saving the database in XML format..
+Information: Removing xml_driver
+Information: Exiting from Multicube Explorer shell

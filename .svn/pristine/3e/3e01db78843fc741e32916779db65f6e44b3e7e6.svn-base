@@ -1,0 +1,184 @@
+#ifndef _VAD_COMPUTATION_CC
+#define _VAD_COMPUTATION_CC
+
+extern "C" void *vad_comp_fun(void *args);
+void *vad_comp_fun(void *args){
+
+vad_fifos();
+
+	#define DTX_ELAPSED_THRESHOLD (24 + DTX_HANGOVER - 1)
+	bool tx_dtx (Word16 VAD_flag, Word16 *txdtx_ctrl,Word16 &txdtx_hangover,Word16 &txdtx_N_elapsed);
+	bool reset;
+	//	unsigned int i;
+	int i;
+	bool dtx_mode_var;
+	Word16 txdtx_ctrl_var;	
+	Word16 r_l[MP1], r_h[MP1];      // Autocorrelations lo and hi
+	Word16 scal_acf;
+	Word16 rc[4];
+	bool ptch_flag;
+	Word16 lags[2];
+	Word16 VAD_flag;
+	// Para la generacion de ruido
+	bool reset_PN_seed; 
+	// Length of hangover period (VAD=0, SP=1)
+	Word16 txdtx_hangover;
+	// Measured time from previous SID frame
+	Word16 txdtx_N_elapsed; 
+ 
+	BEGIN_PROF(); 
+ 
+	#ifndef _CODER_2PORTS
+	// reads dtx mode once at the begining of simulation
+	// (..or whenever a reset of the system is done)
+	// currently no for an inband reset 
+	#ifdef DBG_MSG	
+		printf("VAD_COMPUTATION: Before reading dtx_mode\n"); 
+	#endif
+	CH_MONITOR(dtx_mode_var = dtx_mode_3->read();) 
+	#ifdef DBG_MSG	
+		printf("VAD_COMPUTATION: After reading el dtx_mode\n");	
+	#endif 
+ 
+	#else 
+ 
+		#ifdef DTX_MODE	 
+			dtx_mode_var = DTX_MODE_ENABLED; 
+		#else 
+			dtx_mode_var = DTX_MODE_DISABLED; 
+		#endif 
+
+	#endif 
+
+	while(true) { 
+		#ifdef DBG_MSG 
+			printf("VAD_COMPUTATION:------------------HOMING RESET---------------------- \n"); 
+		#endif		 
+		// INBAND-RESET LOOP 
+		// to update in homing reset...
+		ptch_flag = true;
+		// reset all the VAD state variables
+		vad_reset ();
+		// txdtx reset
+		txdtx_ctrl_var = TX_SP_FLAG | TX_VAD_FLAG; 
+		txdtx_hangover = DTX_HANGOVER;
+		txdtx_N_elapsed = 0x7fff;
+		
+		while(true) {	
+			
+			// MAIN LOOP
+			if (dtx_mode_var) { 
+				#ifdef DBG_MSG				
+					printf("VAD_COMPUTATION: Before reading Autocorrelations\n");
+				#endif 
+				// read the parameters for VAD computations comming from frame_lsp block
+				for(i=0;i<MP1;i++) {
+					CH_MONITOR(r_h[i] = r->read();) 
+				}
+	
+				for(i=0;i<MP1;i++) {
+					CH_MONITOR(r_l[i] = r->read();) 
+				}
+				
+				CH_MONITOR(scal_acf = scal_acf_->read();) 
+				#ifdef DBG_MSG				
+					printf("VAD_COMPUTATION: Before reading reflexion coefficients, rc\n");
+				#endif 
+				for(i=0;i<4;i++) {
+					CH_MONITOR(rc[i] = rc_->read();) 
+				}
+				
+				//			ptch_flag = ptch_in->read();
+				#ifdef DBG_MSG
+					printf("VAD_COMPUTATION: Start VAD Computation\n"); 
+					printf("r_h: "); 
+					for(i=0;i<MP1;i++) printf("%d,",r_h[i]); 
+					printf("\n"); 
+					printf("r_l: "); 
+					for(i=0;i<MP1;i++) printf("%d,",r_l[i]); 
+					printf("\n"); 
+					printf("scal_acf = %d\n",scal_acf); 
+					printf("FRAME_LSP: rc= "); 
+					for(i=0;i<4;i++) printf("%d,",rc[i]); 
+					printf("\n"); 
+					printf("ptch_flag = %d\n",ptch_flag); 
+				#endif 
+ 
+				// DTX enabled, make voice activity decision 
+				VAD_flag = vad_computation (r_h, r_l, scal_acf, rc, (Word16) ptch_flag);
+ 
+				#ifdef DBG_MSG 
+					printf("VAD: "); 
+					if(VAD_flag) printf("TRUE\n"); 
+					else printf("FALSE\n"); 
+				#endif 
+ 				reset_PN_seed = tx_dtx (VAD_flag, &txdtx_ctrl_var,txdtx_hangover,txdtx_N_elapsed); // TX DTX handler 
+ 
+				#ifdef DBG_MSG				
+					printf("VAD_COMPUTATION: Before sending L_PN_SEED reset state\n"); 
+				#endif
+				// only in this case is necessary to update L_pn_seed_tx flag
+				CH_MONITOR(l_pn_seed_tx_reset->write(reset_PN_seed);)
+ 
+				// send txdtx state				 
+				CH_MONITOR(txdtx_ctrl_vad_1-> write(txdtx_ctrl_var);)
+				CH_MONITOR(txdtx_ctrl_vad_2-> write(txdtx_ctrl_var);)
+				CH_MONITOR(txdtx_ctrl_vad_3-> write(txdtx_ctrl_var);)
+				CH_MONITOR(txdtx_ctrl_vad_4-> write(txdtx_ctrl_var);)
+				CH_MONITOR(txdtx_ctrl_vad_5-> write(txdtx_ctrl_var);)				 
+				
+				// makes periodicity update (waiting for the lags/T_ol parameters rewriting pitch flag
+				// wait for lags of the current frame
+				CH_MONITOR(lags[0] = lags_->read();)
+				CH_MONITOR(lags[1] = lags_->read();)
+				
+				// update pitch flag
+				ptch_flag = periodicity_update (lags);
+				 
+			} 
+			else 
+			{ 
+				// DTX disabled, active speech in every frame 
+				VAD_flag = 1;  // Sirve para algo? la respeto por aparecer en el c�digo original 
+				txdtx_ctrl_var = TX_VAD_FLAG | TX_SP_FLAG; 
+ 
+				#ifdef DBG_MSG 
+					printf("VAD: "); 
+					if(VAD_flag) printf("TRUE\n"); 
+					else printf("FALSE"); 
+					printf("VAD3: TXDTX = %d \n",txdtx_ctrl_var); 
+				#endif	 
+				// send txdtx state 
+				CH_MONITOR(txdtx_ctrl_vad_1-> write(txdtx_ctrl_var);)
+				CH_MONITOR(txdtx_ctrl_vad_2-> write(txdtx_ctrl_var);)
+				CH_MONITOR(txdtx_ctrl_vad_3-> write(txdtx_ctrl_var);)
+				CH_MONITOR(txdtx_ctrl_vad_4-> write(txdtx_ctrl_var);)
+				CH_MONITOR(txdtx_ctrl_vad_5-> write(txdtx_ctrl_var);)
+				 
+			}
+ 
+			// CHECK OF IN-BAND RESET (lectura del canal siempre_hecha) 
+			// the read is separated in order to avoid the break affects 
+			// counters update when CH_MONITOR macro is used at SW_GENERATION 
+			// level for profiling!! 
+			CH_MONITOR(reset = inband_reset_4->read();) 
+			if(reset) break; 
+								 
+			// En los SC_THREAD la estructura break permite salir del bucle 
+			// principar y saltar al bucle de reset. Este contiene las sentencias 
+			// de inicializaci�n (en nuestro caso las de reset en banda) Si hay alguna 
+			// sentencia incluida en el reset inicial, pero no en el reset en banda, 
+			// se antepone al inicio del reset en banda. 
+			// La estructura mediante bucles de reset y main y break tiene una 
+			// coincidencia grande con respecto al estilo de comportamiento en VHDL y 
+			// una traslaci�n pr�cticamente directa al SystemC de comportamiento 
+			// (eliminado el lazo de reset, usando el watching en los SC_CTHREAD...) 
+			 
+			//		La estructura if(in_band_reset->read()) goto inband_reset_label; no se usar� 
+			//	para evitar cualquier referencia a lenguage no estructurado.		 
+			 
+		}	// END MAIN LOOP 
+	}	// END INBAND-RESET LOOP 
+
+ }//vad_comp_fun
+ #endif 

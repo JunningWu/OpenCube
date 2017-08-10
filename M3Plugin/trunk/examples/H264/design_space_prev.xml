@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding ="UTF-8"?>
+
+<design_space xmlns="http://www.multicube.eu/" version="1.3">
+	
+	<simulator>
+		<simulator_executable path="EXAMPLE_PATH/script.sh" />
+	</simulator>
+	<parameters>
+		<parameter name="num_cpus" description="Number of CPUs" type="integer" min="1" max="1" />
+		<parameter name="icache_size" description="Instruction cache size" type="exp2" min="4096" max="32768"/>
+		<parameter name="freq" description="Frequency of the processors" type="integer" min="40" max="200" step="40"/>
+		<parameter name="bus_type" description="Type of bus for the modeling" type="string" >
+			<item value="generic_bus" />
+			<item value="amba_bus" />
+		</parameter>
+	</parameters>
+	<rules>
+	</rules>	
+	<system_metrics>
+		<system_metric name="latency" type="float" unit="Second" desired="small"/>
+		<system_metric name="instruction_count" type="float" unit="Instruction"/>
+		<system_metric name="power_consumption" type="float" unit="W" desired="small"/>
+	</system_metrics>
+	
+</design_space>	

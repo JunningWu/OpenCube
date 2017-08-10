@@ -1,0 +1,6 @@
+db_read "full_mpeg4.db"
+set objectives =  { "energy" "cycles" }
+db_filter_pareto
+db_report
+set write_plot_on_file = 1
+db_plot_objectives

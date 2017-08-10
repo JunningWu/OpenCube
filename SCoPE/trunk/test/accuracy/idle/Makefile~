@@ -1,0 +1,19 @@
+#Makefile for bubble sort with SCoPE and Skyeye
+
+.PHONY: all scope skyeye clean distclean
+
+all: scope skyeye
+	$(MAKE) -C ./scope
+	$(MAKE) -C ./skyeye
+	clear
+	./scope/bubble.x
+	skyeye -c ./skyeye/skyeye.conf -e ./skyeye/idle.x
+
+clean:
+	$(MAKE) -C ./scope clean
+	$(MAKE) -C ./skyeye clean
+
+distclean:
+	$(MAKE) -C ./scope distclean
+	$(MAKE) -C ./skyeye distclean
+

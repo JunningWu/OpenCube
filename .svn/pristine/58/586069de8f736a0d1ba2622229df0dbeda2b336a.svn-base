@@ -1,0 +1,13 @@
+#pragma START_CODE
+
+int func(int i){
+
+	if(a=0) return 1;
+	return 0;
+
+}
+int main(){
+
+	func(func(0));
+	return 0;
+}

@@ -1,0 +1,36 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>SCoPE XML Plug-in</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Variable</h2>
+<hr>
+<p>Assign a value to a global variable in the simulation.</p>
+<p>The variable provided is taken as an integer value. Strings, float or boolean values are not allowed.</p>
+<p>Attributes:</p>
+
+<pre>
+<li>name   [Mandatory]: The name of the global variable in the C/C++ code </li>
+<li>value  [Mandatory]: The value to be assigned to the variable </li>
+<li>library [Optional]: The library (.so file) where the library has been declared 
+	If no library is provided it is supossed to be in the main file </li> 
+</pre>
+<p>Structure:</p>
+
+<pre>
+&lt; Variable name="my_var" value="1" library="libmy_lib.so" / &gt;	
+
+</pre>
+
+<hr>
+<li><a href="index.html"> Index </a></li>
+<li><a href="xsd.html"> XML System Description file </a></li>
+
+</body>
+</html>

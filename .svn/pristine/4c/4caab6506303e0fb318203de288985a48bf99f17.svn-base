@@ -1,0 +1,51 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>SCoPE XML Plug-in</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><a name="config">XML System Description file</h2>
+<hr>
+<p>The XML System Description allows describing the system to be modeled. HW and SW components, HW and SW instances, architecture and task allocation is described in this file.</p>
+
+<p>File structure:</p>
+
+<pre>
+&lt; Description &gt;	
+	&lt; <a href="HW_Platform.html">HW_Platform</a> &gt;
+		&lt; <a href="HW_Components.html">HW_Components</a> &gt;
+		&lt; <a href="HW_Architecture.html">HW_Architecture</a> &gt;
+		&lt; <a href="Computing_Groups.html">Computing_Groups</a> &gt;
+	&lt; / HW_Platform &gt;
+
+	&lt; <a href="SW_Platform.html">SW_Platform</a> &gt;
+		&lt; <a href="SW_Components.html">SW_Components</a> &gt;
+		&lt; <a href="SW_Architecture.html">SW_Architecture</a> &gt;
+	&lt; / SW_Platform &gt;
+
+	&lt; <a href="Application.html">Application</a> &gt;
+		&lt; <a href="Functionality.html">Functionality</a> &gt;
+		&lt; <a href="Allocation.html">Allocation</a> &gt;
+	&lt; / Application &gt;
+
+	&lt; <a href="Simulation.html">Simulation</a> &gt;
+		&lt; <a href="Implementation.html">Implementation</a> &gt;
+		&lt; <a href="Variable.html">Variable</a> &gt;
+	&lt; / Simulation &gt;
+&lt; /Description  &gt;
+</pre>
+
+<p>Additional clauses:</p>
+<pre>&lt; <a href="Repeat.html">Repeat</a> &gt;: used to indicate that some parts of the description has to be repeated 'n' times.
+</pre>
+<hr>
+<li><a href="index.html"> Index </a></li>
+<li><a href="config.html"> Configuration files </a></li>
+
+</body>
+</html>

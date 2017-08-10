@@ -1,0 +1,3 @@
+file @image@/bin/m3explorer 
+set args -x @image@/tests/multicube_design_space_test.xml -f @image@/tests/test_xml_ds.scr
+

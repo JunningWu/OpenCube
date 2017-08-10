@@ -1,0 +1,10 @@
+This example shows the nsga_ii optimization process.
+It is thought for the mpeg example.
+To execute the script, perform the following steps:
+
+
+1) unpack the "full_mpeg.db.tar.gz" (from the mpeg example) within the "nsga_ii" example directory
+2) copy the "m3_mpeg_use_cas.xml" (from the mpeg example) within the "nsga_ii" example directory
+3) ./chmod a+x run_nsga_ii.sh
+4) ./run_nsga_ii.sh
+5) enjoy results

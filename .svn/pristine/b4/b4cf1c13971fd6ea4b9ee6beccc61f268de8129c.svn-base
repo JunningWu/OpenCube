@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
+    <meta name="Generator" content="iWeb 1.1.2" />
+    <title>template_results_page</title>
+    <a name=@name@ />
+    <link rel="stylesheet" type="text/css" media="screen" href="template_results_page_files/template_results_page.css" /><script type="text/javascript" src="template_results_page_files/template_results_page.js"></script>
+  </head>
+  <body style="background: #ffffff; margin: 0pt; " onload="onPageLoad();">
+    <div style="text-align: center; ">
+      <div style="margin-bottom: 0px; margin-left: auto; margin-right: auto; margin-top: 0px; overflow: hidden; position: relative;  background: #ffffff; text-align: left; width: 820px; " id="body_content">
+        <div style="float: left; margin-left: 0px; position: relative; width: 700px; z-index: 0; " id="nav_layer">
+          <div style="height: 0px; line-height: 0px; " class="tinyText"> </div>
+          <img src="template_results_page_files/shapeimage_1.jpg" alt="" style="height: 1px; left: 95px; position: absolute; top: -1px; width: 630px; z-index: 1; " />
+
+<img src="template_results_page_files/shapeimage_2.png" alt="" id="id1" style="height: 2px; left: 1px; position: absolute; top: 92px; width: 818px; z-index: 1; " />
+
+<img src="template_results_page_files/Multicube.png" alt="" id="id2" style="border: none; height: 73px; left: -22px; opacity: 1.00; position: absolute; top: 16px; width: 334px; z-index: 1; " />
+        </div>
+        <div style="float: left; height: 0px; line-height: 0px; margin-left: 0px; position: relative; width: 820px; z-index: 10; " id="header_layer">
+          <div style="height: 0px; line-height: 0px; " class="tinyText"> </div>
+        </div>
+        <div style="margin-left: 0px; position: relative; width: 820px; z-index: 5; " id="body_layer">
+          <div style="height: 0px; line-height: 0px; " class="tinyText"> </div>
+          <div style="height: 1px; line-height: 1px; " class="tinyText"> </div>
+          <div class="graphic_generic_body_textbox_style_default" style="margin-left: 35px; margin-top: 196px; position: relative; width: 750px; z-index: 1; ">
+            <div>
+              <div style="padding: 4px; " class="Normal">
+		      <div class="paragraph Body" style="line-height: 20px; padding-top: 0pt; ">@page_description@</div>
+                <div class="paragraph Body" style="line-height: 20px; text-decoration: none;"> </div>
+		<div class="paragraph Body" style="line-height: 20px; text-decoration: none;"> </div>
+		@stuff@
+                <div class="paragraph Body" style="line-height: 20px; text-decoration: none;"> </div>
+                <div class="paragraph Body" style="line-height: 20px; text-decoration: none;"> </div>
+                <ol>
+                  <li style="line-height: 14px; margin-left: 25px; padding-left: 0px; text-indent: -25px; ">
+                    <div class="paragraph Body" style="line-height: 14px; margin-bottom: 0px; margin-top: 0px; padding-bottom: 0pt; text-align: center; text-indent: -25px; "><span style="clear: left; color: #493b3b; float: left; font-family: 'ArialMT', 'Arial', 'sans-serif'; font-size: 0px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: 0; line-height: 14px; opacity: 1.00; position: relative; text-decoration: none; text-transform: none; top: -6px; " class="Bullet"></span><span style="width: 25px; " class="InlineBlock"></span><span style="font-size: 11px; line-height: 14px; ">(c) 2008-2009 Politecnico di Milano and ALaRI</span></div>
+                  </li>
+                </ol>
+              </div>
+              <div style="clear: both; height: 0px; line-height: 0px; " class="tinyText"> </div>
+            </div>
+          </div>
+          
+
+
+          <div class="graphic_generic_title_textbox_style_default" style="height: 49px; left: 95px; position: absolute; top: 127px; width: 630px; z-index: 1; " id="id5">
+            <div>
+              <div class="graphic_shape_layout_style_default">
+                <div class="paragraph Title" style="line-height: 42px; padding-bottom: 0pt; padding-top: 0pt; ">@page_title@</div>
+              </div>
+            </div>
+          </div>
+          
+
+
+          <div class="graphic_generic_body_textbox_style_default" style="height: 71px; left: 650px; position: absolute; top: 9px; width: 225px; z-index: 1; " id="id6">
+            <div>
+              <div style="padding: 4px; " class="Normal">
+                <div class="paragraph Heading_1" style="line-height: 18px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px; padding-bottom: 0px; padding-top: 0pt; text-align: left; text-indent: 0px; color: #493b3b; font-family: 'ArialMT', 'Arial', 'sans-serif'; font-size: 14px; font-style: normal; font-variant: normal; font-weight: bold; letter-spacing: 0; line-height: 18px; opacity: 1.00; text-decoration: none; text-transform: none;">Funded by FP7 project:</div>
+                <div class="paragraph Heading_1" style="line-height: 18px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px; padding-bottom: 0pt; padding-top: 0px; text-align: left; text-indent: 0px; color: #493b3b; font-family: 'ArialMT', 'Arial', 'sans-serif'; font-size: 14px; font-style: normal; font-variant: normal; font-weight: bold; letter-spacing: 0; line-height: 18px; opacity: 1.00; text-decoration: none; text-transform: none;"> <img src="template_results_page_files/droppedImage.jpg" alt="" style="border: none; height: 38px; margin-bottom: 0px; margin-right: -1px; opacity: 1.00; width: 137px; " /><span class="tinyText"> </span></div>
+              </div>
+              <div style="clear: both; height: 0px; line-height: 0px; " class="tinyText"> </div>
+            </div>
+          </div>
+          
+
+
+          <div class="graphic_generic_body_textbox_style_default" style="height: 43px; left: 12px; position: width: 795px; z-index: 1; " id="id7">
+            <div style="height: 0px; line-height: 0px; " class="tinyText"> </div>
+          </div>
+          <div style="height: 296px; line-height: 296px; " class="tinyText"> </div>
+        </div>
+        <div style="height: 150px; margin-left: 0px; position: relative; width: 820px; z-index: 15; " id="footer_layer">
+          <div style="height: 0px; line-height: 0px; " class="tinyText"> </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+

@@ -1,0 +1,71 @@
+File: parameter.xml -> (OPENED)
+Loading configuration parameters.
+Configuration parameters loaded.
+File: parameter.xml -> (LOADED)
+File: configuration.xml -> (OPENED)
+Loading platform description.
+Platform description loaded.
+Creating platform.
+Platform created.
+File: configuration.xml -> (LOADED)
+INFO: The functions to be executed as SW components use to be declared as func(int argc, char **argv)
+. Funcion kernel_module_init_tun_init doesn't 
+INFO: The functions to be executed as SW components use to be declared as func(int argc, char **argv)
+. Funcion kernel_module_init_tun_init doesn't 
+Simulation time: 40 s
+
+Main finish
+Simulated time: 40 s
+
+143640 bytes
+285 bytes
+processor_0_rtos_0 
+	Number of thread switches:  4000
+	Number of context switches: 0
+	Running time: 27170587804 ns
+	Use of cpu: 67.9265%
+	Instructions executed: 3667971480
+	Instruction cache misses: 1260790
+	Core Energy: 4.62164e+09 nJ
+	Core Power: 115.541 mW
+	Instruction Cache Energy: 5.53286e+09 nJ
+	Instruction Cache Power: 138.321 mW
+processor_0_rtos_1 
+	Number of thread switches:  4570
+	Number of context switches: 0
+	Running time: 3078019252 ns
+	Use of cpu: 7.69505%
+	Instructions executed: 415470102
+	Instruction cache misses: 377152
+	Core Energy: 5.23492e+08 nJ
+	Core Power: 13.0873 mW
+	Instruction Cache Energy: 6.39266e+08 nJ
+	Instruction Cache Power: 15.9816 mW
+
+***************************************
+ Network        = Mesh(8,8,1)
+ buffer control = CT
+ routing control= DOR-BU-H1
+ Started at : Fri Sep 19 11:21:34 2008
+ Ended at   : Fri Sep 19 11:21:34 2008
+***************************************
+Traffic Pattern         = PERFidiX Connector
+Seed                    = 113
+Cycles simulated        = 1398539630
+Buffers size            = 32
+Messages length         = 1 packet(s)
+Packets length          = 10 flits
+Supply Thr. Norm        = 6.36825e-09 flits/cycle/router
+Accept Thr. Norm        = 6.36825e-09 flits/cycle/router
+Supply Thr.             = 4.07568e-07 flits/cycle
+Throughput              = 4.07568e-07 flits/cycle
+Average distance        = 1
+Messages generated      = 285
+Messages received       = 285
+Messages to inject      = 0
+Total message latency   = 96.6421
+Network message latency = 96.6421
+Buffer message latency  = 0
+Maximum message latency = 101
+Simulation time         = 00:00:19
+

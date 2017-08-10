@@ -1,0 +1,31 @@
+db_read full_mpeg4.db
+doe_define_doe m3_random_doe
+
+set ics            = [ "2048" "16384" ]  
+set dcs            = [ "2048" "16384" ]  
+set l2cs           = [ "32768" "262144" ]  
+set icw            = [ "1" "4" ]  
+set dcw            = [ "2" "8" ]  
+set l2cw           = [ "2" "8" ]  
+set iwidth         = [ "1" "8" ]  
+set cbs            = [ "16" "16" ]  
+set pn             = [ "2" "16" ]  
+
+set objectives = {"energy" "cycles"}
+
+set generations = 1000
+
+db_change_current femo
+opt_define_optimizer m3_femo
+opt_tune
+
+db_change_current root
+db_filter_pareto
+
+db_change_current femo
+db_compute_ADRS root
+set ADRS_femo = $last_ADRS
+db_plot_objectives root femo
+
+show_vars
+

@@ -1,0 +1,5 @@
+drv_define_driver "m3_xml_driver"
+opt_define_optimizer "m3_pareto_full_search"
+show_vars
+opt_tune
+db_report

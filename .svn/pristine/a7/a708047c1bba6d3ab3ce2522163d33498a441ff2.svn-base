@@ -1,0 +1,5 @@
+# 10 samples (TEST0)
+romgen TEST0.INP rom_ns.coe 10 160 13
+romgen TEST0.COD rom_serial_cod.coe 10 246 1
+romgen TEST0.DEC rom_serial_dec.coe 10 247 1
+romgen TEST0.OUT rom_synth.coe 10 160 13

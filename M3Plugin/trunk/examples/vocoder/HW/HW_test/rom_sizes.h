@@ -1,0 +1,16 @@
+#define ROM_NS_ADDR_SIZE 11
+#define ROM_NS_DATA_SIZE 13
+#define ROM_NS_DEPTH 1600
+
+#define ROM_SC_ADDR_SIZE 12
+#define ROM_SC_DATA_SIZE 1
+#define ROM_SC_DEPTH 2460
+//#define ROM_SC_DEPTH 2440
+
+#define ROM_SD_ADDR_SIZE 12
+#define ROM_SD_DATA_SIZE 1
+#define ROM_SD_DEPTH 2470
+
+#define ROM_SY_ADDR_SIZE 11
+#define ROM_SY_DATA_SIZE 13
+#define ROM_SY_DEPTH 1600

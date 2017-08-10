@@ -1,0 +1,7 @@
+db_read "full_mpeg4.db"
+set objectives =  { "energy" "cycles" }
+set objectives_units = { "J" "cycles" }
+set dcw = [ "2" "8" ]
+set l2cw = [ "2" "8" ]
+set architecture_info = { "MPEG 2 Decoder - SESC simulator" }
+db_report_html "report"

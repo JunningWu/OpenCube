@@ -1,0 +1,78 @@
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>SCoPE XML Plug-in</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>HW_Component</h2>
+<hr>
+<p>Description of a HW component that can be instanciated to create the HW platform</p>
+
+<p>General Attributes :</p>
+<pre>
+<li>name         [Mandatory]: Name of the HW_Component </li>
+<li>category     [Mandatory]: Cathegory of component. 
+                 - Possible values: processor, memory, icache, dcache, dma, bus, network, net_if, bridge and as_hw </li>
+<li>type         [Optional]: Type of Component. Indicate the SCoPE component to be loaded. The argument must be the class name. 
+                 If type="generic" or if no type is provided, the SCoPE default component for this category is used (if possible). 
+                 - For processors, it represents the processor type for estimation purposes.
+</li>
+<li>library      [Optional]: Library where the component is located. It is required for non-default SCoPE components. </li>
+<li>init_func    [Optional]: Init function for non-default SCoPE components. 
+                 When specified, it is used to create the component instead of executing the class constructor. 
+                 The data type expected for the function depends on the type of component. For Peripherals is:
+		    'extern "C" UC_hw_if *(*init_func)(char* name, int start_addr, int end_addr, int irq, <a href="Component_info.html"> struct xml_component_info </a>*);'
+		 For Buses is:
+                    'extern "C" UC_TLM_bus_class *(*init_func)(char* name, float bandwidth, int main_mem_addr, <a href="Component_info.html"> struct xml_component_info </a>*);'	
+</li>
+<li>mem_size     [Optional]: Amount of memory associated to the HW component in the memory map </li>
+<!--<li>latency   [Optional]: Component latency </li>-->
+<li>frequency    [Optional]: Component frequency.  (Default unit: MHz)</li>
+<li>width        [Optional]: Component interface width. 
+                 - In communication components ir represents the number of data lines. 
+                 - In HW components it represents the bus registers' size </li>
+<li>bus_priority [Optional(Master components)]: Priority for the bus arbiter.  </li>
+<li>burst_size   [Optional(Slave components)]: Maximum burst size.  </li>
+<li>area         [Optional]: HW area required by this component. </li>
+<li>static_power [Optional]: Mean power consumed independently of the events received.(Default unit: mw)
+<li>active_energy [Optional]: Mean power consumed per cycle when the component is active. (Default unit: mw)
+                 - In processors it is the power per instruction. In caches it is the hit energy.</li>
+<li>read_energy  [Optional]: Energy consumed when a bus read event is received. In caches it is the miss energy  (Default unit: mw)</li>
+<li>write_energy [Optional]: Energy consumed when a bus write event is received.  (Default unit: mw)</li>
+<li>read_size_energy  [Optional]: Variable energy consumed when a bus read events is received, depending on the buffer size.  (Default unit: mw)
+                      Total power is obtained as energy = read_size_energy * buffer_size</li>
+<li>write_size_energy [Optional]: Variable energy consumed when a bus write events is received, depending on the buffer size.  (Default unit: mw)
+                      Total power is obtained as energy = write_size_energy * buffer_size</li>
+<li>component_specific [Optional]: Additional parameters required for a non-default SCoPE component. 
+                       It is provided to the init_func function as char*.</li>
+</pre>
+<p> Specific Attributes :</p>
+<pre>
+<!--
+Cathegory: cache
+<li>sets      [Optional]: Number of sets </li>
+<li>lines     [Optional]: Number of lines </li>
+-->
+Cathegory: network
+<li>x_size    [Optional]: Number of nodes in the x axis for a mesh network </li>
+<li>y_size    [Optional]: Number of nodes in the y axis for a mesh network </li>
+
+Cathegory: as_hw
+<li>master_slave [Optional]: It indicates if the component must be connected as "master", "slave" or "both". 
+		Slave is selected by default. </li> 
+</pre>
+<p>Structure:</p>
+
+<pre>
+&lt; HW_Component name="proc_1" category="processor" type="arm926t" .../ &gt;
+	
+</pre>
+
+<hr>
+<li><a href="index.html"> Index </a></li>
+<li><a href="xsd.html"> XML System Description file </a></li>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+#ifndef UC_POSIX_TIME_H_
+#define UC_POSIX_TIME_H_
+
+
+// Times associated to the POSIX functions are stored in an array
+// To access the array the functions has been divided in groups
+// Each group has two defines: 
+//	XX_START indicate the index of the fist function of the group in the array 
+//	XX_NUM indicate the number of functions in the group
+
+#define _SYS_TIME_START		0
+#define _SYS_TIME_NUM 		1
+
+#define _SYS_WAIT_START		_SYS_TIME_START + _SYS_TIME_NUM
+#define _SYS_WAIT_NUM 		2
+
+#define _MQUEUE_START 		_SYS_WAIT_START + _SYS_WAIT_NUM
+#define _MQUEUE_NUM 		10
+
+#define _PTHREAD_ATTR_START 	_MQUEUE_START + _MQUEUE_NUM	
+#define _PTHREAD_ATTR_NUM 	20	
+
+#define _PTHREAD_START 		_PTHREAD_ATTR_START + _PTHREAD_ATTR_NUM
+#define _PTHREAD_NUM 		22
+
+#define _PTHREAD_COND_START 	_PTHREAD_START + _PTHREAD_NUM
+#define _PTHREAD_COND_NUM 	12
+
+#define _PTHREAD_MUTEX_START 	_PTHREAD_COND_START + _PTHREAD_COND_NUM
+#define _PTHREAD_MUTEX_NUM 	18
+
+#define _PTHREAD_RWLOCK_START 	_PTHREAD_MUTEX_START + _PTHREAD_MUTEX_NUM
+#define _PTHREAD_RWLOCK_NUM 	13
+
+#define _PTHREAD_SPIN_START 	_PTHREAD_RWLOCK_START + _PTHREAD_RWLOCK_NUM
+#define _PTHREAD_SPIN_NUM 	5
+
+#define _SEMAPHORE_START	_PTHREAD_SPIN_START + _PTHREAD_SPIN_NUM
+#define _SEMAPHORE_NUM 		10
+
+#define _SIGNAL_START		_SEMAPHORE_START + _SEMAPHORE_NUM
+#define _SIGNAL_NUM 		26
+
+#define _STDLIB_START		_SIGNAL_START + _SIGNAL_NUM
+#define _STDLIB_NUM 		4
+
+#define _TIME_START		_STDLIB_START + _STDLIB_NUM
+#define _TIME_NUM 		14
+
+#define _UNISTD_START		_TIME_START + _TIME_NUM
+#define _UNISTD_NUM 		32
+
+#define _TOTAL_POSIX_NUM 	_UNISTD_START + _UNISTD_NUM
+
+#endif

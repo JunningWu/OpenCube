@@ -1,0 +1,42 @@
+====================================================================
+======  Instructions and requirements for SCoPE installation  ======
+====================================================================
+
+SCoPE is a SystemC based co-simulation library. Hardware models are
+simulated by connecting them to the TLM bus available. Application
+software is simulated by parsing, compiling and linking against SCoPE
+with a minimum effort from the software developer.
+
+=== Requirements ===
+
+	- GNU C/C++ compiler > 4.0
+	- SystemC 2.2
+	- flex 2.5.33
+	- bison (GNU bison) 2.3
+
+=== Environment variables ===
+
+Edit your .bash_profile or .bashrc file and add the next environment variables:
+
+	CXX=g++
+	SCOPE_HOME=/path/to/scope
+	SYSTEMC=/path/to/systemc
+
+Add the $(SCOPE_HOME)/bin folder to your PATH
+
+=== Make and Install ===
+
+To compile the library, including the utils and graphic interface, type:
+
+	$> make all
+
+The library "libscope.a" is located into the $(SCOPE_HOME)/scope directory. To
+compile the test provided with the library:
+
+	$> make test
+
+Examples are located in the $(SCOPE_HOME)/test directory.
+
+=== Notes ===
+
+Using SCoPE under CygWin is not suported. Use it at your own risk.

@@ -1,0 +1,9 @@
+set clean_directory_on_exit = "true"
+db_change_current "full_db"
+doe_define_doe "m3_full_doe"
+opt_define_optimizer "m3_pareto_doe"
+opt_tune
+set objectives = { "surface" "0-volume" }
+set objectives_names = { "surface" "inv_volume" }
+set objectives_units =  { "cm2" "cm3" }
+db_report_html report

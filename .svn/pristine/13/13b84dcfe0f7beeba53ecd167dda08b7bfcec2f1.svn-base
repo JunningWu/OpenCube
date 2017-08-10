@@ -1,0 +1,5 @@
+show_vars
+doe_define_doe "m3_full_doe"
+opt_define_optimizer "m3_pareto_doe"
+opt_tune
+db_report

@@ -1,0 +1,5 @@
+db_read "pareto_mpeg4.db"
+set objectives =  { "energy" "cycles" }
+db_filter_pareto
+set sorting_metrics =  [ "energy" ]
+db_export_xml db7.xml
