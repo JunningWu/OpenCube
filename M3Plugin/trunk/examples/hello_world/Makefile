@@ -59,7 +59,8 @@ LOCAL_INC_DIRS =        $(SCOPE_HOME)/scope                     \
 INC_DIR = $(addprefix -I,$(LOCAL_INC_DIRS)) $(SCOPE_INC_DIR)
 
 
-CFLAGS = -c -g -O3 $(INC_DIR)
+#CFLAGS = -c -g -O3 $(INC_DIR)
+CFLAGS = -c -g $(INC_DIR)
 
 LFLAGS = -L../../build -L. -L$(SCOPE_HOME)/scope -L$(SYSTEMC)/lib-linux -L$(SCOPE_HOME)/scope/sicosys/SC_Simul -L$(SCOPE_HOME)/tinyxml -export-dynamic
 LIBS = -Wl,--whole-archive -lscope -Wl,--no-whole-archive -ltinyxml -lsystemc  -lloadxml -lexpatmm -ldl -lpthread -lrt
