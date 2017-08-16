@@ -1,3 +1,4 @@
+ARP_HOME=$(shell pwd)
 INC_DIR = -I$(ARP_HOME)
 
 all: 
