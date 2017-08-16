@@ -35,6 +35,7 @@
 
 // #include <linux/types.h>		/* for "__kernel_caddr_t" et al	*/
 #include <vector>
+#include <cstddef> /* add by Junning Wu */
 /*#include "rtos/api/posix/uc_pthread_spin_lock.h"
 #include "rtos/api/posix/sys_uc_types.h"
 #include "rtos/drivers/uc_file.h"*/
