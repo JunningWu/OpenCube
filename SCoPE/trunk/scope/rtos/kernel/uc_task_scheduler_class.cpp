@@ -39,6 +39,7 @@
 UC_task_scheduler_class::UC_task_scheduler_class(UC_rtos_class *rtos)
 {
 	m_parent_rtos = rtos;
+        m_current_task = NULL;
 }
 
 
