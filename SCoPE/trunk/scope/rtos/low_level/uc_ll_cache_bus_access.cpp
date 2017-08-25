@@ -46,6 +46,7 @@ void uc_ll_icache_miss(int size) {
 	int ret;
 
 	// USER annotation
+	if(qt_parent_rtos == NULL) return;
 	UC_cpu_class * cpu = qt_parent_rtos->get_current_cpu();
 	UC_thread_class *thread = cpu->m_current_task->m_current_thread;
 	thread->annotate_user_time(uc_segment_time, uc_segment_instr);
